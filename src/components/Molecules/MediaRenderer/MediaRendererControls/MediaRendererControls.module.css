@@ -1,0 +1,58 @@
+.controlGrid {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  padding: 12px;
+  bottom: 4px;
+  cursor: pointer;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.fullscreenControlGrid {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.controlButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--white);
+}
+
+.controlButton:hover {
+  background: var(--monaco-black);
+}
+
+.controlButton:active {
+  transform: scale(1);
+}

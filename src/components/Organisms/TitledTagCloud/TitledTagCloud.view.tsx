@@ -4,7 +4,7 @@ import type { TitledTagCloudProps } from "./TitledTagCloud.interface";
 
 const TitledTagCloud = ({ title, items, ctaLink, ctaText, ctaIcon: CtaIcon }: TitledTagCloudProps) => {
   return (
-    <section className="mb-16 border-4 border-black bg-white p-8 relative">
+    <section className="border-4 border-black bg-white p-8 relative">
       <div
         style={{ backgroundColor: Theme.colors.yellow[400] }}
         className={`absolute -top-4 left-8 px-4 py-1 border-2 border-black font-bold uppercase transform -rotate-2`}

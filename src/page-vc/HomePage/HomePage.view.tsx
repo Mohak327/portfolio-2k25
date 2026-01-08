@@ -17,7 +17,7 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
     >
       <Marquee text={homeData.marquee} />
 
-      <main className="container mx-auto px-4 pt-24 pb-20 max-w-6xl">
+      <main className="container mx-auto px-4 pt-24 pb-20 max-w-6xl flex flex-col gap-16">
         <HeroSection
           hero={homeData.hero}
           status={homeData.status}
@@ -31,76 +31,76 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
           ctaIcon={techArsenal.ctaIcon}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <TitledCardList
-            title={homeData.experience.title}
-            items={homeData.experience.jobs}
-            renderItem={(job) => (
-              <>
-                <div
-                  style={{ backgroundColor: job.accent }}
-                  className={`absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold`}
-                >
-                  {job.duration}
-                </div>
-                <h3 className="text-2xl font-black uppercase mb-1 mt-6">
-                  {job.role}
-                </h3>
-                <div className="text-lg font-bold mb-4 flex items-center gap-2">
-                  {job.company}{" "}
-                </div>
-                <ul className="list-disc list-inside space-y-2">
-                  {job.tasks.map((task, index) => (
-                    <li key={index} className="text-sm">
-                      <RichTextController text={task} />
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          />
+        <TitledCardList
+          title={homeData.projects.title}
+          items={homeData.projects.items}
+          icon={<Brain size={24} />}
+          colCount={2}
+          renderItem={(project) => (
+            <>
+              <div className="bg-white border-2 border-black inline-block px-3 py-1 font-bold text-xs uppercase mb-4">
+                {project.focus}
+              </div>
+              <h3 className="text-2xl font-black uppercase mb-2 leading-tight">
+                {project.title}
+              </h3>
+              <p className="text-sm font-bold mb-4 border-l-4 border-black pl-4">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-black text-white flex-none w-auto px-2 py-1 text-xs font-bold text-center"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+        />
 
-          <div className="flex flex-col gap-8">
-            <TitledCardList
-              title={homeData.projects.title}
-              items={homeData.projects.items}
-              icon={<Brain size={24} />}
-              renderItem={(project) => (
-                <>
-                  <div className="bg-white border-2 border-black inline-block px-3 py-1 font-bold text-xs uppercase mb-4">
-                    {project.focus}
-                  </div>
-                  <h3 className="text-2xl font-black uppercase mb-2 leading-tight">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm font-bold mb-4 border-l-4 border-black pl-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-black text-white flex-none w-auto px-2 py-1 text-xs font-bold text-center"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
-            />
-            <TitledContentBox
-              title={homeData.education.title}
-              items={homeData.education.degrees.map((degree) => ({
-                heading: degree.university,
-                meta: degree.year,
-                subHeading: degree.degree,
-                body: degree.courses,
-                bgColor: degree.bgColor,
-              }))}
-            />
-          </div>
-        </div>
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-12"> */}
+        <TitledCardList
+          title={homeData.experience.title}
+          items={homeData.experience.jobs}
+          renderItem={(job) => (
+            <>
+              <div
+                style={{ backgroundColor: job.accent }}
+                className={`absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold`}
+              >
+                {job.duration}
+              </div>
+              <h3 className="text-2xl font-black uppercase mb-1 mt-6">
+                {job.role}
+              </h3>
+              <div className="text-lg font-bold mb-4 flex items-center gap-2">
+                {job.company}{" "}
+              </div>
+              <ul className="list-disc list-inside space-y-2">
+                {job.tasks.map((task, index) => (
+                  <li key={index} className="text-sm">
+                    <RichTextController text={task} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        />
+
+        <TitledContentBox
+          title={homeData.education.title}
+          items={homeData.education.degrees.map((degree) => ({
+            heading: degree.university,
+            meta: degree.year,
+            subHeading: degree.degree,
+            body: degree.courses,
+            bgColor: degree.bgColor,
+          }))}
+        />
+        {/* </div> */}
 
         <SiteFooter
           beyondTheCode={homeData.footer.beyondTheCode}

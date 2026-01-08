@@ -22,7 +22,7 @@ interface HeaderProps {
 
 const HeroSection = ({ hero, status, meta }: HeaderProps) => {
     return (
-        <header className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-4 border-black bg-white mb-16">
+        <header className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-4 border-black bg-white">
             <div className="lg:col-span-8 p-8 lg:p-16 border-b-4 lg:border-b-0 lg:border-r-4 border-black flex flex-col justify-center relative overflow-hidden">
                 <div
                     className="absolute inset-0 opacity-10 pointer-events-none"

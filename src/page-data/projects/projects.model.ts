@@ -354,6 +354,134 @@ export const projects: ProjectInterface[] = [
     ],
     accentColor: Theme.colors.pink[400],
   },
+  {
+    id: "causalbench-llm-reasoning",
+    title: "Teaching LLMs to Think Causally: CausalBench",
+    subtitle: "Exposing AI's Causal Reasoning Gaps",
+    focus: "Causal ML / AI Safety",
+    summary:
+      "A benchmark and training platform for evaluating and improving causal reasoning in large language models through systematic testing of counterfactual inference capabilities.",
+    tags: [
+      "Causal Inference",
+      "Large Language Models",
+      "Structural Causal Models",
+      "Counterfactual Reasoning",
+      "AI Safety",
+      "Multi-Agent Systems",
+    ],
+    github: new URL("https://github.com/Mohak327/CausalBench"),
+    accentColor: Theme.colors.yellow[400],
+    sections: [
+      {
+        heading: "Overview",
+        content: [
+          {
+            type: "paragraph",
+            data: "As the academic semester wrapped up in late December, we took on a winter break project from Professor Elias Bareinboim to evaluate whether state-of-the-art LLMs (GPT-4, Claude Sonnet 4.5, Gemini Pro) can perform proper causal inference. What seemed straightforward revealed a fascinating gap: <span class='highlight'><b>modern AI systems excel at pattern matching but struggle with the logical structure of cause and effect</b></span>.",
+          },
+          {
+            type: "paragraph",
+            data: "The project began with handcrafting 25 scenarios, each designed to expose one of three fundamental causal reasoning errors that LLMs consistently make when attempting counterfactual inference. What made this challenging was designing scenarios that truly test causal understanding without linguistic ambiguity or loopholes—an exercise that gave me new appreciation for how sophisticated modern LLMs are, even when they fail in subtle ways.",
+          },
+        ],
+      },
+      {
+        heading: "The Three Types of Causal Errors",
+        content: [
+          {
+            type: "paragraph",
+            data: "<b>Type I - Ignoring Downstream Effects:</b> Models change an intervention variable but fail to update the consequences that should logically follow. For example, intervening to set 'rain = true' while leaving 'ground = dry' unchanged.",
+          },
+          {
+            type: "paragraph",
+            data: "<b>Type II - Backtracking on Fixed Causes:</b> Models 'rewrite history' by altering upstream variables that were explicitly held constant in the counterfactual scenario. This violates the fundamental principle that interventions don't change their causes.",
+          },
+          {
+            type: "paragraph",
+            data: "<b>Type III - Correlation ≠ Causation:</b> Models confuse statistical patterns with causal relationships, often due to training biases. They see that X and Y co-occur frequently and assume one causes the other, missing confounders or reverse causality.",
+          },
+        ],
+      },
+      {
+        heading: "Building CausalBench",
+        content: [
+          {
+            type: "paragraph",
+            data: "To systematize and scale this evaluation, I built <b>CausalBench</b>, an application for generating Structural Causal Models (SCMs), posing counterfactual queries, and benchmarking multiple LLMs against ground-truth causal logic. The platform allows researchers to:",
+          },
+          {
+            type: "list",
+            data: [
+              "Generate SCMs with explicit causal structures and functional relationships",
+              "Pose counterfactual queries that test specific reasoning capabilities",
+              "Evaluate multiple LLM responses against formal causal inference algorithms",
+              "Classify errors into the three causal violation types",
+              "Track performance across different model families and versions",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The real value of CausalBench isn't just measurement—it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
+          },
+        ],
+      },
+      {
+        heading: "What's Next: Multi-Agent Self-Learning",
+        content: [
+          {
+            type: "paragraph",
+            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop:",
+          },
+          {
+            type: "ordered-list",
+            data: [
+              "<b>Generation:</b> Use one model to propose diverse SCMs and counterfactual scenarios",
+              "<b>Council Debate:</b> Pass SCMs to multiple models that independently compute interventional answers and debate their responses",
+              "<b>Error Classification:</b> Identify disagreements and mistakes, classifying them into the three causal error types using CausalBench's evaluation layer",
+              "<b>Policy Training:</b> Train a policy to answer scenarios correctly, explicitly rewarding SCM-consistent reasoning and penalizing causal violations",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The long-term goal is a benchmark that not only measures causal reasoning, but <b>trains future LLMs to reason about causality</b>, not just give statistically likely answers. This shifts from 'what patterns appear in training data' to 'what would happen if we changed this variable, holding everything else fixed.'",
+          },
+        ],
+      },
+      {
+        heading: "Technical Implementation",
+        content: [
+          {
+            type: "list",
+            data: [
+              "SCM Framework: Built a flexible system for representing causal graphs, functional equations, and intervention operators",
+              "Query Generation: Automated creation of counterfactual scenarios that systematically test different reasoning capabilities",
+              "LLM Integration: API connectors for GPT-4, Claude, and Gemini with structured output parsing",
+              "Ground Truth Computation: Implementation of Pearl's do-calculus and counterfactual inference algorithms",
+              "Error Analysis: Automated classification system that maps LLM responses to specific causal violation patterns",
+              "Visualization: Interactive displays of causal graphs, intervention results, and model comparison dashboards",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Impact & Future Directions",
+        content: [
+          {
+            type: "paragraph",
+            data: "This work sits at the intersection of causal inference, AI safety, and interpretability. As LLMs are increasingly deployed in domains requiring causal reasoning—healthcare, policy, science—understanding and improving their causal capabilities becomes critical.",
+          },
+          {
+            type: "paragraph",
+            data: "CausalBench provides both a diagnostic tool for current models and a training framework for future ones. The multi-agent training loop opens possibilities for self-play approaches to causal learning, where models improve by debating counterfactuals rather than just absorbing more training data.",
+          },
+          {
+            type: "paragraph",
+            data: "If you're working on causal inference, AI reasoning, interpretability, or exploring multi-agent training setups, I'm open to collaborations on extending CausalBench into a larger causal reasoning and training suite.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 // export const getProjectById = (id: string): ProjectInterface | undefined => {

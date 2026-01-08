@@ -14,7 +14,13 @@ const TitledCardList = <
   items,
   renderItem,
   icon,
+  colCount,
 }: TitledCardListProps<T>) => {
+  const getGridClass = () => {
+    if (!colCount) return "flex flex-col gap-8";
+    return `columns-1 lg:columns-${colCount} gap-6`;
+  };
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center gap-4 mb-2">
@@ -23,16 +29,20 @@ const TitledCardList = <
         </div>
         <h2 className="text-4xl font-black uppercase">{title}</h2>
       </div>
-      {items.map((item, index) => (
-        <ConditionLinkView link={item.link} key={index}>
-          <Card
-            bgColor={item.bgColor ? item.bgColor : "white"}
-            accentColor={item.accent ? item.accent : "white"}
-          >
-            {renderItem(item)}
-          </Card>
-        </ConditionLinkView>
-      ))}
+      <div className={getGridClass()}>
+        {items.map((item, index) => (
+        <div key={index} className="break-inside-avoid mb-6">
+          <ConditionLinkView link={item.link}>
+            <Card
+              bgColor={item.bgColor ? item.bgColor : "white"}
+              accentColor={item.accent ? item.accent : "white"}
+            >
+              {renderItem(item)}
+            </Card>
+          </ConditionLinkView>
+        </div>
+        ))}
+      </div>
     </div>
   );
 };
