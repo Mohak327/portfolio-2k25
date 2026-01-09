@@ -14,13 +14,8 @@ const TitledCardList = <
   items,
   renderItem,
   icon,
-  colCount,
+  colCount = 1,
 }: TitledCardListProps<T>) => {
-  const getGridClass = () => {
-    if (!colCount) return "flex flex-col";
-    return `columns-1 lg:columns-${colCount}`;
-  };
-
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-6">
@@ -29,18 +24,21 @@ const TitledCardList = <
         </div>
         <h2 className="text-4xl font-black uppercase">{title}</h2>
       </div>
-      <div className={getGridClass()}>
+      <div
+        className="[column-count:1] md:[column-count:var(--col-count)]"
+        style={{ "--col-count": colCount } as React.CSSProperties}
+      >
         {items.map((item, index) => (
-        <div key={index} className="break-inside-avoid mb-6">
-          <ConditionLinkView link={item.link}>
-            <Card
-              bgColor={item.bgColor ? item.bgColor : "white"}
-              accentColor={item.accent ? item.accent : "white"}
-            >
-              {renderItem(item)}
-            </Card>
-          </ConditionLinkView>
-        </div>
+          <div key={index} className="break-inside-avoid mb-6">
+            <ConditionLinkView link={item.link}>
+              <Card
+                bgColor={item.bgColor ? item.bgColor : "white"}
+                accentColor={item.accent ? item.accent : "white"}
+              >
+                {renderItem(item)}
+              </Card>
+            </ConditionLinkView>
+          </div>
         ))}
       </div>
     </div>
