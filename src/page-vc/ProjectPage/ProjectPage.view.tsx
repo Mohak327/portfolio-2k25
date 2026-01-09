@@ -48,11 +48,11 @@ const ProjectDetailView: React.FC<ProjectInterface> = ({
         </div>
       </div>
 
-      <div className="flex gap-2 container mx-auto px-4 py-12 max-w-4xl gap-8">
+      <div className="md:flex md:flex-row gap-6 container mx-auto px-4 py-8 max-w-4xl gap-8">
         <div className="flex-1">
           <ContentRenderer sections={sections} />
         </div>
-        <div className="max-w-[240px] w-full">
+        <div className="md:max-w-[240px] w-full">
           {github && (
             <div className="border-4 border-black p-6 bg-black text-white">
               <h3 className="flex items-center gap-2 font-black uppercase mb-4 text-lg">

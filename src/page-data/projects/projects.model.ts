@@ -3,60 +3,128 @@ import { ProjectInterface } from "./projects.interface";
 
 export const projects: ProjectInterface[] = [
   {
-    id: "dft-image-reconstruction",
-    title:
-      "WYSIWYG: Image Reconstruction with 2D Fourier Transform",
-    subtitle: "Visualizing Image Reconstruction with Fourier Transform",
-    focus: "Computational Imaging",
+    id: "causalbench-llm-reasoning",
+    title: "Teaching LLMs to Think Causally: CausalBench",
+    subtitle: "Exposing AI's Causal Reasoning Gaps",
+    focus: "Causal ML / AI Safety",
     summary:
-      "Exploring the decomposition and reconstruction of images using 2D Fourier Transform (DFT) to understand the role of frequency components in image structure.",
+      "A benchmark and training platform for evaluating and improving causal reasoning in large language models through systematic testing of counterfactual inference capabilities.",
     tags: [
-      "Signal Processing",
-      "Fourier Transform",
-      "Computer Vision",
-      "Signal Processing",
-      "Computational Imaging",
+      "Causal Inference",
+      "Large Language Models",
+      "Structural Causal Models",
+      "Counterfactual Reasoning",
+      "AI Safety",
+      "Multi-Agent Systems",
     ],
-    // role: "Researcher / Engineer",
-    github: new URL("https://github.com/Mohak327/2D-DFT-Visualisation"),
-    accentColor: Theme.colors.orange[400],
+    github: new URL("https://github.com/Mohak327/CausalBench"),
+    accentColor: Theme.colors.yellow[400],
     sections: [
       {
         heading: "Overview",
         content: [
           {
             type: "paragraph",
-            data: "There is something wild about realizing that <span class='highlight'><b>every scene, every photograph, every pattern your eyes can register is, at some level, just a particular mixture of waves</b></span>. Even beyond what humans can see, there is an endless spectrum of frequencies, and yet with the right combination of them, you can recreate any image, any signal, with almost absurd precision. The idea that an image of a face, a galaxy, or a handwritten digit can all be broken down into oscillations—and then rebuilt from those oscillations—makes the Fourier transform feel less like a technical tool and more like a fundamental language of structure and pattern.",
+            data: "As the academic semester wrapped up in late December, we took on a winter break project from Professor Elias Bareinboim to evaluate whether state-of-the-art LLMs (GPT-4, Claude Sonnet 4.5, Gemini Pro) can perform proper causal inference. What seemed straightforward revealed a fascinating gap: <span class='highlight'><b>modern AI systems excel at pattern matching but struggle with the logical structure of cause and effect</b></span>.",
           },
           {
             type: "paragraph",
-            data: "Encountering the discrete and fast Fourier transform in a quantum computing class made this even more striking: here was the same mathematical idea quietly real-world signal processing and the inner workings of quantum algorithms. The leap from <b>“here is a beautiful equation”</b> to <b>“this is the backbone of how we analyze, compress, and reconstruct information”</b> was what made the topic feel genuinely powerful rather than just exam material. It suggested that underneath the complexity of images and signals, there is a very clean, almost musical structure waiting to be exposed by the right transform.",
-          },
-        ],
-      },
-      {
-        heading: "Why Visualize Image Reconstruction?",
-        content: [
-          {
-            type: "paragraph",
-            data: "This project grew out of wanting to see that structure in action instead of only trusting the theory. If a 2D Fourier transform can really decompose an image into a sum of oscillations, then an equally important part of the story is watching those oscillations put the image back together. Building a simple visualizer that reconstructs an image step by step from its frequency components became the first thing to try: a way to watch low frequencies paint the broad strokes and high frequencies carve in the details, frame by frame. It was a small, concrete experiment to feel the power of the Fourier transform, not just admire it on the page.",
+            data: "The project began with handcrafting 25 scenarios, each designed to expose one of three fundamental causal reasoning errors that LLMs consistently make when attempting counterfactual inference. What made this challenging was designing scenarios that truly test causal understanding without linguistic ambiguity or loopholes—an exercise that gave me new appreciation for how sophisticated modern LLMs are, even when they fail in subtle ways.",
           },
         ],
       },
       {
-        heading: "What Next?",
+        heading: "The Three Types of Causal Errors",
         content: [
           {
             type: "paragraph",
-            data: "<b>Image Quality, Super-Resolution, and Generation</b>",
+            data: "<b>Type I - Ignoring Downstream Effects:</b> Models change an intervention variable but fail to update the consequences that should logically follow. For example, intervening to set 'rain = true' while leaving 'ground = dry' unchanged.",
           },
           {
             type: "paragraph",
-            data: "While this project focuses on visualizing reconstruction from existing frequency components, the same ideas extend to improving or generating images by learning to <b>“fill in”</b> missing frequencies. In modern computer vision, many super-resolution and inpainting methods explicitly operate in, or are constrained by, the frequency domain to recover high-frequency details that make images look sharper and more realistic.",
+            data: "<b>Type II - Backtracking on Fixed Causes:</b> Models 'rewrite history' by altering upstream variables that were explicitly held constant in the counterfactual scenario. This violates the fundamental principle that interventions don't change their causes.",
           },
           {
             type: "paragraph",
-            data: "Conceptually, one can train ML models on images’ frequency representations to predict or refine high-frequency components, effectively adding back detail that was lost due to downsampling, blur, or corruption—this is the core of frequency-aware <b><span class='highlight'>“image super-resolution”</span></b> and <b><span class='highlight'>frequency-guided inpainting</span></b>. This project sits as a foundational step in that direction: it builds intuition for how frequencies encode structure and detail, which is exactly what these models learn to manipulate when improving image quality or reconstructing missing content.",
+            data: "<b>Type III - Correlation ≠ Causation:</b> Models confuse statistical patterns with causal relationships, often due to training biases. They see that X and Y co-occur frequently and assume one causes the other, missing confounders or reverse causality.",
+          },
+        ],
+      },
+      {
+        heading: "Building CausalBench",
+        content: [
+          {
+            type: "paragraph",
+            data: "To systematize and scale this evaluation, I built <b>CausalBench</b>, an application for generating Structural Causal Models (SCMs), posing counterfactual queries, and benchmarking multiple LLMs against ground-truth causal logic. The platform allows researchers to:",
+          },
+          {
+            type: "list",
+            data: [
+              "Generate SCMs with explicit causal structures and functional relationships",
+              "Pose counterfactual queries that test specific reasoning capabilities",
+              "Evaluate multiple LLM responses against formal causal inference algorithms",
+              "Classify errors into the three causal violation types",
+              "Track performance across different model families and versions",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The real value of CausalBench isn't just measurement—it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
+          },
+        ],
+      },
+      {
+        heading: "What's Next: Multi-Agent Self-Learning",
+        content: [
+          {
+            type: "paragraph",
+            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop:",
+          },
+          {
+            type: "ordered-list",
+            data: [
+              "<b>Generation:</b> Use one model to propose diverse SCMs and counterfactual scenarios",
+              "<b>Council Debate:</b> Pass SCMs to multiple models that independently compute interventional answers and debate their responses",
+              "<b>Error Classification:</b> Identify disagreements and mistakes, classifying them into the three causal error types using CausalBench's evaluation layer",
+              "<b>Policy Training:</b> Train a policy to answer scenarios correctly, explicitly rewarding SCM-consistent reasoning and penalizing causal violations",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The long-term goal is a benchmark that not only measures causal reasoning, but <b>trains future LLMs to reason about causality</b>, not just give statistically likely answers. This shifts from 'what patterns appear in training data' to 'what would happen if we changed this variable, holding everything else fixed.'",
+          },
+        ],
+      },
+      {
+        heading: "Technical Implementation",
+        content: [
+          {
+            type: "list",
+            data: [
+              "SCM Framework: Built a flexible system for representing causal graphs, functional equations, and intervention operators",
+              "Query Generation: Automated creation of counterfactual scenarios that systematically test different reasoning capabilities",
+              "LLM Integration: API connectors for GPT-4, Claude, and Gemini with structured output parsing",
+              "Ground Truth Computation: Implementation of Pearl's do-calculus and counterfactual inference algorithms",
+              "Error Analysis: Automated classification system that maps LLM responses to specific causal violation patterns",
+              "Visualization: Interactive displays of causal graphs, intervention results, and model comparison dashboards",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Impact & Future Directions",
+        content: [
+          {
+            type: "paragraph",
+            data: "This work sits at the intersection of causal inference, AI safety, and interpretability. As LLMs are increasingly deployed in domains requiring causal reasoning—healthcare, policy, science—understanding and improving their causal capabilities becomes critical.",
+          },
+          {
+            type: "paragraph",
+            data: "CausalBench provides both a diagnostic tool for current models and a training framework for future ones. The multi-agent training loop opens possibilities for self-play approaches to causal learning, where models improve by debating counterfactuals rather than just absorbing more training data.",
+          },
+          {
+            type: "paragraph",
+            data: "If you're working on causal inference, AI reasoning, interpretability, or exploring multi-agent training setups, I'm open to collaborations on extending CausalBench into a larger causal reasoning and training suite.",
           },
         ],
       },
@@ -69,10 +137,7 @@ export const projects: ProjectInterface[] = [
     focus: "Computational Neuroscience",
     summary:
       'An end-to-end digital model of the human auditory pathway that takes raw sound, passes it through cochlear-like filtering, hair cell transduction, and spiking neuron populations, and then attempts to reconstruct what the ear "hears" from those neural signals.',
-    tags: [
-      "Auditory Signal Processing",
-      "Neural Encoding",
-    ],
+    tags: ["Auditory Signal Processing", "Neural Encoding"],
     role: "Researcher / Engineer",
     github: new URL("https://github.com/Mohak327/sing-me-a-song"),
     accentColor: Theme.colors.purple[400],
@@ -355,128 +420,59 @@ export const projects: ProjectInterface[] = [
     accentColor: Theme.colors.pink[400],
   },
   {
-    id: "causalbench-llm-reasoning",
-    title: "Teaching LLMs to Think Causally: CausalBench",
-    subtitle: "Exposing AI's Causal Reasoning Gaps",
-    focus: "Causal ML / AI Safety",
+    id: "dft-image-reconstruction",
+    title: "WYSIWYG: Image Reconstruction with 2D Fourier Transform",
+    subtitle: "Visualizing Image Reconstruction with Fourier Transform",
+    focus: "Computational Imaging",
     summary:
-      "A benchmark and training platform for evaluating and improving causal reasoning in large language models through systematic testing of counterfactual inference capabilities.",
+      "Exploring the decomposition and reconstruction of images using 2D Fourier Transform (DFT) to understand the role of frequency components in image structure.",
     tags: [
-      "Causal Inference",
-      "Large Language Models",
-      "Structural Causal Models",
-      "Counterfactual Reasoning",
-      "AI Safety",
-      "Multi-Agent Systems",
+      "Signal Processing",
+      "Fourier Transform",
+      "Computer Vision",
+      "Signal Processing",
+      "Computational Imaging",
     ],
-    github: new URL("https://github.com/Mohak327/CausalBench"),
-    accentColor: Theme.colors.yellow[400],
+    // role: "Researcher / Engineer",
+    github: new URL("https://github.com/Mohak327/2D-DFT-Visualisation"),
+    accentColor: Theme.colors.orange[400],
     sections: [
       {
         heading: "Overview",
         content: [
           {
             type: "paragraph",
-            data: "As the academic semester wrapped up in late December, we took on a winter break project from Professor Elias Bareinboim to evaluate whether state-of-the-art LLMs (GPT-4, Claude Sonnet 4.5, Gemini Pro) can perform proper causal inference. What seemed straightforward revealed a fascinating gap: <span class='highlight'><b>modern AI systems excel at pattern matching but struggle with the logical structure of cause and effect</b></span>.",
+            data: "There is something wild about realizing that <span class='highlight'><b>every scene, every photograph, every pattern your eyes can register is, at some level, just a particular mixture of waves</b></span>. Even beyond what humans can see, there is an endless spectrum of frequencies, and yet with the right combination of them, you can recreate any image, any signal, with almost absurd precision. The idea that an image of a face, a galaxy, or a handwritten digit can all be broken down into oscillations—and then rebuilt from those oscillations—makes the Fourier transform feel less like a technical tool and more like a fundamental language of structure and pattern.",
           },
           {
             type: "paragraph",
-            data: "The project began with handcrafting 25 scenarios, each designed to expose one of three fundamental causal reasoning errors that LLMs consistently make when attempting counterfactual inference. What made this challenging was designing scenarios that truly test causal understanding without linguistic ambiguity or loopholes—an exercise that gave me new appreciation for how sophisticated modern LLMs are, even when they fail in subtle ways.",
+            data: "Encountering the discrete and fast Fourier transform in a quantum computing class made this even more striking: here was the same mathematical idea quietly real-world signal processing and the inner workings of quantum algorithms. The leap from <b>“here is a beautiful equation”</b> to <b>“this is the backbone of how we analyze, compress, and reconstruct information”</b> was what made the topic feel genuinely powerful rather than just exam material. It suggested that underneath the complexity of images and signals, there is a very clean, almost musical structure waiting to be exposed by the right transform.",
           },
         ],
       },
       {
-        heading: "The Three Types of Causal Errors",
+        heading: "Why Visualize Image Reconstruction?",
         content: [
           {
             type: "paragraph",
-            data: "<b>Type I - Ignoring Downstream Effects:</b> Models change an intervention variable but fail to update the consequences that should logically follow. For example, intervening to set 'rain = true' while leaving 'ground = dry' unchanged.",
-          },
-          {
-            type: "paragraph",
-            data: "<b>Type II - Backtracking on Fixed Causes:</b> Models 'rewrite history' by altering upstream variables that were explicitly held constant in the counterfactual scenario. This violates the fundamental principle that interventions don't change their causes.",
-          },
-          {
-            type: "paragraph",
-            data: "<b>Type III - Correlation ≠ Causation:</b> Models confuse statistical patterns with causal relationships, often due to training biases. They see that X and Y co-occur frequently and assume one causes the other, missing confounders or reverse causality.",
+            data: "This project grew out of wanting to see that structure in action instead of only trusting the theory. If a 2D Fourier transform can really decompose an image into a sum of oscillations, then an equally important part of the story is watching those oscillations put the image back together. Building a simple visualizer that reconstructs an image step by step from its frequency components became the first thing to try: a way to watch low frequencies paint the broad strokes and high frequencies carve in the details, frame by frame. It was a small, concrete experiment to feel the power of the Fourier transform, not just admire it on the page.",
           },
         ],
       },
       {
-        heading: "Building CausalBench",
+        heading: "What Next?",
         content: [
           {
             type: "paragraph",
-            data: "To systematize and scale this evaluation, I built <b>CausalBench</b>, an application for generating Structural Causal Models (SCMs), posing counterfactual queries, and benchmarking multiple LLMs against ground-truth causal logic. The platform allows researchers to:",
-          },
-          {
-            type: "list",
-            data: [
-              "Generate SCMs with explicit causal structures and functional relationships",
-              "Pose counterfactual queries that test specific reasoning capabilities",
-              "Evaluate multiple LLM responses against formal causal inference algorithms",
-              "Classify errors into the three causal violation types",
-              "Track performance across different model families and versions",
-            ],
+            data: "<b>Image Quality, Super-Resolution, and Generation</b>",
           },
           {
             type: "paragraph",
-            data: "The real value of CausalBench isn't just measurement—it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
-          },
-        ],
-      },
-      {
-        heading: "What's Next: Multi-Agent Self-Learning",
-        content: [
-          {
-            type: "paragraph",
-            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop:",
-          },
-          {
-            type: "ordered-list",
-            data: [
-              "<b>Generation:</b> Use one model to propose diverse SCMs and counterfactual scenarios",
-              "<b>Council Debate:</b> Pass SCMs to multiple models that independently compute interventional answers and debate their responses",
-              "<b>Error Classification:</b> Identify disagreements and mistakes, classifying them into the three causal error types using CausalBench's evaluation layer",
-              "<b>Policy Training:</b> Train a policy to answer scenarios correctly, explicitly rewarding SCM-consistent reasoning and penalizing causal violations",
-            ],
+            data: "While this project focuses on visualizing reconstruction from existing frequency components, the same ideas extend to improving or generating images by learning to <b>“fill in”</b> missing frequencies. In modern computer vision, many super-resolution and inpainting methods explicitly operate in, or are constrained by, the frequency domain to recover high-frequency details that make images look sharper and more realistic.",
           },
           {
             type: "paragraph",
-            data: "The long-term goal is a benchmark that not only measures causal reasoning, but <b>trains future LLMs to reason about causality</b>, not just give statistically likely answers. This shifts from 'what patterns appear in training data' to 'what would happen if we changed this variable, holding everything else fixed.'",
-          },
-        ],
-      },
-      {
-        heading: "Technical Implementation",
-        content: [
-          {
-            type: "list",
-            data: [
-              "SCM Framework: Built a flexible system for representing causal graphs, functional equations, and intervention operators",
-              "Query Generation: Automated creation of counterfactual scenarios that systematically test different reasoning capabilities",
-              "LLM Integration: API connectors for GPT-4, Claude, and Gemini with structured output parsing",
-              "Ground Truth Computation: Implementation of Pearl's do-calculus and counterfactual inference algorithms",
-              "Error Analysis: Automated classification system that maps LLM responses to specific causal violation patterns",
-              "Visualization: Interactive displays of causal graphs, intervention results, and model comparison dashboards",
-            ],
-          },
-        ],
-      },
-      {
-        heading: "Impact & Future Directions",
-        content: [
-          {
-            type: "paragraph",
-            data: "This work sits at the intersection of causal inference, AI safety, and interpretability. As LLMs are increasingly deployed in domains requiring causal reasoning—healthcare, policy, science—understanding and improving their causal capabilities becomes critical.",
-          },
-          {
-            type: "paragraph",
-            data: "CausalBench provides both a diagnostic tool for current models and a training framework for future ones. The multi-agent training loop opens possibilities for self-play approaches to causal learning, where models improve by debating counterfactuals rather than just absorbing more training data.",
-          },
-          {
-            type: "paragraph",
-            data: "If you're working on causal inference, AI reasoning, interpretability, or exploring multi-agent training setups, I'm open to collaborations on extending CausalBench into a larger causal reasoning and training suite.",
+            data: "Conceptually, one can train ML models on images’ frequency representations to predict or refine high-frequency components, effectively adding back detail that was lost due to downsampling, blur, or corruption—this is the core of frequency-aware <b><span class='highlight'>“image super-resolution”</span></b> and <b><span class='highlight'>frequency-guided inpainting</span></b>. This project sits as a foundational step in that direction: it builds intuition for how frequencies encode structure and detail, which is exactly what these models learn to manipulate when improving image quality or reconstructing missing content.",
           },
         ],
       },

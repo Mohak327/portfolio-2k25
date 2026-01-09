@@ -3,12 +3,12 @@ import type { SiteFooterProps } from "./SiteFooter.interface";
 
 const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
   return (
-    <footer className="mt-20 border-t-4 border-black pt-12">
+    <div className="">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div
           className={`col-span-2 border-4 border-black p-8 bg-white relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]`}
         >
-          <div className="absolute -top-5 left-4 bg-black text-white px-4 py-1 font-bold uppercase rotate-1">
+          <div className="absolute text-lg -top-5 left-4 bg-black text-white px-4 py-1 font-bold uppercase rotate-1">
             {beyondTheCode.title}
           </div>
           <h3 className="text-xl font-black uppercase tracking-tight border-b-2 border-black pb-2 mb-4">
@@ -54,7 +54,7 @@ const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
       <div className="text-center mt-12 font-bold uppercase text-sm opacity-50">
         {copyright}
       </div>
-    </footer>
+    </div>
   );
 };
 

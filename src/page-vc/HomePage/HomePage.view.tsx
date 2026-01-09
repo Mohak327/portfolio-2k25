@@ -9,6 +9,7 @@ import { Brain } from "lucide-react";
 import Marquee from "../../components/Molecules/Marquee/Marquee.view";
 import { HomeViewProps } from "../../page-data/home/home.interface";
 import RichTextController from "@/components/Organisms/RichText/RichText.controller";
+import PDFTile from "@/components/Molecules/PDFTile/PDFTile.view";
 
 const HomePageView = ({ techArsenal }: HomeViewProps) => {
   return (
@@ -79,13 +80,23 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
               <div className="text-lg font-bold mb-4 flex items-center gap-2">
                 {job.company}{" "}
               </div>
-              <ul className="list-disc list-inside space-y-2">
+              <ul className="list-disc space-y-2 pl-5">
                 {job.tasks.map((task, index) => (
-                  <li key={index} className="text-sm">
+                  <li key={index} className="text-sm pl-2">
                     <RichTextController text={task} />
                   </li>
                 ))}
               </ul>
+              {job.doc && (
+                <PDFTile
+                  pdfUrl={job.doc.url}
+                  title={job.doc.title}
+                  type={job.doc.type}
+                  description={`Click to view ${job.doc.type}`}
+                  className="mt-4"
+                  icon={job.doc.icon}
+                />
+              )}
             </>
           )}
         />
@@ -100,7 +111,6 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
             bgColor: degree.bgColor,
           }))}
         />
-        {/* </div> */}
 
         <SiteFooter
           beyondTheCode={homeData.footer.beyondTheCode}

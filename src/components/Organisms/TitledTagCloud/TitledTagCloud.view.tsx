@@ -26,7 +26,7 @@ const TitledTagCloud = ({ title, items, ctaLink, ctaText, ctaIcon: CtaIcon }: Ti
           href={ctaLink}
           className="bg-black text-white px-6 py-3 font-bold uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:text-black transition-all whitespace-nowrap md:w-auto text-center flex items-center gap-2"
         >
-          {ctaText} {CtaIcon && <CtaIcon />}
+          {ctaText} {CtaIcon && <CtaIcon size={20} />}
         </Link>
       </div>
     </section>

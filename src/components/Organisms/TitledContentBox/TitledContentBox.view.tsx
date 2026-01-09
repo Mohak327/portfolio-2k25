@@ -3,8 +3,8 @@ import type { TitledContentBoxProps } from './TitledContentBox.interface';
 
 const TitledContentBox = ({ title, items, icon }: TitledContentBoxProps) => {
     return (
-        <>
-            <div className="flex items-center gap-4 mb-2 mt-8">
+        <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-4">
                 <div className="bg-black text-white p-2 border-2 border-black">{icon || <Activity size={24} />}</div>
                 <h2 className="text-4xl font-black uppercase">{title}</h2>
             </div>
@@ -26,7 +26,7 @@ const TitledContentBox = ({ title, items, icon }: TitledContentBoxProps) => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

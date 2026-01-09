@@ -17,13 +17,13 @@ const TitledCardList = <
   colCount,
 }: TitledCardListProps<T>) => {
   const getGridClass = () => {
-    if (!colCount) return "flex flex-col gap-8";
-    return `columns-1 lg:columns-${colCount} gap-6`;
+    if (!colCount) return "flex flex-col";
+    return `columns-1 lg:columns-${colCount}`;
   };
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex items-center gap-4 mb-2">
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center gap-6">
         <div className="bg-black text-white p-2 border-2 border-black">
           {icon || <Terminal size={24} />}
         </div>
