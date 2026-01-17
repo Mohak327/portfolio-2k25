@@ -17,7 +17,7 @@ export const projects: ProjectInterface[] = [
       "AI Safety",
       "Multi-Agent Systems",
     ],
-    github: new URL("https://github.com/Mohak327/CausalBench"),
+    github: new URL("https://github.com/Mohak327/llm-causal-bench"),
     accentColor: Theme.colors.yellow[400],
     sections: [
       {

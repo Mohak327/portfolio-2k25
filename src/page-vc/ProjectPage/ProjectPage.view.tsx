@@ -63,6 +63,7 @@ const ProjectDetailView: React.FC<ProjectInterface> = ({
                 href={github.toString()}
                 className="font-bold underline transition-all break-all hover:text-[var(--accent-color)]"
                 style={{ "--accent-color": accentColor } as React.CSSProperties}
+                target="_blank"
               >
                 {" "}
                 {github.toString()}{" "}
