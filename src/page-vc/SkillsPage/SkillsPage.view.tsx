@@ -39,13 +39,20 @@ export const SkillsPageView: React.FC<SkillsPageViewProps> = ({
             const startNum = categoryStartIndex[cat.category] ?? 0;
             return (
               <div key={cat.category}>
-                <h2 className="text-3xl font-black uppercase mb-6 flex items-center gap-4">
-                  <span
-                    className="w-6 h-6 border-2 border-black"
-                    style={{ backgroundColor: cat.color }}
-                  ></span>
-                  {cat.category}
-                </h2>
+                <div className="mb-6">
+                  <h2 className="text-3xl font-black uppercase mb-2 flex items-center gap-4">
+                    <span
+                      className="w-6 h-6 border-2 border-black"
+                      style={{ backgroundColor: cat.color }}
+                    ></span>
+                    {cat.category}
+                  </h2>
+                  {cat.description && (
+                    <p className="text-sm font-bold opacity-70 ml-10">
+                      {cat.description}
+                    </p>
+                  )}
+                </div>
 
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
                   {cat.elements.map((el, elIdx) => (

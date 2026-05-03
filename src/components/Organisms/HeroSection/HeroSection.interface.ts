@@ -7,7 +7,11 @@ export interface HeroSectionProps {
             and: string;
             highlight2: string;
         };
-        contact: string;
+        buttons: Array<{
+            text: string;
+            type: "primary" | "secondary";
+            href?: string;
+        }>;
     };
     status: {
         title: string;

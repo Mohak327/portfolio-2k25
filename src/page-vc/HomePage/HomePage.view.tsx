@@ -10,6 +10,7 @@ import Marquee from "../../components/Molecules/Marquee/Marquee.view";
 import { HomeViewProps } from "../../page-data/home/home.interface";
 import RichTextController from "@/components/Organisms/RichText/RichText.controller";
 import PDFTile from "@/components/Molecules/PDFTile/PDFTile.view";
+import Spotlight from "@/components/Organisms/Spotlight/Spotlight.view";
 
 const HomePageView = ({ techArsenal }: HomeViewProps) => {
   return (
@@ -24,6 +25,7 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
           status={homeData.status}
           meta={homeData.meta}
         />
+
         <TitledTagCloud
           title={techArsenal.title}
           items={techArsenal.skills}
@@ -32,9 +34,21 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
           ctaIcon={techArsenal.ctaIcon}
         />
 
+        <Spotlight
+          title={homeData.researchSpotlight.title}
+          items={homeData.researchSpotlight.items}
+        />
+
         <TitledCardList
           title={homeData.projects.title}
-          items={homeData.projects.items}
+          items={homeData.projects.items.filter(
+            (p) =>
+              ![
+                "clarisnet",
+                "neubody-embodied-ai",
+                "physnerf-3d-reconstruction",
+              ].includes(p.id),
+          )}
           icon={<Brain size={24} />}
           colCount={2}
           renderItem={(project) => (
@@ -45,6 +59,7 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
               <h3 className="text-2xl font-black uppercase mb-2 leading-tight">
                 {project.title}
               </h3>
+              {/* line-clamp-3 */}
               <p className="text-sm font-bold mb-4 border-l-4 border-black pl-4">
                 {project.description}
               </p>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./MediaRenderer.module.css";
 import MediaRendererControls from "./MediaRendererControls/MediaRendererControls.view";
 import MediaRendererController from "./MediaRenderer.controller";
-import ConditionLinkView from "@/UI/Utility/ConditionLink/ConditionLink.view";
+import ConditionLinkView from "@/components/Molecules/ConditionLink/ConditionLink.view";
 
 const MediaRenderer = ({
   image = {},
@@ -16,7 +16,7 @@ const MediaRenderer = ({
   borderRadius = "8px",
   enlargeImageOnClick = false,
   imageLink = "",
-  videoref,
+  videoref = null,
 }) => {
   const [fullscreen, setFullscreen] = useState(false);
   const imageRef = useRef(null);

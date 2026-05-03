@@ -1,6 +1,6 @@
 import { projects } from "@/page-data/projects/projects.model";
 import { Theme } from "../../Theme";
-import { ArrowBigRight, ExternalLink, FileText } from "lucide-react";
+import { ArrowBigRight, ExternalLink, FileText, Activity, Cpu, Network } from "lucide-react";
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { title } from "process";
@@ -12,29 +12,101 @@ export const homeData = {
     title: ["Mohak", "Sharma"],
     subtitle: {
       prefix:
-        "Fullstack developer with 3+ years of experience, engineering at the intersection of",
-      highlight1: "Biological Systems",
-      and: "and",
-      highlight2: "Computational Intelligence",
+        "Product engineer with 3+ years shipping systems that scale—combining expertise in",
+      highlight1: "User Psychology & Growth Engineering",
+      and: "with research in",
+      highlight2: "BCI, Embodied AI & VLA Models",
     },
-    contact: "Contact Me",
+    buttons: [
+      { text: "Contact Me", type: "primary" as const },
+      { text: "Download Resume", type: "secondary" as const, href: "/mohak_sharma_resume.pdf" },
+    ],
   },
   status: {
     title: "Current Status",
     lines: [
       { text: "MSCS @ Columbia", color: "text-green-400" },
-      { text: "Researcher @ CRIS Lab", color: "text-purple-400" },
+      { text: "Researcher @ LIINC Lab", color: "text-purple-400" },
     ],
   },
   meta: [
     { label: "Location", value: "New York, NY" },
     // { label: "Focus", value: "Healthcare, Environment, Finance" },
   ],
+  researchSpotlight: {
+    title: "Long-Term Research Projects",
+    items: [
+      {
+        title: "NeuBody",
+        subtitle: "Humanoid Avatar Control in Physics Simulation",
+        description: "End-to-end BCI system translating EEG motor imagery into physics-grounded humanoid actions with <100ms latency.",
+        link: "/projects/neubody-embodied-ai",
+        icon: Cpu,
+        accentColor: Theme.colors.pink[400],
+      },
+      {
+        title: "CLARIS-Net",
+        subtitle: "Neural-Driven Control Pipeline",
+        description: "BCI + RL pipeline: EEG → decoded intent → PPO/SAC refinement → natural bipedal gaits for 17-DOF agents.",
+        link: "/projects/clarisnet",
+        icon: Activity,
+        accentColor: Theme.colors.cyan[400],
+      },
+      {
+        title: "PhysNeRF",
+        subtitle: "Physics-Grounded Perception",
+        description: "Neural rendering with stratified sampling and importance sampling for physics-aware 3D scene understanding.",
+        link: "/projects/physnerf-3d-reconstruction",
+        icon: Network,
+        accentColor: Theme.colors.yellow[400],
+      },
+    ],
+  },
   techArsenal: {
-    title: "Developer Arsenal",
+    title: "Technical Arsenal",
     ctaLink: "/skills",
     ctaText: "Full Skill Matrix",
     ctaIcon: ArrowBigRight,
+    skills: [
+      // Core Competencies - High Priority
+      { name: "Neural Rendering (NeRFs)", category: "vision", priority: "high" as const, color: Theme.colors.cyan[400] },
+      { name: "Sim-to-Real Transfer", category: "robotics", priority: "high" as const, color: Theme.colors.purple[400] },
+      { name: "EEG Signal Processing", category: "bci", priority: "high" as const, color: Theme.colors.indigo[400] },
+      { name: "Reinforcement Learning (PPO/SAC)", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
+      { name: "PyTorch", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
+
+      // Specialized Skills - High Priority
+      { name: "MuJoCo/PyBullet", category: "robotics", priority: "high" as const, color: Theme.colors.purple[400] },
+      { name: "3D Reconstruction (COLMAP)", category: "vision", priority: "high" as const, color: Theme.colors.cyan[400] },
+      { name: "Motor Control Systems", category: "bci", priority: "high" as const, color: Theme.colors.indigo[400] },
+      { name: "Transformers/CNNs", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
+
+      // Supporting Technical - Medium Priority
+      { name: "Volume Rendering", category: "vision", priority: "medium" as const, color: Theme.colors.cyan[400] },
+      { name: "Domain Randomization", category: "robotics", priority: "medium" as const, color: Theme.colors.purple[400] },
+      { name: "Contrastive Learning", category: "ml", priority: "medium" as const, color: Theme.colors.pink[400] },
+      { name: "UMAP/Manifold Analysis", category: "scientific", priority: "medium" as const, color: Theme.colors.teal[400] },
+      { name: "Real-Time Control", category: "bci", priority: "medium" as const, color: Theme.colors.indigo[400] },
+
+      // Full-Stack Engineering - Medium Priority
+      { name: "TypeScript/React", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
+      { name: "Next.js", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
+      { name: "GraphQL", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
+      { name: "AWS/FastAPI", category: "systems", priority: "medium" as const, color: Theme.colors.orange[400] },
+
+      // Product & Growth - Low Priority (but relevant)
+      { name: "A/B Testing", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
+      { name: "SEO Optimization", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
+      { name: "User Analytics", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
+
+      // Additional Technical Depth
+      { name: "OpenCV/PyTorch3D", category: "vision", priority: "medium" as const, color: Theme.colors.cyan[400] },
+      { name: "Imitation Learning", category: "robotics", priority: "medium" as const, color: Theme.colors.purple[400] },
+      { name: "POMDPs", category: "robotics", priority: "low" as const, color: Theme.colors.purple[400] },
+      { name: "Signal Processing", category: "scientific", priority: "medium" as const, color: Theme.colors.teal[400] },
+      { name: "AlphaFold2", category: "scientific", priority: "low" as const, color: Theme.colors.teal[400] },
+      { name: "MongoDB/Redis", category: "systems", priority: "low" as const, color: Theme.colors.orange[400] },
+    ],
   },
   experience: {
     title: "Experience",
@@ -123,7 +195,7 @@ export const homeData = {
         year: "2025 - 2027",
         degree: "M.S. Computer Science",
         courses:
-          "Coursework: Machine Learning, Causal Inference, Computational Neuroscience, Quantum Computing, Mechanistic Interpretibility of Neural Nets.",
+          "Coursework: Machine Learning, Causal Inference, Computational Neuroscience, Quantum Computing, Mechanistic Interpretibility of Neural Nets, Computer Vision, Storage Systems, Deep Learning.",
         bgColor: Theme.colors.blue[100],
       },
       {

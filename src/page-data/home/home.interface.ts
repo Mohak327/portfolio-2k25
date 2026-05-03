@@ -1,15 +1,16 @@
 import { LucideIcon } from "lucide-react";
 
-export interface SkillCategoryProps {
+export interface Skill {
+  name: string;
   category: string;
+  priority: "high" | "medium" | "low";
   color: string;
-  elements: Array<{ symbol: string; name: string }>;
 }
 
 export interface HomeViewProps {
   techArsenal: {
     title: string;
-    skills: string[];
+    skills: Skill[];
     ctaLink: string;
     ctaText: string;
     ctaIcon?: LucideIcon;

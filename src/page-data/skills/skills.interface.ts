@@ -3,6 +3,7 @@ import { FilterOption } from "@/components/Organisms/PillFilters/PillFilters.int
 export interface SkillCategory {
   category: string;
   color: string;
+  description?: string;
   elements: Array<{ symbol: string; name: string }>;
 }
 

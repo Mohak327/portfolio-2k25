@@ -4,23 +4,31 @@ import type { TitledTagCloudProps } from "./TitledTagCloud.interface";
 
 const TitledTagCloud = ({ title, items, ctaLink, ctaText, ctaIcon: CtaIcon }: TitledTagCloudProps) => {
   return (
-    <section className="border-4 border-black bg-white p-8 relative">
+    <section className="border-4 border-black bg-white p-8 pt-12 relative">
       <div
         style={{ backgroundColor: Theme.colors.yellow[400] }}
-        className={`absolute -top-4 left-8 px-4 py-1 border-2 border-black font-bold uppercase transform -rotate-2`}
+        className={`absolute -top-4 left-8 px-6 py-2 border-2 border-black font-bold uppercase transform -rotate-2 text-lg`}
       >
         {title}
       </div>
       <div className="flex flex-col md:flex-row items-center gap-6 mt-4">
-        <div className="flex flex-wrap gap-3 flex-1">
-          {items.map((item) => (
-            <span
-              key={item}
-              className="px-3 py-1 border-2 border-black font-bold uppercase text-sm hover:bg-black hover:text-white transition-colors cursor-default"
-            >
-              {item}
-            </span>
-          ))}
+        <div className="flex flex-wrap gap-2 flex-1">
+          {items.map((skill) => {
+            const borderWidth = skill.priority === "high" ? '4px' : skill.priority === "medium" ? '3px' : '2px';
+
+            return (
+              <span
+                key={skill.name}
+                style={{
+                  borderLeftColor: skill.color,
+                  borderLeftWidth: borderWidth
+                }}
+                className="text-sm px-3 py-1.5 border-2 border-black font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default bg-white"
+              >
+                {skill.name}
+              </span>
+            );
+          })}
         </div>
         <Link
           href={ctaLink}
