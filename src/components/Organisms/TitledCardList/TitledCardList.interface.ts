@@ -4,4 +4,5 @@ export interface TitledCardListProps<T> {
     renderItem: (item: T) => React.ReactNode;
     icon?: React.ReactNode;
     colCount?: number;
+    timeline?: boolean;
 }

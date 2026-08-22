@@ -3,9 +3,8 @@ import { homeData } from "../../page-data/home/home.model";
 import HeroSection from "../../components/Organisms/HeroSection/HeroSection.view";
 import TitledTagCloud from "../../components/Organisms/TitledTagCloud/TitledTagCloud.view";
 import TitledCardList from "../../components/Organisms/TitledCardList/TitledCardList.view";
-import TitledContentBox from "../../components/Organisms/TitledContentBox/TitledContentBox.view";
 import SiteFooter from "../../components/Organisms/SiteFooter/SiteFooter.view";
-import { Brain } from "lucide-react";
+import { Brain, GraduationCap } from "lucide-react";
 import Marquee from "../../components/Molecules/Marquee/Marquee.view";
 import { HomeViewProps } from "../../page-data/home/home.interface";
 import RichTextController from "@/components/Organisms/RichText/RichText.controller";
@@ -81,6 +80,7 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
         <TitledCardList
           title={homeData.experience.title}
           items={homeData.experience.jobs}
+          timeline
           renderItem={(job) => (
             <>
               <div
@@ -116,15 +116,28 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
           )}
         />
 
-        <TitledContentBox
+        <TitledCardList
           title={homeData.education.title}
-          items={homeData.education.degrees.map((degree) => ({
-            heading: degree.university,
-            meta: degree.year,
-            subHeading: degree.degree,
-            body: degree.courses,
-            bgColor: degree.bgColor,
-          }))}
+          items={homeData.education.degrees}
+          timeline
+          icon={<GraduationCap size={24} />}
+          renderItem={(degree) => (
+            <>
+              <div
+                style={{ backgroundColor: degree.accent }}
+                className={`absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold`}
+              >
+                {degree.year}
+              </div>
+              <h3 className="text-2xl font-black uppercase mb-1 mt-6">
+                {degree.university}
+              </h3>
+              <div className="text-lg font-bold mb-4">{degree.degree}</div>
+              <p className="text-sm border-l-4 border-black pl-4">
+                {degree.courses}
+              </p>
+            </>
+          )}
         />
 
         <SiteFooter

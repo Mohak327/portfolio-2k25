@@ -44,11 +44,12 @@ const HeroSection = ({ hero, status, meta }: HeaderProps) => {
                     {hero.subtitle.and}{" "}
                     <span style={{ backgroundColor: Theme.colors.purple[400] }} className={`px-1 border border-black`}>{hero.subtitle.highlight2}</span>.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                    {hero.buttons.map((button, index) => {
+                {(() => {
+                    const renderButton = (button: typeof hero.buttons[number], index: number) => {
                         const isPrimary = button.type === "primary";
                         const href = button.href || "mailto:ms7306@columbia.edu";
-                        const Icon = button.text.toLowerCase().includes("resume") ? Download : Mail;
+                        const isDownload = !!button.href?.toLowerCase().endsWith(".pdf");
+                        const Icon = isDownload ? Download : Mail;
                         const isExternal = button.href && button.href.startsWith("/");
 
                         return (
@@ -57,18 +58,36 @@ const HeroSection = ({ hero, status, meta }: HeaderProps) => {
                                 href={href}
                                 target={isExternal ? "_blank" : undefined}
                                 rel={isExternal ? "noopener noreferrer" : undefined}
-                                download={button.text.toLowerCase().includes("resume") ? true : undefined}
-                                className={`flex items-center gap-2 px-6 py-3 border-2 border-black font-bold uppercase transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+                                download={isDownload ? true : undefined}
+                                className={`flex items-center justify-center gap-2 px-6 py-3 border-2 border-black font-bold uppercase whitespace-nowrap transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
                                     isPrimary
                                         ? "bg-white"
                                         : "bg-yellow-400"
-                                }`}
+                                } ${isDownload ? "w-[190px]" : ""}`}
                             >
                                 <Icon size={20} /> {button.text}
                             </a>
                         );
-                    })}
-                </div>
+                    };
+
+                    const downloadButtons = hero.buttons
+                        .map((b, i) => [b, i] as const)
+                        .filter(([b]) => b.href?.toLowerCase().endsWith(".pdf"));
+                    const otherButtons = hero.buttons
+                        .map((b, i) => [b, i] as const)
+                        .filter(([b]) => !b.href?.toLowerCase().endsWith(".pdf"));
+
+                    return (
+                        <div className="flex flex-col gap-4">
+                            <div className="flex flex-wrap gap-4">
+                                {downloadButtons.map(([b, i]) => renderButton(b, i))}
+                            </div>
+                            <div className="flex flex-wrap gap-4">
+                                {otherButtons.map(([b, i]) => renderButton(b, i))}
+                            </div>
+                        </div>
+                    );
+                })()}
             </div>
             <div className="lg:col-span-4 bg-black text-white p-8 flex flex-col justify-between">
                 <div>

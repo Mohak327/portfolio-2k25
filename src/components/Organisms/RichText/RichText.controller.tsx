@@ -19,7 +19,26 @@ const parseToNodes = (text: string): Node[] => {
     return text.startsWith(substr, index) ? substr : null;
   };
 
+  // Anchors carry a variable href, so they can't be matched as a fixed tag.
+  const ANCHOR_OPEN = /^<a href='([^']*)'>/;
+
   for (let i = 0; i < text.length; ) {
+    if (text[i] === "<") {
+      const anchorMatch = text.slice(i).match(ANCHOR_OPEN);
+      if (anchorMatch) {
+        flushText();
+        const node: ElementNode = {
+          type: "link",
+          href: anchorMatch[1],
+          children: [],
+        };
+        stack[stack.length - 1].children.push(node);
+        stack.push(node);
+        i += anchorMatch[0].length;
+        continue;
+      }
+    }
+
     const openMatch =
       tryMatch("<b>", i) ||
       tryMatch("<i>", i) ||
@@ -38,7 +57,10 @@ const parseToNodes = (text: string): Node[] => {
     }
 
     const closeMatch =
-      tryMatch("</b>", i) || tryMatch("</i>", i) || tryMatch("</span>", i);
+      tryMatch("</b>", i) ||
+      tryMatch("</i>", i) ||
+      tryMatch("</span>", i) ||
+      tryMatch("</a>", i);
 
     if (closeMatch) {
       flushText();
@@ -74,6 +96,18 @@ const renderNodes = (nodes: Node[], keyPrefix = ""): ReactElement[] =>
           <span key={key} className="bg-yellow-200 px-1 rounded">
             {children}
           </span>
+        );
+      case "link":
+        return (
+          <a
+            key={key}
+            href={node.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold underline decoration-2 underline-offset-2 hover:bg-black hover:text-white transition-colors"
+          >
+            {children}
+          </a>
         );
       default:
         return <React.Fragment key={key}>{children}</React.Fragment>;

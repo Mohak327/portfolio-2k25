@@ -16,7 +16,7 @@ export const homePageMetadata: PageMetadata = {
 export const projectsPageMetadata: PageMetadata = {
   title: "Projects",
   description:
-    "Explore my portfolio of robotics, AI, and computational neuroscience projects—from causal reasoning benchmarks to neural signal processing and embodied intelligence systems.",
+    "Explore my portfolio of robotics, AI, and computational neuroscience projects, from causal reasoning benchmarks to neural signal processing and embodied intelligence systems.",
   keywords: [
     "Robotics Projects",
     "AI Research",

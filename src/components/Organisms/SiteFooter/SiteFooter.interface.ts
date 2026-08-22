@@ -6,6 +6,8 @@ export interface SiteFooterProps {
             title: string;
             duration: string;
             points: string[];
+            accent?: string;
+            bgColor?: string;
         }[];
     };
     contact: {

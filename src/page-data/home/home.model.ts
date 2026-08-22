@@ -7,26 +7,28 @@ import { title } from "process";
 
 export const homeData = {
   marquee:
-    "MOHAK SHARMA • COLUMBIA UNIVERSITY • NEUROSCIENCE • HEALTHTECH • FULL STACK",
+    "MOHAK SHARMA • FOUNDING ENGINEER @ SUBCONSCIOUSAI • MSCS @ COLUMBIA UNIVERSITY • USER PSYCHOLOGY • GROWTH ENGINEERING • BCI • NEUROSCIENCE",
   hero: {
     title: ["Mohak", "Sharma"],
     subtitle: {
       prefix:
-        "Product engineer with 3+ years shipping systems that scale—combining expertise in",
+        "Product engineer with 3+ years shipping systems that scale, combining expertise in",
       highlight1: "User Psychology & Growth Engineering",
       and: "with research in",
       highlight2: "BCI, Embodied AI & VLA Models",
     },
     buttons: [
       { text: "Contact Me", type: "primary" as const },
-      { text: "Download Resume", type: "secondary" as const, href: "/mohak_sharma_resume.pdf" },
+      { text: "Resume", type: "secondary" as const, href: "/mohak_sharma_resume.pdf" },
+      { text: "Research CV", type: "secondary" as const, href: "/mohak_sharma_research_cv.pdf" },
     ],
   },
   status: {
     title: "Current Status",
     lines: [
-      { text: "MSCS @ Columbia", color: "text-green-400" },
+      { text: "MSCS @ Columbia University", color: "text-green-400" },
       { text: "Researcher @ LIINC Lab", color: "text-purple-400" },
+      { text: "Founding Engineer @ SubconsciousAI", color: "text-pink-400" },
     ],
   },
   meta: [
@@ -34,7 +36,7 @@ export const homeData = {
     // { label: "Focus", value: "Healthcare, Environment, Finance" },
   ],
   researchSpotlight: {
-    title: "Long-Term Research Projects",
+    title: "Research Spotlight",
     items: [
       {
         title: "NeuBody",
@@ -111,6 +113,47 @@ export const homeData = {
   experience: {
     title: "Experience",
     jobs: [
+      {
+        role: "Founding Causal AI Engineer",
+        company: "SubconsciousAI, (New York, USA)",
+        duration: "Apr 2026 - Present",
+        link: undefined,
+        tasks: [
+          "Working directly with founder <a href='https://www.linkedin.com/in/aviyashchin'>Avi Yashchin</a> (ex-IBM Watson Research, Two Sigma; two prior exits) on a causal-inference platform for policy and market research.",
+          "Rebuilt the <span class='highlight'>hierarchical Bayes conjoint estimator</span> from scratch in NumPy: a Train-style hierarchical Bayes multinomial logit with Gibbs sampling on the population mean and full covariance, Metropolis-Hastings on respondent-level coefficients, and 10k burn-in / 10k retained draws, with no PyMC or Stan. Enforced sign and monotonicity constraints inside the sampler by selecting each coefficient's distributional family (normal, lognormal, truncated-normal, negative-truncated-normal) from a constraints vector and ordering group, rather than filtering violations post-hoc, plus adaptive MH step-size targeting 30% acceptance.",
+          "Implemented per-respondent willingness-to-pay in currency units from hierarchical Bayes part-worths, producing a full WTP distribution rather than a point estimate. Built the guardrail that matters more than the formula: when no monetary attribute exists, or respondents disagree on its direction, WTP is suppressed entirely rather than approximated, and flips to willingness-to-accept for benefit-direction attributes.",
+          "Designed and shipped the Market Simulator, <span class='highlight'>an interactive what-if engine for market share, revenue, and price-sensitivity analysis</span>. Its Pareto Frontier view ranks every re-priced scenario by layered non-dominated sorting across three objectives (maximize share, maximize revenue, minimize price), exposing not just the efficient frontier but each point's dominance depth. Chart math included axis-break detection for sparse price ranges, sqrt-scaled bubble sizing so marker area tracks price, and log-scale flooring so near-zero-revenue scenarios stay visible.",
+          "Built the <span class='highlight'>human-baseline fidelity reporting layer</span> over a <span class='highlight'>154-study social-science replication corpus</span>, plotting each paper's published AMCEs against four independent estimators (OLS, conditional logit, MNL, hierarchical Bayes) at attribute and level granularity, replacing a single correlation coefficient with auditable per-level comparison. Reused the scoring pipeline's own estimator and summary functions so report figures cannot drift from the canonical score output.",
+          "Shipped Concept Testing, a second experiment type alongside conjoint that replaces attribute trade-offs with <span class='highlight'>direct concept evaluation</span>: respondents view a product concept (image, text, or A/B image pair), rate Likert statements about it, and results return as top-box scores and net endorsement, broken down by behavioral segment and the traits that over-index within each.",
+          "Hardened experiment lifecycle state with a stale-pending utility dropping pending experiments by status and age, plus new killed and crashed terminal statuses threaded through the progress store and local-storage cache, resolving experiments that hung indefinitely in the UI after backend termination.",
+          "Migrated the legacy R Shiny analytics stack to native Next.js: WTP distributions, importance scores, effect sizes, and demographic segmentation, unifying every chart component under one Plotly configuration with centralized Excel/PNG export.",
+          "Owned LLM provider migration across Bedrock, Grok, and Databricks in the core inference path and SSE endpoints, and consolidated the Chat Agent service back to a monolith after <i>the modular split cost more than it returned</i>. Designed a unified client/server network layer replacing per-route auth wrappers, adding request-abort and SSE stream lifecycle handling.",
+          "Delivered enterprise auth and access control: Auth0 organization SSO with custom-domain issuer plus fallback token verification, a role-based access endpoint, a custom login template with deploy script, and subscription tiers.",
+          "Authored unit and regression tests alongside feature work: LangSmith trace fixtures, S3 failure paths, artifact-upload errors, empty-population validation, and Pareto and WTP math golden tests.",
+        ],
+        accent: Theme.colors.pink[400],
+        bgColor: Theme.colors.white,
+        doc: {
+          type: "website",
+          url: "https://subconscious.ai",
+          title: "SubconsciousAI",
+          icon: ExternalLink,
+        },
+      },
+      {
+        role: "Graduate Researcher",
+        company: "Laboratory for Intelligent Imaging and Neural Computing (LIINC), Columbia University",
+        duration: "Spring 2026, Fall 2026 - Present",
+        link: undefined,
+        tasks: [
+          "Designed and ran user studies on intention decoding across multiple interaction modalities: task and stimulus design, IRB protocol support, participant recruitment, instrumentation, and synchronized multi-stream capture of <i>EEG, gaze, and behavior</i>.",
+          "Built out the physiological inference pipeline over multimodal neural signals: EEG preprocessing (filtering, artifact rejection, re-referencing, epoching), gaze and pupil feature extraction, temporal alignment across asynchronous streams, and decoders mapping the fused signal onto a <span class='highlight'>latent representation of user intent</span>, with cross-participant generalization as an explicit evaluation criterion.",
+          "Integrated decoded intent with embodied foundation models so downstream robot action selection and adaptation follow the operator's inferred goal rather than an explicit command.",
+        ],
+        accent: Theme.colors.indigo[400],
+        bgColor: Theme.colors.white,
+        doc: undefined,
+      },
       {
         role: "Student Research Assistant",
         company:
@@ -192,18 +235,23 @@ export const homeData = {
     degrees: [
       {
         university: "Columbia University (NY, USA)",
-        year: "2025 - 2027",
+        year: "2025 - Dec 2026",
         degree: "M.S. Computer Science",
         courses:
           "Coursework: Machine Learning, Causal Inference, Computational Neuroscience, Quantum Computing, Mechanistic Interpretibility of Neural Nets, Computer Vision, Storage Systems, Deep Learning.",
+        link: undefined,
+        accent: Theme.colors.blue[400],
         bgColor: Theme.colors.blue[100],
       },
       {
-        university: "GGSIPU (Delhi, India)",
+        university: "Guru Gobind Singh Indraprastha University (Delhi, India)",
         year: "2019 - 2023",
         degree: "B.Tech Computer Science",
         courses:
           "Coursework: Advanced Math, Physics, OOPS, Data Structures, Networks, OS, DBMS, Engineering Mechanics, Circuits & Systems, Computer Organisation & Architecture, Theory of Computation, Agile Methodologies, Switching Theory & Logical Design.",
+        link: undefined,
+        accent: Theme.colors.orange[400],
+        bgColor: Theme.colors.white,
       },
     ],
   },
@@ -213,12 +261,35 @@ export const homeData = {
       subtitle: "Leadership & Impact",
       sections: [
         {
+          title: "Professional Development and Leadership (PDL) Fellow, Columbia Engineering",
+          duration: "Jan 2026 - Present",
+          points: [
+            "Selected by nomination into an invite-only cohort of under 35 graduate fellows, chosen at the end of Fall 2025 for the Jan-Dec fellowship year.",
+            "Mentored directly by PDL faculty <a href='https://www.linkedin.com/in/hfgarcia' target='_blank' rel='noopener noreferrer' class='font-bold underline decoration-2 underline-offset-2 hover:bg-black hover:text-white transition-colors'>Helio Fred Garcia</a> and <a href='https://www.linkedin.com/in/chuck-garcia-015128' target='_blank' rel='noopener noreferrer' class='font-bold underline decoration-2 underline-offset-2 hover:bg-black hover:text-white transition-colors'>Chuck Garcia</a>, with standing access to a wider network of faculty, practitioners, and industry leaders through the program.",
+            "Granted an expanded set of PDL offerings and direct, hands-on access to Columbia Engineering faculty and staff beyond the standard MS curriculum.",
+          ],
+          accent: Theme.colors.teal[400],
+          bgColor: Theme.colors.white,
+        },
+        {
+          title: "ISSO GLASS (Global Leadership Advancing Student Success), Columbia University",
+          duration: "Jan 2026 - Present",
+          points: [
+            "Earned the Tier 1 Digital Badge by completing 5+ leadership, professional development, and intercultural-communication workshops plus the Cultural Intelligence course, across all three ISSO GLASS focus areas.",
+            "Currently advancing through Tier 2 toward the Tier 3 distinction, which requires a capstone project on top of the full Tier 1-2 workshop series.",
+          ],
+          accent: Theme.colors.cyan[400],
+          bgColor: Theme.colors.white,
+        },
+        {
           title: "Graduate Admissions Ambassador, Columbia University",
           duration: "Oct 2025 - Present",
           points: [
             "Begun outreach & mentoring efforts impacting over 2,000 potential graduate candidates annually.",
             "Serves as a primary resource during major admissions events guiding students toward informed enrollment decisions.",
           ],
+          accent: Theme.colors.green[400],
+          bgColor: Theme.colors.white,
         },
         {
           title: "Student Volunteer (Rotary Intl. Dist. 3012, NSS, GGSIPU)",
@@ -232,6 +303,8 @@ export const homeData = {
             "Redressal Committee Student Representative, responsible for over 2000 students on campus.",
             "Led cancer awareness team for Project Power of Ponytails: 10+ mammography sessions & 30+ awareness events.",
           ],
+          accent: Theme.colors.orange[400],
+          bgColor: Theme.colors.white,
         },
       ],
     },
@@ -242,22 +315,22 @@ export const homeData = {
           text: "ms7306@columbia.edu",
           icon: MdEmail,
           href: "mailto:ms7306@columbia.edu",
-          hoverClass: "hover:px-1 hover:bg-[#ff90e8]",
+          hoverClass: "hover:bg-[#ff90e8] hover:text-black",
         },
         {
           text: "LinkedIn Profile",
           icon: FaLinkedin,
           href: "https://www.linkedin.com/in/sharma-mohak/",
-          hoverClass: "hover:px-1 hover:bg-[#0077b5] hover:text-white",
+          hoverClass: "hover:bg-[#0077b5] hover:text-white",
         },
         {
           text: "Github Profile",
           icon: FaGithub,
           href: "https://github.com/Mohak327",
-          hoverClass: "hover:px-1 hover:bg-[#5b21b6] hover:text-white",
+          hoverClass: "hover:bg-[#5b21b6] hover:text-white",
         },
       ],
     },
-    copyright: "© 2025 Mohak Sharma.",
+    copyright: "© 2026 Mohak Sharma.",
   },
 };

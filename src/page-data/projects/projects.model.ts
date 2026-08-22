@@ -33,7 +33,7 @@ export const projects: ProjectInterface[] = [
           },
           {
             type: "paragraph",
-            data: "This isn't just automated report generation—it's a <b>strategic exploration tool</b> that enables rapid hypothesis testing: 'What if we target Boomers instead of Gen Z?', 'How does our growth strategy differ between early adopters and mainstream consumers?', 'Which segment has the strongest opportunities for our product?'",
+            data: "This isn't just automated report generation; it's a <b>strategic exploration tool</b> that enables rapid hypothesis testing: 'What if we target Boomers instead of Gen Z?', 'How does our growth strategy differ between early adopters and mainstream consumers?', 'Which segment has the strongest opportunities for our product?'",
           },
         ],
       },
@@ -230,7 +230,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "LLMs are probabilistic—running the same prompt twice can yield different results. For business intelligence, this variability is problematic. <b>Solution:</b> Structured prompt templates with explicit output format requirements, JSON schema validation, and confidence scoring to flag low-quality generations.",
+            data: "LLMs are probabilistic, running the same prompt twice can yield different results. For business intelligence, this variability is problematic. <b>Solution:</b> Structured prompt templates with explicit output format requirements, JSON schema validation, and confidence scoring to flag low-quality generations.",
           },
           {
             type: "paragraph",
@@ -263,7 +263,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Spectrum demonstrates how <b>LLMs can augment strategic decision-making</b> without replacing human judgment. The tool accelerates the research phase, surfaces non-obvious patterns, and structures thinking—but final decisions still require domain expertise, market knowledge, and business context that humans provide.",
+            data: "Spectrum demonstrates how <b>LLMs can augment strategic decision-making</b> without replacing human judgment. The tool accelerates the research phase, surfaces non-obvious patterns, and structures thinking, but final decisions still require domain expertise, market knowledge, and business context that humans provide.",
           },
           {
             type: "paragraph",
@@ -281,7 +281,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The broader vision: as LLMs become more sophisticated, tools like Spectrum evolve from <b>analysis generators</b> to <b>strategic reasoning assistants</b>—systems that not only produce insights but explain their reasoning, challenge assumptions, and propose novel strategic alternatives humans might miss.",
+            data: "The broader vision: as LLMs become more sophisticated, tools like Spectrum evolve from <b>analysis generators</b> to <b>strategic reasoning assistants</b>, systems that not only produce insights but explain their reasoning, challenge assumptions, and propose novel strategic alternatives humans might miss.",
           },
         ],
       },
@@ -313,7 +313,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "<b>CLARISNet</b> bridges this gap by <span class='highlight'><b>decoding motor intent in real-time</b></span>—translating the subtle signals of human movement into smooth, naturalistic avatar actions within physics-accurate virtual worlds. The result: embodiment that feels genuinely responsive, not just reactive.",
+            data: "<b>CLARISNet</b> bridges this gap by <span class='highlight'><b>decoding motor intent in real-time</b></span>, translating the subtle signals of human movement into smooth, naturalistic avatar actions within physics-accurate virtual worlds. The result: embodiment that feels genuinely responsive, not just reactive.",
           },
           // {
           //   type: "embed",
@@ -340,7 +340,7 @@ export type SwotStrategyAnswers = {
             type: "list",
             data: [
               "<b>Intent Extraction:</b> Capture high-fidelity movement signals (IMUs, depth cameras, hand tracking) at 90+ Hz",
-              "<b>Temporal Modeling:</b> Neural networks learn temporal patterns in movement—anticipating intent from motion trajectories",
+              "<b>Temporal Modeling:</b> Neural networks learn temporal patterns in movement, anticipating intent from motion trajectories",
               "<b>Latency Minimization:</b> End-to-end pipeline operates in < 20ms to maintain immersion (below human perception threshold)",
               "<b>Smoothness Constraints:</b> Avatar motions follow natural biomechanical constraints, avoiding impossible transitions",
               "<b>Context Awareness:</b> System adapts based on virtual environment (running vs. climbing vs. manipulating objects)",
@@ -348,7 +348,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The key insight: <b>motor intent isn't just about what you're doing now—it's about predicting what you're about to do</b>, enabling proactive avatar control that feels effortless.",
+            data: "The key insight: <b>motor intent isn't just about what you're doing now; it's about predicting what you're about to do</b>, enabling proactive avatar control that feels effortless.",
           },
         ],
       },
@@ -357,7 +357,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Naturalistic avatar control isn't just about decoding intent—it's about <b>integrating that intent with physics simulation</b> so movements feel grounded, not floating.",
+            data: "Naturalistic avatar control isn't just about decoding intent; it's about <b>integrating that intent with physics simulation</b> so movements feel grounded, not floating.",
           },
           {
             type: "paragraph",
@@ -369,12 +369,12 @@ export type SwotStrategyAnswers = {
               "<b>Collision Detection:</b> Avatars can't clip through walls; hands must physically interact with objects",
               "<b>Force & Momentum:</b> Jumping, pushing, lifting follow Newtonian mechanics",
               "<b>Balance & Stability:</b> Avatars maintain center-of-mass constraints, preventing impossible poses",
-              "<b>Material Properties:</b> Surfaces have friction, elasticity, weight—interactions feel authentic",
+              "<b>Material Properties:</b> Surfaces have friction, elasticity, weight, interactions feel authentic",
             ],
           },
           {
             type: "paragraph",
-            data: "The challenge: <b>motor intent signals must be translated into physics-compatible actions</b>. You can't just teleport an avatar's hand to match your real hand—the system must compute a physically valid trajectory that respects collisions and dynamics.",
+            data: "The challenge: <b>motor intent signals must be translated into physics-compatible actions</b>. You can't just teleport an avatar's hand to match your real hand, the system must compute a physically valid trajectory that respects collisions and dynamics.",
           },
           {
             type: "paragraph",
@@ -393,8 +393,8 @@ export type SwotStrategyAnswers = {
             type: "list",
             data: [
               "<b>Latency Budget:</b> End-to-end system must process signals, decode intent, compute physics, and render in < 20ms (for 90 Hz VR)",
-              "<b>Signal Noise:</b> IMU drift, occlusion in depth cameras, jittery hand tracking—robust filtering without adding lag",
-              "<b>Individual Variability:</b> People move differently—calibration and personalization without lengthy setup",
+              "<b>Signal Noise:</b> IMU drift, occlusion in depth cameras, jittery hand tracking, robust filtering without adding lag",
+              "<b>Individual Variability:</b> People move differently, calibration and personalization without lengthy setup",
               "<b>Ambiguous Intent:</b> Is the user reaching for an object or just gesturing? Context-aware disambiguation in real-time",
               "<b>Physics Solver Stability:</b> Bridging discrete control inputs with continuous physics simulation without instability",
               "<b>Multimodal Fusion:</b> Combining heterogeneous sensor streams (vision, inertial, audio) with different sampling rates and noise profiles",
@@ -416,11 +416,11 @@ export type SwotStrategyAnswers = {
           {
             type: "list",
             data: [
-              "<b>Medical Training Simulations:</b> Surgeons practice procedures in VR with haptic feedback—intent decoding ensures tool control feels precise, not laggy",
-              "<b>Industrial Training:</b> Workers learn complex assembly tasks in virtual factories—naturalistic hand movements translate to virtual tool manipulation",
-              "<b>Telepresence & Remote Work:</b> Control remote avatars or robotic proxies with your body—low latency enables real-time collaboration across distances",
-              "<b>Accessibility Interfaces:</b> Users with limited mobility control full-body avatars—motor intent extracted from smaller movements (head tracking, eye gaze, residual limb motion)",
-              "<b>Entertainment & Social VR:</b> Expressive avatars that mirror subtle body language—enhancing social presence and immersion",
+              "<b>Medical Training Simulations:</b> Surgeons practice procedures in VR with haptic feedback, intent decoding ensures tool control feels precise, not laggy",
+              "<b>Industrial Training:</b> Workers learn complex assembly tasks in virtual factories, naturalistic hand movements translate to virtual tool manipulation",
+              "<b>Telepresence & Remote Work:</b> Control remote avatars or robotic proxies with your body, low latency enables real-time collaboration across distances",
+              "<b>Accessibility Interfaces:</b> Users with limited mobility control full-body avatars, motor intent extracted from smaller movements (head tracking, eye gaze, residual limb motion)",
+              "<b>Entertainment & Social VR:</b> Expressive avatars that mirror subtle body language, enhancing social presence and immersion",
             ],
           },
           {
@@ -429,7 +429,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The techniques developed here—real-time signal processing, latency-constrained ML, physics-aware control—translate directly to <b>robotics teleoperation</b>, where human operators control robots in real-world environments with similar constraints.",
+            data: "The techniques developed here, real-time signal processing, latency-constrained ML, physics-aware control, translate directly to <b>robotics teleoperation</b>, where human operators control robots in real-world environments with similar constraints.",
           },
         ],
       },
@@ -456,11 +456,11 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "This PhD research proposal explores the frontiers of <b>embodied artificial intelligence</b>—building machines that don't just think, but act intelligently in physical space. Unlike pure software AI, embodied systems must bridge the gap between digital computation and messy, real-world physics.",
+            data: "This PhD research proposal explores the frontiers of <b>embodied artificial intelligence</b>, building machines that don't just think, but act intelligently in physical space. Unlike pure software AI, embodied systems must bridge the gap between digital computation and messy, real-world physics.",
           },
           {
             type: "paragraph",
-            data: "The focus on humanoid robotics is deliberate: <span class='highlight'><b>human environments were designed for human bodies</b></span>. Shipyards, construction sites, factories—these spaces don't need to be redesigned if the robot shares our form factor. But humanoid morphology brings unique challenges: balance, dexterity, redundant degrees of freedom, and the curse of dimensionality in control spaces.",
+            data: "The focus on humanoid robotics is deliberate: <span class='highlight'><b>human environments were designed for human bodies</b></span>. Shipyards, construction sites, factories; these spaces don't need to be redesigned if the robot shares our form factor. But humanoid morphology brings unique challenges: balance, dexterity, redundant degrees of freedom, and the curse of dimensionality in control spaces.",
           },
         ],
       },
@@ -471,7 +471,7 @@ export type SwotStrategyAnswers = {
             type: "list",
             data: [
               "<b>Sensorimotor Integration:</b> How do robots learn coordinated actions from high-dimensional sensory input (vision, proprioception, force sensors)?",
-              "<b>Sample Efficiency:</b> Real robots can't train for millions of episodes like simulations—how do we learn from sparse real-world data?",
+              "<b>Sample Efficiency:</b> Real robots can't train for millions of episodes like simulations, how do we learn from sparse real-world data?",
               "<b>Sim-to-Real Transfer:</b> What simulation fidelity is sufficient for policies to generalize to physical hardware?",
               "<b>Safety & Robustness:</b> How do humanoid robots operate safely around humans in unstructured environments?",
               "<b>Physical Reasoning:</b> Can robots predict the consequences of their actions on deformable objects, fluids, or articulated structures?",
@@ -497,7 +497,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The key insight: <b>embodied intelligence isn't just about better algorithms—it's about tight coupling between perception, planning, and control at every timescale</b>, from millisecond reflexes to minute-scale task planning.",
+            data: "The key insight: <b>embodied intelligence isn't just about better algorithms; it's about tight coupling between perception, planning, and control at every timescale</b>, from millisecond reflexes to minute-scale task planning.",
           },
         ],
       },
@@ -511,7 +511,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "Body ownership—the feeling that a body part belongs to you—requires <b>visuomotor contingency</b>: the visual system must see the body respond <i>exactly as the motor system predicted</i>. The classic rubber hand illusion (Botvinick & Cohen, 1998) demonstrates this: when a fake hand is stroked in synchrony with your real (hidden) hand, your brain attributes ownership to the fake hand. But introduce a 300ms delay, and ownership breaks entirely.",
+            data: "Body ownership, the feeling that a body part belongs to you, requires <b>visuomotor contingency</b>: the visual system must see the body respond <i>exactly as the motor system predicted</i>. The classic rubber hand illusion (Botvinick & Cohen, 1998) demonstrates this: when a fake hand is stroked in synchrony with your real (hidden) hand, your brain attributes ownership to the fake hand. But introduce a 300ms delay, and ownership breaks entirely.",
           },
           {
             type: "paragraph",
@@ -536,7 +536,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The moment XR latency breaks visuomotor contingency—when the operator commands the robot's hand to move but visual feedback arrives 300ms late—the operator loses spatial confidence. They're no longer <i>in</i> the robot; they're watching a delayed video feed and guessing. <span class='highlight'><b>This is a safety risk</b></span>.",
+            data: "The moment XR latency breaks visuomotor contingency, when the operator commands the robot's hand to move but visual feedback arrives 300ms late, the operator loses spatial confidence. They're no longer <i>in</i> the robot; they're watching a delayed video feed and guessing. <span class='highlight'><b>This is a safety risk</b></span>.",
           },
           {
             type: "paragraph",
@@ -567,7 +567,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "This isn't abstract neuroscience—it's <b>the scientific framework for safe, effective robotic teleoperation</b>. I'm building the computational models of embodiment. I want to apply them to real metal in real shipyards.",
+            data: "This isn't abstract neuroscience; it's <b>the scientific framework for safe, effective robotic teleoperation</b>. I'm building the computational models of embodiment. I want to apply them to real metal in real shipyards.",
           },
         ],
       },
@@ -606,7 +606,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "This research proposal isn't just theoretical—it's a roadmap for building the <b>nervous system</b> that industrial humanoid robots need to operate autonomously in the real world.",
+            data: "This research proposal isn't just theoretical; it's a roadmap for building the <b>nervous system</b> that industrial humanoid robots need to operate autonomously in the real world.",
           },
         ],
       },
@@ -647,7 +647,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "By implementing a simplified version of each stage—filterbanks for the cochlea, nonlinear transduction for hair cells, and leaky integrate-and-fire or Hodgkin–Huxley neurons for the auditory nerve—the code becomes a sandbox for asking concrete questions. What does a voice look like as cochlear channel outputs, how do spikes tile time and frequency, and how much of the original sound can be recovered if all you are given is the neural activity?",
+            data: "By implementing a simplified version of each stage, filterbanks for the cochlea, nonlinear transduction for hair cells, and leaky integrate-and-fire or Hodgkin–Huxley neurons for the auditory nerve, the code becomes a sandbox for asking concrete questions. What does a voice look like as cochlear channel outputs, how do spikes tile time and frequency, and how much of the original sound can be recovered if all you are given is the neural activity?",
           },
         ],
       },
@@ -660,7 +660,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "These processed signals drive a population of model neurons—implemented as leaky integrate-and-fire or Hodgkin–Huxley units—whose spikes stand in for auditory nerve activity. From there, the project can derive neurograms, spike rasters, and, crucially, attempt audio reconstruction via vocoder-style decoding from channel-wise envelopes and firing rates, closing the loop from sound to spikes and back.",
+            data: "These processed signals drive a population of model neurons, implemented as leaky integrate-and-fire or Hodgkin–Huxley units, whose spikes stand in for auditory nerve activity. From there, the project can derive neurograms, spike rasters, and, crucially, attempt audio reconstruction via vocoder-style decoding from channel-wise envelopes and firing rates, closing the loop from sound to spikes and back.",
           },
           {
             type: "code",
@@ -709,7 +709,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "These metrics demonstrate that the digital ear achieves biologically plausible temporal coding—the same precision required for real-time audio processing in robotics applications like speech recognition, environmental sound localization, and acoustic event detection.",
+            data: "These metrics demonstrate that the digital ear achieves biologically plausible temporal coding, the same precision required for real-time audio processing in robotics applications like speech recognition, environmental sound localization, and acoustic event detection.",
           },
         ],
       },
@@ -755,7 +755,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "There is something wild about realizing that <span class='highlight'><b>every scene, every photograph, every pattern your eyes can register is, at some level, just a particular mixture of waves</b></span>. Even beyond what humans can see, there is an endless spectrum of frequencies, and yet with the right combination of them, you can recreate any image, any signal, with almost absurd precision. The idea that an image of a face, a galaxy, or a handwritten digit can all be broken down into oscillations—and then rebuilt from those oscillations—makes the Fourier transform feel less like a technical tool and more like a fundamental language of structure and pattern.",
+            data: "There is something wild about realizing that <span class='highlight'><b>every scene, every photograph, every pattern your eyes can register is, at some level, just a particular mixture of waves</b></span>. Even beyond what humans can see, there is an endless spectrum of frequencies, and yet with the right combination of them, you can recreate any image, any signal, with almost absurd precision. The idea that an image of a face, a galaxy, or a handwritten digit can all be broken down into oscillations, and then rebuilt from those oscillations, makes the Fourier transform feel less like a technical tool and more like a fundamental language of structure and pattern.",
           },
           {
             type: "paragraph",
@@ -785,7 +785,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "Conceptually, one can train ML models on images’ frequency representations to predict or refine high-frequency components, effectively adding back detail that was lost due to downsampling, blur, or corruption—this is the core of frequency-aware <b><span class='highlight'>“image super-resolution”</span></b> and <b><span class='highlight'>frequency-guided inpainting</span></b>. This project sits as a foundational step in that direction: it builds intuition for how frequencies encode structure and detail, which is exactly what these models learn to manipulate when improving image quality or reconstructing missing content.",
+            data: "Conceptually, one can train ML models on images’ frequency representations to predict or refine high-frequency components, effectively adding back detail that was lost due to downsampling, blur, or corruption; this is the core of frequency-aware <b><span class='highlight'>“image super-resolution”</span></b> and <b><span class='highlight'>frequency-guided inpainting</span></b>. This project sits as a foundational step in that direction: it builds intuition for how frequencies encode structure and detail, which is exactly what these models learn to manipulate when improving image quality or reconstructing missing content.",
           },
         ],
       },
@@ -816,7 +816,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Neural Radiance Fields (NeRFs) represent a paradigm shift in 3D scene representation—instead of explicit geometry like meshes or point clouds, NeRF learns a <b>continuous volumetric function</b> that maps 3D coordinates to color and density. This project implements the full NeRF pipeline from scratch, starting with 2D neural field fitting and scaling to full 3D multi-view reconstruction.",
+            data: "Neural Radiance Fields (NeRFs) represent a paradigm shift in 3D scene representation, instead of explicit geometry like meshes or point clouds, NeRF learns a <b>continuous volumetric function</b> that maps 3D coordinates to color and density. This project implements the full NeRF pipeline from scratch, starting with 2D neural field fitting and scaling to full 3D multi-view reconstruction.",
           },
           {
             type: "paragraph",
@@ -829,7 +829,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Before tackling 3D, the project starts with fitting a neural network to a 2D image—a conceptually simpler problem that builds intuition for coordinate-based representations. The network learns a mapping from pixel coordinates <code>(x, y)</code> to RGB values <code>(r, g, b)</code>.",
+            data: "Before tackling 3D, the project starts with fitting a neural network to a 2D image, a conceptually simpler problem that builds intuition for coordinate-based representations. The network learns a mapping from pixel coordinates <code>(x, y)</code> to RGB values <code>(r, g, b)</code>.",
           },
           {
             type: "paragraph",
@@ -924,7 +924,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The project began with handcrafting 25 scenarios, each designed to expose one of three fundamental causal reasoning errors that LLMs consistently make when attempting counterfactual inference. What made this challenging was designing scenarios that truly test causal understanding without linguistic ambiguity or loopholes—an exercise that gave me new appreciation for how sophisticated modern LLMs are, even when they fail in subtle ways.",
+            data: "The project began with handcrafting 25 scenarios, each designed to expose one of three fundamental causal reasoning errors that LLMs consistently make when attempting counterfactual inference. What made this challenging was designing scenarios that truly test causal understanding without linguistic ambiguity or loopholes, an exercise that gave me new appreciation for how sophisticated modern LLMs are, even when they fail in subtle ways.",
           },
         ],
       },
@@ -964,7 +964,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The real value of CausalBench isn't just measurement—it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
+            data: "The real value of CausalBench isn't just measurement; it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
           },
         ],
       },
@@ -973,7 +973,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop—a distributed system where multiple AI agents coordinate, debate, and refine causal reasoning:",
+            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop, a distributed system where multiple AI agents coordinate, debate, and refine causal reasoning:",
           },
           {
             type: "ordered-list",
@@ -986,11 +986,11 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "This architecture mirrors <b>distributed robot coordination</b>: multiple agents (robots/LLMs) observe the same environment (SCM), independently compute actions (causal interventions), reach consensus through debate (error detection), and refine their control policies. The challenge isn't just individual intelligence—it's coordinating multiple reasoning systems to achieve collective correctness.",
+            data: "This architecture mirrors <b>distributed robot coordination</b>: multiple agents (robots/LLMs) observe the same environment (SCM), independently compute actions (causal interventions), reach consensus through debate (error detection), and refine their control policies. The challenge isn't just individual intelligence; it's coordinating multiple reasoning systems to achieve collective correctness.",
           },
           {
             type: "paragraph",
-            data: "The long-term goal is a benchmark that not only measures causal reasoning, but <b>trains future LLMs to reason about causality</b>, not just give statistically likely answers. This shifts from 'what patterns appear in training data' to 'what would happen if we changed this variable, holding everything else fixed'—the same mental model required for robot manipulation planning.",
+            data: "The long-term goal is a benchmark that not only measures causal reasoning, but <b>trains future LLMs to reason about causality</b>, not just give statistically likely answers. This shifts from 'what patterns appear in training data' to 'what would happen if we changed this variable, holding everything else fixed', the same mental model required for robot manipulation planning.",
           },
         ],
       },
@@ -1053,7 +1053,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "This work sits at the intersection of causal inference, AI safety, and interpretability. As LLMs are increasingly deployed in domains requiring causal reasoning—healthcare, policy, science—understanding and improving their causal capabilities becomes critical.",
+            data: "This work sits at the intersection of causal inference, AI safety, and interpretability. As LLMs are increasingly deployed in domains requiring causal reasoning, healthcare, policy, science, understanding and improving their causal capabilities becomes critical.",
           },
           {
             type: "paragraph",
@@ -1118,7 +1118,7 @@ export type SwotStrategyAnswers = {
               "High-Fidelity Recovery: Achieved accurate signal reconstruction with SNR values up to 30-40 dB for bandlimited cases, demonstrating effective handling of temporal encoding challenges.",
               "Robust Algorithms: Developed δ-insensitive decoding that outperforms δ-sensitive methods in noisy or variable conditions, reducing reconstruction errors by 10-20% in simulations.",
               "Nonlinear Insights: Quantified the impact of ON-OFF separation on recovery, showing how rectification introduces high-frequency harmonics, preventing perfect reconstruction while enabling feature extraction.",
-              "Parameter Optimization: Analyzed bias effects (e.g., b=1 vs. b=0.2) on spike rates and SNR, identifying trade-offs between fidelity and efficiency—key for real-world neural models.",
+              "Parameter Optimization: Analyzed bias effects (e.g., b=1 vs. b=0.2) on spike rates and SNR, identifying trade-offs between fidelity and efficiency, key for real-world neural models.",
               "Quantitative Analysis: Provided time-resolved SNR plots and PRC-based inferences, offering data-driven recommendations for safe neural perturbations (e.g., cardioversion timing).",
             ],
           },
@@ -1224,7 +1224,7 @@ export type SwotStrategyAnswers = {
               "<b>Object Manipulation:</b> Reconstruct tool geometry to plan grasps (wrench orientation, handle location, weight distribution)",
               "<b>Workspace Mapping:</b> Build 3D maps of construction sites or shipyards from helmet-cam footage for path planning",
               "<b>Predictive Simulation:</b> Simulate 'what if' scenarios (will this beam fall if I cut that support?) before executing",
-              "<b>Sparse Sensing:</b> Robots can't capture 100+ views of every object—physics priors enable reconstruction from limited observations",
+              "<b>Sparse Sensing:</b> Robots can't capture 100+ views of every object, physics priors enable reconstruction from limited observations",
             ],
           },
         ],
@@ -1239,9 +1239,9 @@ export type SwotStrategyAnswers = {
           {
             type: "list",
             data: [
-              "<b>Differentiability:</b> Physics engines use discrete collision detection and constraint solvers—making these differentiable requires approximations",
+              "<b>Differentiability:</b> Physics engines use discrete collision detection and constraint solvers, making these differentiable requires approximations",
               "<b>Training Stability:</b> Physics losses can conflict with photometric losses (e.g., forcing a surface to be planar when camera data suggests curvature)",
-              "<b>Computational Cost:</b> Simulating physics at every training step is expensive—need efficient batching and parallelization",
+              "<b>Computational Cost:</b> Simulating physics at every training step is expensive, need efficient batching and parallelization",
               "<b>Material Ambiguity:</b> Is that highlight from a specular material or a light source? Disentangling geometry, reflectance, and lighting is ill-posed",
             ],
           },
@@ -1265,7 +1265,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "For humanoid robots, PhysNeRF could enable <b>vision-based workspace understanding</b> that goes beyond simple obstacle detection—predicting structural integrity, object affordances, and interaction outcomes before acting.",
+            data: "For humanoid robots, PhysNeRF could enable <b>vision-based workspace understanding</b> that goes beyond simple obstacle detection, predicting structural integrity, object affordances, and interaction outcomes before acting.",
           },
         ],
       },
@@ -1400,7 +1400,7 @@ def compute_prc(node, perturbation_phases=120):
           },
           {
             type: "paragraph",
-            data: "The millisecond-scale precision required for safe cardioversion mirrors the timing constraints in real-time robotics control loops—where missing a critical window by even tens of milliseconds can mean the difference between smooth operation and system failure.",
+            data: "The millisecond-scale precision required for safe cardioversion mirrors the timing constraints in real-time robotics control loops, where missing a critical window by even tens of milliseconds can mean the difference between smooth operation and system failure.",
           },
         ],
       },
