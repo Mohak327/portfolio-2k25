@@ -118,6 +118,7 @@ export const homeData = {
         company: "SubconsciousAI, (New York, USA)",
         duration: "Apr 2026 - Present",
         link: undefined,
+        interactive: true,
         tasks: [
           "Working directly with founder <a href='https://www.linkedin.com/in/aviyashchin'>Avi Yashchin</a> (ex-IBM Watson Research, Two Sigma; two prior exits) on a causal-inference platform for policy and market research.",
           "Rebuilt the <span class='highlight'>hierarchical Bayes conjoint estimator</span> from scratch in NumPy: a Train-style hierarchical Bayes multinomial logit with Gibbs sampling on the population mean and full covariance, Metropolis-Hastings on respondent-level coefficients, and 10k burn-in / 10k retained draws, with no PyMC or Stan. Enforced sign and monotonicity constraints inside the sampler by selecting each coefficient's distributional family (normal, lognormal, truncated-normal, negative-truncated-normal) from a constraints vector and ordering group, rather than filtering violations post-hoc, plus adaptive MH step-size targeting 30% acceptance.",
@@ -143,28 +144,30 @@ export const homeData = {
       {
         role: "Graduate Researcher",
         company: "Laboratory for Intelligent Imaging and Neural Computing (LIINC), Columbia University",
-        duration: "Spring 2026, Fall 2026 - Present",
+        duration: "Mar 2026 - Present",
         link: undefined,
+        interactive: true,
         tasks: [
           "Designed and ran user studies on intention decoding across multiple interaction modalities: task and stimulus design, IRB protocol support, participant recruitment, instrumentation, and synchronized multi-stream capture of <i>EEG, gaze, and behavior</i>.",
           "Built out the physiological inference pipeline over multimodal neural signals: EEG preprocessing (filtering, artifact rejection, re-referencing, epoching), gaze and pupil feature extraction, temporal alignment across asynchronous streams, and decoders mapping the fused signal onto a <span class='highlight'>latent representation of user intent</span>, with cross-participant generalization as an explicit evaluation criterion.",
           "Integrated decoded intent with embodied foundation models so downstream robot action selection and adaptation follow the operator's inferred goal rather than an explicit command.",
         ],
-        accent: Theme.colors.indigo[400],
+        accent: Theme.colors.purple[400],
         bgColor: Theme.colors.white,
         doc: undefined,
       },
       {
-        role: "Student Research Assistant",
+        role: "Graduate Researcher",
         company:
           "Complex Resilient Intelligent Systems Laboratory (CRIS), Columbia University",
-        duration: "2025 - Present",
+        duration: "Sep 2025 - Jan 2026",
         link: undefined,
+        interactive: true,
         tasks: [
           "Leveraged <b>statistical</b> and <i>machine learning</i> models and protein structure visualization tools like ChimeraX to analyze Predicted Aligned Error (PAE) matrices, uncovering mechanistic insights into protein interactions and structural uncertainty in 400-dimensional protein structures.",
           "Probed embeddings from <span class='highlight'>200K+</span> protein structures (AlphaFold DB) across <span class='highlight'>48 transformer layers</span>.",
         ],
-        accent: Theme.colors.purple[400],
+        accent: Theme.colors.yellow[400],
         bgColor: Theme.colors.white,
         doc: {
           type: "pdf",
@@ -178,6 +181,7 @@ export const homeData = {
         company: "Outscal, (Delhi, India)",
         duration: "2023 - 2025",
         link: undefined,
+        interactive: true,
         tasks: [
           "Overhauled a scalable web architecture with Next.js, GraphQL and software design principles, boosting page performance by 35% for 400K+ users, aligning with standards for robust, client-facing systems.",
           "Integrated Strapi as an end-to-end CMS and UI builder for real-time page creation and deployment, saving 60+ dev hours/week.",
@@ -187,7 +191,7 @@ export const homeData = {
           "Spearheaded targeted product A/B experiments by analyzing user funnel data, shaping business requirements with stakeholders, and collaborating across teams driving 15% conversion lift and directly impacting platform growth, sales pipeline, and customer lifetime value.",
           "Migrated JavaScript codebase into TypeScript leveraging Jules AI, Codex, and Google Gemini; leveraged AI tools to streamline code reviews and prototyping, enhancing developer productivity by ~50%."
         ],
-        accent: Theme.colors.yellow[400],
+        accent: Theme.colors.sky[400],
         bgColor: Theme.colors.white,
         doc: {
           type: "website",
@@ -201,12 +205,13 @@ export const homeData = {
         company: "Travclan, (Delhi, India)",
         duration: "2022 - 2023",
         link: undefined,
+        interactive: true,
         tasks: [
           "Partnered with cross-functional teams (product, finance, operations) to translate business needs and pain points into a React-based internal admin panel, accelerating output efficiency for 250+ teammates by 40% in under 4 months.",
           "Ideated and developed features for Flight and Hotel portals of TravClan based on customer needs and inferences from user analytics, being operated by 5000+ travel agents to manage bookings of over 100,000 customers.",
           "Formulated and worked on a micro-frontend architecture in a team of two, catalyzing multi-tech stack adoption, cut build sizes by ~35%, and increased deployment frequency by 40%, boosting developer productivity.",
         ],
-        accent: Theme.colors.yellow[400],
+        accent: Theme.colors.lime[400],
         bgColor: Theme.colors.white,
         doc: {
           type: "website",

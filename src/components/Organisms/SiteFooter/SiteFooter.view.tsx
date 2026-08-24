@@ -38,6 +38,7 @@ const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
               key={index}
               bgColor={section.bgColor ? section.bgColor : "white"}
               accentColor={section.accent ? section.accent : "white"}
+              interactive={false}
             >
               <div
                 style={{ backgroundColor: section.accent }}

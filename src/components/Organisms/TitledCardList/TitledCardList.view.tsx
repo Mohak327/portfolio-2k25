@@ -8,6 +8,8 @@ const TitledCardList = <
     link: string | undefined;
     accent?: string;
     bgColor?: string;
+    /** Explicit override for whether the card responds to clicks; defaults to !!link. */
+    interactive?: boolean;
   }
 >({
   title,
@@ -31,26 +33,38 @@ const TitledCardList = <
       {timeline ? (
         <div className="relative pl-8 md:pl-10">
           <div className="flex flex-col gap-8">
-            {items.map((item, index) => (
-              <div key={index} className="relative">
-                {index < items.length - 1 && (
-                  <div className="absolute -left-6 md:-left-8 top-[34px] bottom-[-66px] w-1 bg-black" />
-                )}
-                <div className="absolute top-[32px] -left-[12px] md:-left-[20px] w-[12px] md:w-[20px] h-1 bg-black" />
-                <div
-                  style={{ backgroundColor: item.accent ? item.accent : "white" }}
-                  className="absolute -left-8 md:-left-10 top-6 w-5 h-5 rounded-full border-4 border-black z-10"
-                />
-                <ConditionLinkView link={item.link}>
-                  <Card
-                    bgColor={item.bgColor ? item.bgColor : "white"}
-                    accentColor={item.accent ? item.accent : "white"}
-                  >
-                    {renderItem(item)}
-                  </Card>
-                </ConditionLinkView>
-              </div>
-            ))}
+            {items.map((item, index) => {
+              const isInteractive = item.interactive ?? !!item.link;
+              return (
+                <div key={index} className="relative">
+                  {index < items.length - 1 && (
+                    <div className="absolute -left-6 md:-left-8 top-[34px] bottom-[-66px] w-1 bg-black" />
+                  )}
+                  {/* Left edge sits on the dot; right edge runs 2px past the card's resting
+                      edge (hidden underneath it, since the Card paints on top) so that when
+                      the Card presses down 2px on hover, the two stay flush with no gap and
+                      no animation needed on the stub itself. */}
+                  <div
+                    className={`absolute top-[32px] -left-[12px] md:-left-[20px] ${
+                      isInteractive ? "w-[14px] md:w-[22px]" : "w-[12px] md:w-[20px]"
+                    } h-1 bg-black`}
+                  />
+                  <div
+                    style={{ backgroundColor: item.accent ? item.accent : "white" }}
+                    className="absolute -left-8 md:-left-10 top-6 w-5 h-5 rounded-full border-4 border-black z-10"
+                  />
+                  <ConditionLinkView link={item.link}>
+                    <Card
+                      bgColor={item.bgColor ? item.bgColor : "white"}
+                      accentColor={item.accent ? item.accent : "white"}
+                      interactive={isInteractive}
+                    >
+                      {renderItem(item, index)}
+                    </Card>
+                  </ConditionLinkView>
+                </div>
+              );
+            })}
           </div>
         </div>
       ) : (
@@ -64,8 +78,9 @@ const TitledCardList = <
                 <Card
                   bgColor={item.bgColor ? item.bgColor : "white"}
                   accentColor={item.accent ? item.accent : "white"}
+                  interactive={item.interactive ?? !!item.link}
                 >
-                  {renderItem(item)}
+                  {renderItem(item, index)}
                 </Card>
               </ConditionLinkView>
             </div>
