@@ -42,11 +42,14 @@ const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
             >
               <div
                 style={{ backgroundColor: section.accent }}
-                className="absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold text-xs"
+                className="absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold"
               >
                 {section.duration}
               </div>
-              <h4 className="font-black text-lg uppercase mb-3 mt-6 pr-2">
+              {/* pr-40 reserves room for the flush corner badge so the title wraps
+                  around it instead of needing a top margin that pushes the whole
+                  header down and wastes vertical space. */}
+              <h4 className="font-black text-2xl uppercase mb-3 pr-40">
                 {section.title}
               </h4>
               <ul className="list-disc space-y-2 pl-5">
@@ -63,7 +66,7 @@ const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
         </div>
       </div>
 
-      <div className="border-4 border-white bg-black p-8 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <div id="contact" className="border-4 border-white bg-black p-8 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] scroll-mt-24">
         <h4 className="gradient-text font-bold uppercase text-4xl md:text-5xl mb-6">
           {contact.title}
         </h4>

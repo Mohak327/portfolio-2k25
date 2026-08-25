@@ -84,9 +84,11 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
           timeline
           renderItem={(job, index) => (
             <>
+              {/* Flush to the card's outer corner, edge-to-edge like every other
+                  card's badge on the site (not inset inside the content padding). */}
               <div
                 style={{ backgroundColor: job.accent }}
-                className={`absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold`}
+                className="absolute top-0 right-0 p-2 border-l-4 border-b-4 border-black font-bold"
               >
                 {job.duration}
               </div>
@@ -94,7 +96,10 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
                 defaultOpen={index === 0}
                 header={
                   <>
-                    <h3 className="text-2xl font-black uppercase mb-1 mt-6">
+                    {/* pr-40 reserves room for the badge so the title wraps around it
+                        instead of needing a top margin that wastes vertical space when
+                        the accordion is collapsed. */}
+                    <h3 className="text-2xl font-black uppercase mb-1 pr-40">
                       {job.role}
                     </h3>
                     <div className="text-lg font-bold flex items-center gap-2">
@@ -138,7 +143,10 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
               >
                 {degree.year}
               </div>
-              <h3 className="text-2xl font-black uppercase mb-1 mt-6">
+              {/* pr-40 reserves room for the flush corner badge so the title wraps
+                  around it instead of needing a top margin that pushes the whole
+                  header down and wastes vertical space. */}
+              <h3 className="text-2xl font-black uppercase mb-1 pr-40">
                 {degree.university}
               </h3>
               <div className="text-lg font-bold mb-4">{degree.degree}</div>
