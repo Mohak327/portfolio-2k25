@@ -898,8 +898,8 @@ export type SwotStrategyAnswers = {
     ],
   },
   {
-    id: "causalbench-llm-reasoning",
-    title: "Teaching LLMs to Think Causally: CausalBench",
+    id: "causalitea",
+    title: "Causalitea: Teaching LLMs to Think Causally",
     subtitle: "Exposing AI's Causal Reasoning Gaps",
     focus: "Causal ML / AI Safety",
     summary:
@@ -913,6 +913,7 @@ export type SwotStrategyAnswers = {
       "Multi-Agent Systems",
     ],
     github: new URL("https://github.com/Mohak327/llm-causal-bench"),
+    liveUrl: new URL("https://causalitea.vercel.app"),
     accentColor: Theme.colors.orange[400],
     sections: [
       {
@@ -946,11 +947,11 @@ export type SwotStrategyAnswers = {
         ],
       },
       {
-        heading: "Building CausalBench",
+        heading: "Building Causalitea",
         content: [
           {
             type: "paragraph",
-            data: "To systematize and scale this evaluation, I built <b>CausalBench</b>, an application for generating Structural Causal Models (SCMs), posing counterfactual queries, and benchmarking multiple LLMs against ground-truth causal logic. The platform allows researchers to:",
+            data: "To systematize and scale this evaluation, I built <b>Causalitea</b>, an application for generating Structural Causal Models (SCMs), posing counterfactual queries, and benchmarking multiple LLMs against ground-truth causal logic. The platform allows researchers to:",
           },
           {
             type: "list",
@@ -964,7 +965,11 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "The real value of CausalBench isn't just measurement; it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
+            data: "The real value of Causalitea isn't just measurement; it's that <span class='highlight'><b>every failure becomes a labeled training signal</b></span> about how the model is mis-tracking the underlying causal structure of a system.",
+          },
+          {
+            type: "paragraph",
+            data: "Causalitea is live at <a href='https://causalitea.vercel.app' target='_blank'>causalitea.vercel.app</a>.",
           },
         ],
       },
@@ -973,14 +978,14 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Beyond evaluation, the next phase transforms CausalBench into a training platform through a multi-agent self-learning loop, a distributed system where multiple AI agents coordinate, debate, and refine causal reasoning:",
+            data: "Beyond evaluation, the next phase transforms Causalitea into a training platform through a multi-agent self-learning loop, a distributed system where multiple AI agents coordinate, debate, and refine causal reasoning:",
           },
           {
             type: "ordered-list",
             data: [
               "<b>Generation:</b> Use one model to propose diverse SCMs and counterfactual scenarios",
               "<b>Council Debate:</b> Pass SCMs to multiple models that independently compute interventional answers and debate their responses",
-              "<b>Error Classification:</b> Identify disagreements and mistakes, classifying them into the three causal error types using CausalBench's evaluation layer",
+              "<b>Error Classification:</b> Identify disagreements and mistakes, classifying them into the three causal error types using Causalitea's evaluation layer",
               "<b>Policy Training:</b> Train a policy to answer scenarios correctly, explicitly rewarding SCM-consistent reasoning and penalizing causal violations",
             ],
           },
@@ -1002,7 +1007,7 @@ export type SwotStrategyAnswers = {
             data: [
               "SCM Framework: Built a flexible system for representing causal graphs, functional equations, and intervention operators",
               "Query Generation: Automated creation of counterfactual scenarios that systematically test different reasoning capabilities",
-              "LLM Integration: API connectors for GPT-4, Claude, and Gemini with structured output parsing",
+              "LLM Integration: A single provider layer over 18 models from Google Gemini, Groq, OpenRouter, Cloudflare Workers AI, Anthropic, and local Ollama, with JSON-mode structured output, per-model failure isolation, and cross-family judging so no model grades its own family's answers",
               "Ground Truth Computation: Implementation of Pearl's do-calculus and counterfactual inference algorithms",
               "Error Analysis: Automated classification system that maps LLM responses to specific causal violation patterns",
               "Visualization: Interactive displays of causal graphs, intervention results, and model comparison dashboards",
@@ -1049,6 +1054,59 @@ export type SwotStrategyAnswers = {
         ],
       },
       {
+        heading: "Safe & Secure LLM Integration: Bring Your Own Key",
+        content: [
+          {
+            type: "paragraph",
+            data: "Causalitea runs on free-tier models out of the box, and users can unlock more by bringing their own API keys. Because those keys belong to the user, the design goal was that <span class='highlight'><b>the server never stores a user's key, and nothing readable ever sits on disk</b></span>.",
+          },
+          {
+            type: "list",
+            data: [
+              "<b>Encrypted in the browser:</b> Keys are sealed with AES-256-GCM using a key derived from the user's passphrase (PBKDF2-HMAC-SHA256, 600,000 iterations per OWASP guidance, random salt and IV). Only the ciphertext reaches local storage.",
+              "<b>Memory-only unlock:</b> The decrypted keys and passphrase live only in memory, so reloading the page locks the vault again. A wrong passphrase fails AES-GCM authentication instead of returning garbage.",
+              "<b>Never stored on the server:</b> Keys travel with each request in a dedicated header, are used for that call only, and are dropped when it ends.",
+              "<b>Strict allowlisting:</b> The server accepts only known provider key names, caps header and value sizes, and checks the format of values that end up in URLs (such as the Cloudflare account ID).",
+              "<b>Secret redaction:</b> Provider error messages are scrubbed of key-shaped strings and the user's own key values before they reach logs or the browser.",
+              "<b>SSRF-safe by design:</b> The local Ollama provider is excluded from BYOK, since letting users point the server at an arbitrary URL would open a server-side request forgery hole.",
+              "<b>Least exposure:</b> The model catalog shared with the client holds env var names, never values, and the availability endpoint reports only which models are configured.",
+            ],
+          },
+          {
+            type: "code",
+            data: {
+              language: "typescript",
+              filename: "keyVault.ts",
+              code: `// A user's own API keys, encrypted in their browser with a passphrase.
+// The server never stores them.
+async function deriveKey(passphrase: string, salt: Uint8Array) {
+  const material = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(passphrase), "PBKDF2", false, ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: 600_000, hash: "SHA-256" },
+    material,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+export async function seal(keys: UserKeys, passphrase: string) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(passphrase, salt);
+  const data = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv }, key,
+    new TextEncoder().encode(JSON.stringify(keys))
+  );
+  return { v: 1, salt: toB64(salt), iv: toB64(iv), data: toB64(new Uint8Array(data)) };
+}`,
+            },
+          },
+        ],
+      },
+      {
         heading: "Impact & Future Directions",
         content: [
           {
@@ -1057,11 +1115,11 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "CausalBench provides both a diagnostic tool for current models and a training framework for future ones. The multi-agent training loop opens possibilities for self-play approaches to causal learning, where models improve by debating counterfactuals rather than just absorbing more training data.",
+            data: "Causalitea provides both a diagnostic tool for current models and a training framework for future ones. The multi-agent training loop opens possibilities for self-play approaches to causal learning, where models improve by debating counterfactuals rather than just absorbing more training data.",
           },
           {
             type: "paragraph",
-            data: "If you're working on causal inference, AI reasoning, interpretability, or exploring multi-agent training setups, I'm open to collaborations on extending CausalBench into a larger causal reasoning and training suite.",
+            data: "If you're working on causal inference, AI reasoning, interpretability, or exploring multi-agent training setups, I'm open to collaborations on extending Causalitea into a larger causal reasoning and training suite.",
           },
         ],
       },

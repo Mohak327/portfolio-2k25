@@ -45,4 +45,5 @@ export interface ProjectInterface {
   tags: string[];
   accentColor: string;
   github?: URL;
+  liveUrl?: URL;
 }

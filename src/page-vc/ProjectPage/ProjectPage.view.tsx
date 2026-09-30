@@ -3,7 +3,7 @@ import { ProjectInterface } from "@/page-data/projects/projects.interface";
 import React from "react";
 import ContentRenderer from "../../components/Organisms/ContentRenderer/ContentRenderer.view";
 import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
 import { RiFocus3Line } from "react-icons/ri";
 
@@ -17,6 +17,7 @@ const ProjectDetailView: React.FC<ProjectInterface> = ({
   role,
   focus,
   github,
+  liveUrl,
 }) => {
   if (!id) {
     return <div>Project not found.</div>;
@@ -53,6 +54,23 @@ const ProjectDetailView: React.FC<ProjectInterface> = ({
           <ContentRenderer sections={sections} />
         </div>
         <div className="md:w-80 w-full flex-shrink-0">
+          {liveUrl && (
+            <div className="border-4 border-black p-6 bg-black text-white">
+              <h3 className="flex items-center gap-2 font-black uppercase mb-4 text-lg">
+                <FaExternalLinkAlt /> Live
+              </h3>
+
+              <Link
+                href={liveUrl.toString()}
+                className="font-bold underline transition-all break-all hover:text-[var(--accent-color)]"
+                style={{ "--accent-color": accentColor } as React.CSSProperties}
+                target="_blank"
+              >
+                {liveUrl.host}
+              </Link>
+            </div>
+          )}
+
           {github && (
             <div className="border-4 border-black p-6 bg-black text-white">
               <h3 className="flex items-center gap-2 font-black uppercase mb-4 text-lg">
