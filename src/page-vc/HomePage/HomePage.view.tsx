@@ -11,8 +11,16 @@ import RichTextController from "@/components/Organisms/RichText/RichText.control
 import PDFTile from "@/components/Molecules/PDFTile/PDFTile.view";
 import Accordion from "@/components/Molecules/Accordion/Accordion.view";
 import Spotlight from "@/components/Organisms/Spotlight/Spotlight.view";
+import PillFilters from "@/components/Organisms/PillFilters/PillFilters.controller";
 
-const HomePageView = ({ techArsenal }: HomeViewProps) => {
+const HomePageView = ({
+  techArsenal,
+  projectItems,
+  projectFilterOptions,
+  activeProjectFilter,
+  allProjectsLabel,
+  onProjectFilterChange,
+}: HomeViewProps) => {
   return (
     <div
       className={`min-h-screen text-black font-mono selection:bg-black selection:text-white overflow-x-hidden`}
@@ -41,15 +49,18 @@ const HomePageView = ({ techArsenal }: HomeViewProps) => {
 
         <TitledCardList
           title={homeData.projects.title}
-          items={homeData.projects.items.filter(
-            (p) =>
-              ![
-                "clarisnet",
-                "neubody-embodied-ai",
-                "physnerf-3d-reconstruction",
-              ].includes(p.id),
-          )}
+          items={projectItems}
           icon={<Brain size={24} />}
+          filters={
+            <PillFilters
+              options={projectFilterOptions}
+              value={activeProjectFilter}
+              onChange={onProjectFilterChange}
+              includeAll
+              allLabel={allProjectsLabel}
+              size="sm"
+            />
+          }
           colCount={2}
           renderItem={(project) => (
             <>

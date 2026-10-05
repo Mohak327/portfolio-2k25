@@ -33,11 +33,21 @@ export interface SectionItem {
   }>;
 }
 
+export const projectCategories = [
+  "Neuroscience",
+  "Computer Vision",
+  "AI / LLMs",
+  "Robotics & BCI",
+  "Web Apps",
+] as const;
+
+export type ProjectCategory = (typeof projectCategories)[number];
+
 export interface ProjectInterface {
   id: string;
   title: string;
   subtitle: string;
-  category?: string;
+  categories: ProjectCategory[];
   summary: string;
   role?: string;
   focus?: string;

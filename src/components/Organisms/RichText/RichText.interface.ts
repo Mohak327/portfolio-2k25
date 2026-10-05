@@ -16,7 +16,7 @@ export interface RichTextListViewProps {
   parsedItems: ReactElement[][];
 }
 
-export type NodeType = "root" | "text" | "b" | "i" | "highlight" | "link";
+export type NodeType = "root" | "text" | "b" | "i" | "code" | "highlight" | "link";
 
 export type ElementNode = {
     type: Exclude<NodeType, "text">;

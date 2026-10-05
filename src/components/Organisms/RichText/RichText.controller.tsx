@@ -20,7 +20,8 @@ const parseToNodes = (text: string): Node[] => {
   };
 
   // Anchors carry a variable href, so they can't be matched as a fixed tag.
-  const ANCHOR_OPEN = /^<a href='([^']*)'>/;
+  // Any attributes after the href (target, class) are accepted and ignored.
+  const ANCHOR_OPEN = /^<a href='([^']*)'[^>]*>/;
 
   for (let i = 0; i < text.length; ) {
     if (text[i] === "<") {
@@ -42,6 +43,7 @@ const parseToNodes = (text: string): Node[] => {
     const openMatch =
       tryMatch("<b>", i) ||
       tryMatch("<i>", i) ||
+      tryMatch("<code>", i) ||
       tryMatch("<span class='highlight'>", i);
 
     if (openMatch) {
@@ -59,6 +61,7 @@ const parseToNodes = (text: string): Node[] => {
     const closeMatch =
       tryMatch("</b>", i) ||
       tryMatch("</i>", i) ||
+      tryMatch("</code>", i) ||
       tryMatch("</span>", i) ||
       tryMatch("</a>", i);
 
@@ -91,6 +94,15 @@ const renderNodes = (nodes: Node[], keyPrefix = ""): ReactElement[] =>
         return <b key={key}>{children}</b>;
       case "i":
         return <i key={key}>{children}</i>;
+      case "code":
+        return (
+          <code
+            key={key}
+            className="font-mono text-[0.9em] bg-gray-100 border border-black px-1 py-0.5"
+          >
+            {children}
+          </code>
+        );
       case "highlight":
         return (
           <span key={key} className="bg-yellow-200 px-1 rounded">

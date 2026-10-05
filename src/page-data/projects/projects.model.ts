@@ -7,6 +7,7 @@ export const projects: ProjectInterface[] = [
     title: "Spectrum: AI-Powered Consumer Segmentation SWOT Explorer",
     subtitle: "Business Intelligence for Product Strategists",
     focus: "Product Strategy / Business Intelligence",
+    categories: ["AI / LLMs", "Web Apps"],
     summary:
       "An LLM-powered business intelligence platform that generates strategic SWOT analyses for consumer segments, enabling product strategists to explore market opportunities, compare segment behaviors, and export actionable insights.",
     tags: [
@@ -292,6 +293,7 @@ export type SwotStrategyAnswers = {
     title: "CLARISNet: Real-Time Motor Intent Decoding for Virtual Embodiment",
     subtitle: "Translating Human Movement into Naturalistic Avatar Control",
     focus: "VR/XR / Human-Computer Interaction",
+    categories: ["Robotics & BCI"],
     summary:
       "Decodes human motor intent in real-time and translates it into smooth, naturalistic avatar actions within richly detailed, physics-accurate virtual worlds.",
     tags: [
@@ -440,6 +442,7 @@ export type SwotStrategyAnswers = {
     title: "NeuBody: Embodied AI for Humanoid Robotics",
     subtitle: "PhD Research Proposal",
     focus: "Embodied AI / Robotics",
+    categories: ["Robotics & BCI"],
     summary:
       "Research proposal exploring embodied artificial intelligence for humanoid robots, integrating perception, control, and learning in physical environments.",
     tags: [
@@ -612,12 +615,331 @@ export type SwotStrategyAnswers = {
       },
     ],
   },
+  {
+    id: "resound",
+    title: "Resound: A Song Rebuilt From Its Nerve Spikes",
+    subtitle: "An Interactive Model of the Inner Ear",
+    focus: "Computational Neuroscience / Interactive Web",
+    categories: ["Neuroscience", "Web Apps"],
+    summary:
+      "An interactive lab that sends a song through a model of the cochlea, hair cells and 32,768 auditory nerve fibres, then rebuilds the song from the spike times alone, at 174 dB SNR, far beyond CD quality.",
+    tags: [
+      "Auditory Neuroscience",
+      "Spike Timing Codes",
+      "Signal Reconstruction",
+      "React",
+      "three.js",
+      "FastAPI",
+      "Python (NumPy, SciPy)",
+      "Vercel",
+    ],
+    role: "Researcher / Engineer",
+    github: new URL("https://github.com/Mohak327/sing-me-a-song"),
+    liveUrl: new URL("https://resoundlab.vercel.app"),
+    accentColor: Theme.colors.purple[400],
+    sections: [
+      {
+        heading: "Overview",
+        content: [
+          {
+            type: "paragraph",
+            data: "The auditory nerve is the only thing the brain ever receives from the ear. So a fair question is: <b>how much of a sound is actually in those spikes?</b> If you were handed nothing but the firing times of the nerve fibres, could you get the song back?",
+          },
+          {
+            type: "paragraph",
+            data: "<b>Resound</b> answers that in the browser. It takes a clip, passes it through a model of the inner ear (cochlea, inner hair cells, auditory nerve), and then <span class='highlight'><b>regenerates the audio from the spike times alone</b></span>, undoing each stage in turn. You can listen to the original and the rebuilt version side by side, and to what is left when the ear's code is read the usual, lossy ways.",
+          },
+        ],
+      },
+      {
+        heading: "What You Can Do On The Page",
+        content: [
+          {
+            type: "list",
+            data: [
+              "<b>Follow the route:</b> A 3D model of real anatomy (outer ear, canal, eardrum, ossicles, cochlea, nerve, brain) walks through each stop the sound passes on its way in",
+              "<b>Listen to four versions of one clip:</b> The original, the version rebuilt from spikes, a firing-rate reading, and a loudness-only reading that is roughly what a cochlear implant passes on",
+              "<b>Run your own sound:</b> The lab regenerates a clip you provide, with the number of nerve fibres per pitch band as a control, and charts the error block by block",
+              "<b>See where it breaks:</b> The limits section shows how fast fidelity falls with timing noise and with too few fibres",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The Result",
+        content: [
+          {
+            type: "paragraph",
+            data: "Measured on a 10 second clip, encoded as <b>43,207,837 spikes</b> across 32,768 fibres (about 131.5 spikes per second per fibre):",
+          },
+          {
+            type: "list",
+            data: [
+              "<b>Loudness only</b> (band envelopes, fine wave thrown away): 0.01 dB SNR",
+              "<b>Firing rate</b> (how often each group of fibres fires): 0.0 dB SNR",
+              "<b>Spike timing, 512 fibres</b> (exact spike times, hair cells left out): 205 dB SNR",
+              "<b>The whole ear, 32,768 fibres</b> (cochlea, hair cells and nerve, each undone in turn): 174 dB SNR",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "For scale, 16-bit CD audio has a signal-to-noise ratio of about 96 dB. The takeaway is that <span class='highlight'><b>the information is in when the spikes happen, not how many there are</b></span>: rate and envelope readings keep the rhythm and lose the waveform, while exact spike times keep everything.",
+          },
+        ],
+      },
+      {
+        heading: "How The Ear Is Inverted",
+        content: [
+          {
+            type: "paragraph",
+            data: "Every stage of the model is built so that it can be undone:",
+          },
+          {
+            type: "ordered-list",
+            data: [
+              "<b>Cochlea:</b> A tight gammatone frame splits the sound into pitch bands. Being a tight frame, it reconstructs perfectly on its own",
+              "<b>Inner hair cells:</b> Soft half-wave rectification, logarithmic compression and adaptation, each chosen in an invertible form",
+              "<b>Auditory nerve:</b> A population of deterministic leaky integrate-and-fire fibres turns each band into exact spike times",
+              "<b>Regeneration:</b> Given only the spike times, a least-squares decoder recovers the nerve's input, then the hair cell stage and the filterbank are inverted in turn",
+            ],
+          },
+          {
+            type: "code",
+            data: {
+              language: "python",
+              filename: "auditory_periphery.py",
+              code: `from auditory_periphery import hear, regenerate
 
+# Sound -> spike times, through cochlea, hair cells and nerve fibres
+spike_neuron, spike_time, ear = hear(audio, fs)
+
+# Spike times -> sound. regenerate() never sees the audio.
+audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
+            },
+          },
+        ],
+      },
+      {
+        heading: "Where It Breaks",
+        content: [
+          {
+            type: "paragraph",
+            data: "Perfect regeneration holds only for noise-free spike times and deterministic fibres, and the page says so. Measured on a short test signal:",
+          },
+          {
+            type: "list",
+            data: [
+              "<b>Timing noise:</b> 209 dB with none, 73 dB at 1 nanosecond of jitter, 32 dB at 100 nanoseconds, nothing useful at 10 microseconds",
+              "<b>Fibre count per band:</b> 209 dB at 1,024 fibres, 202 dB at 512, 44 dB at 256, 11 dB at 64",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "Real nerve fibres jitter by far more than a nanosecond, so this is a statement about <b>what the code could carry in principle</b>, not a claim that the brain decodes sound this way. When spike times do not fit noise-free fibres, the decoder warns and reports the misfit instead of returning a confident wrong answer.",
+          },
+        ],
+      },
+      {
+        heading: "Engineering The Web App",
+        content: [
+          {
+            type: "list",
+            data: [
+              "<b>Frontend:</b> React 19, TypeScript and Vite, with react-three-fiber for the 3D anatomy and Motion for transitions. Page logic lives in tested modules; components only draw",
+              "<b>A server that keeps nothing:</b> The browser decodes the audio, cuts it into one-second blocks, and posts each block to a FastAPI endpoint as raw 32-bit float samples. Each answer carries the regenerated block, the energy of its error, and the chart data. The page joins the blocks and builds the playable files itself, which is what lets the model run as a serverless function",
+              "<b>Honest limits:</b> One second of sound at 1,024 fibres per band takes about 105 seconds of compute when hosted, so the hosted lab is capped at 10 seconds of audio, one block at a time, and the limits are served by the API rather than hard-coded in the page",
+              "<b>One source of truth for the model:</b> The server runs a vendored copy of the ear model, and a test fails if that copy drifts from the research code",
+              "<b>Deployment:</b> Two Vercel services in one project: the Vite front end and the Python API",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The 3D anatomy is built from two open datasets of real scans: BodyParts3D (© The Database Center for Life Science, CC BY-SA 2.1 Japan) for the brain and outer ear, and the OpenEar library (Sieber et al., Scientific Data 2019, CC BY 4.0) for the canal, eardrum, ossicles, cochlea and nerve.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "biovision",
+    title: "biovision: What A Human, A Mouse And A Fruit Fly See",
+    subtitle: "Images Rebuilt From Each Species' Neural Code",
+    focus: "Computational Neuroscience / Computer Vision",
+    categories: ["Neuroscience", "Computer Vision", "Web Apps"],
+    summary:
+      "Encodes an image through published models of the human, mouse and fruit fly early visual systems, then rebuilds it from the spikes with closed-form mathematics, showing what each eye keeps of a scene. No machine learning.",
+    tags: [
+      "Computational Vision",
+      "Neural Coding",
+      "Inverse Problems",
+      "Computer Vision",
+      "Python (NumPy, SciPy)",
+      "FastAPI",
+      "React",
+      "three.js",
+      "Vercel",
+    ],
+    role: "Researcher / Engineer",
+    github: new URL("https://github.com/Mohak327/biovision"),
+    liveUrl: new URL("https://biovision-green.vercel.app"),
+    accentColor: Theme.colors.blue[400],
+    sections: [
+      {
+        heading: "Overview",
+        content: [
+          {
+            type: "paragraph",
+            data: "A photograph is the same grid of pixels to every camera. It is not the same thing to every eye. A fruit fly looks at it through about 750 facets, a mouse through a blurry lens with no red cones, and a human through a fovea packed with three cone types. <b>What does each animal's brain actually receive?</b>",
+          },
+          {
+            type: "paragraph",
+            data: "<b>biovision</b> makes that visible. It encodes an image through a model of a species' early visual system, all the way to spike counts, then <span class='highlight'><b>rebuilds the image from that neural code alone</b></span>. The reconstruction is the picture, in the most literal sense available, of what information about the scene survived the eye.",
+          },
+          {
+            type: "paragraph",
+            data: "There is <b>no machine learning</b> anywhere in it. Every encoding stage is a published biological model with its citations, and decoding is a regularized linear inverse.",
+          },
+        ],
+      },
+      {
+        heading: "Three Eyes, Three Codes",
+        content: [
+          {
+            type: "list",
+            data: [
+              "<b>Human:</b> Keeps almost everything an ordinary image contains, in full colour. Foveated cone mosaic, cone-opponent retinal cells (brightness, red-green, blue-yellow) and V1 simple cells at several scales",
+              "<b>Mouse:</b> A blurred image, about half a cycle per degree, with no red. Modelled as the cone pathway in daylight",
+              "<b>Fruit fly:</b> A coarse hexagonal mosaic of roughly five-degree patches, with ultraviolet, blue and green receptors and no red. Lateral inhibition in the lamina sharpens it",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "On top of the species, the app exposes the experiment's knobs: how long the eye looks (30 ms glance, 100 ms look, 1 s stare of spikes), the field of view, whether neurons are noisy or ideal, and hypothetical eyes with more receptors or cortex cells than the real animal.",
+          },
+        ],
+      },
+      {
+        heading: "The Encoding Pipeline",
+        content: [
+          {
+            type: "paragraph",
+            data: "Each species is a pipeline of stages: linear stages first, then pointwise ones.",
+          },
+          {
+            type: "ordered-list",
+            data: [
+              "<b>Color:</b> RGB projected onto the species' photoreceptor types",
+              "<b>Optics:</b> Blur by the eye's point-spread function",
+              "<b>Mosaic:</b> Sampling at the receptor positions (foveated, square or hexagonal)",
+              "<b>Center-surround:</b> Difference-of-Gaussians receptive fields, which in the human eye combine the cone types into opponent channels",
+              "<b>Gabor (mammals only):</b> V1 simple cells at several scales and orientations",
+              "<b>Rate:</b> A threshold-linear firing rate around a resting rate",
+              "<b>Spikes:</b> Poisson spike counts in a time window",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "The code keeps a strict separation: <b>stages hold the mathematics and know nothing about species; species files hold parameters and citations and contain no mathematics</b>. Adding a new animal is one parameter file, and a generic adjoint test covers it automatically.",
+          },
+        ],
+      },
+      {
+        heading: "Decoding Without Learning",
+        content: [
+          {
+            type: "paragraph",
+            data: "Decoding undoes the pointwise stages, then solves a regularized least-squares problem by conjugate gradients, where <code>A</code> is every linear stage composed into one operator:",
+          },
+          {
+            type: "code",
+            data: {
+              language: "text",
+              filename: "decoder objective",
+              code: `minimize  ||A x - y||^2  +  lambda * ( ||grad x||^2  +  w * ||chroma x||^2 )
+
+A       all linear stages composed (color, optics, mosaic, receptive fields, gabor)
+y       the measurements recovered from spike counts
+lambda  set from the Poisson variance of the measurements when neurons are noisy`,
+            },
+          },
+          {
+            type: "paragraph",
+            data: "The prior says only two things about natural images: they are smooth (power falling as 1/f²) and their colour channels are correlated. Because nothing is learned, <span class='highlight'><b>anything missing from the reconstruction is missing because the eye never encoded it</b></span>, not because a network failed to hallucinate it back.",
+          },
+          {
+            type: "code",
+            data: {
+              language: "python",
+              filename: "example.py",
+              code: `from biovision import io
+from biovision.run import run
+
+result = run(io.load_image("cat.jpg"), "fly", window_ms=100)
+print(result.metrics["psnr_db"], result.reconstructed.shape)`,
+            },
+          },
+        ],
+      },
+      {
+        heading: "Making The Human Eye Work With Real Neurons",
+        content: [
+          {
+            type: "paragraph",
+            data: "With ideal, noise-free neurons the human model reconstructed well from the start (about 38 dB PSNR). With realistic Poisson spiking it was poor: about 20 dB at 96 pixels. The limit was how the model carried its signal through spike noise, and the fix came from the biology rather than from the decoder:",
+          },
+          {
+            type: "list",
+            data: [
+              "<b>Cone opponency:</b> Retinal cells recombine the cone types into brightness, red-green and blue-yellow channels, as real ganglion cells do",
+              "<b>A gain per pathway and per cortex scale:</b> Weak chromatic and fine-detail signals are lifted above the spike noise without pushing cells into clipping",
+              "<b>Fixational eye movements:</b> Several slightly shifted looks share one spike window and are decoded in a single solve",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "<b>Result:</b> at 96 pixels with 100 ms of spikes, averaged over three sample images, PSNR rose from 20.4 dB to 30.7 dB and SSIM from 0.68 to 0.91, while ideal-neuron quality stayed at about 38 dB. Decoder-side tricks that scored well but treated the symptom (extra colour smoothing, variance weighting) were measured and left out.",
+          },
+        ],
+      },
+      {
+        heading: "Engineering",
+        content: [
+          {
+            type: "list",
+            data: [
+              "<b>One entry point:</b> A single <code>run()</code> function backs the Python API, the command line and the web app, so all three always agree",
+              "<b>CLI and reports:</b> <code>biovision run</code> writes a figure and the quality numbers; <code>biovision report</code> writes every figure (PNG and PDF), table (CSV) and a Markdown report, including sweeps over spike window, regularization and receptor density",
+              "<b>Web app:</b> React, TypeScript and Vite with three.js on the front end, FastAPI on the back, deployed to Vercel as two services in one project",
+              "<b>Scaling the solve:</b> Multi-scale pooling for wide retinal and cortical cells, and a conjugate-gradient solve preconditioned by the channel coupling and the prior, to fit larger images in a hosted function's memory",
+              "<b>Tested:</b> pytest for the library and server, including adjoint checks on every linear stage, and Vitest for the front end's logic",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Limits",
+        content: [
+          {
+            type: "list",
+            data: [
+              "Ultraviolet is approximated from the blue channel of an RGB image",
+              "Image values are treated as linear light",
+              "Where receptors are smaller than a pixel, the image sets the resolution, not the eye",
+              "The mouse model is its cone pathway in daylight",
+              "Still images only; no motion pathways yet",
+              "The hosted version limits the human eye to small picture sizes, since a serverless function has less memory than a laptop",
+            ],
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "auditory-system-emulation",
     title: "Sing Me A Song: Building A Digital Human Ear",
     subtitle: "From Sound Wave To Spikes",
     focus: "Computational Neuroscience",
+    categories: ["Neuroscience"],
     summary:
       'An end-to-end digital model of the human auditory pathway that takes raw sound, passes it through cochlear-like filtering, hair cell transduction, and spiking neuron populations, and then attempts to reconstruct what the ear "hears" from those neural signals.',
     tags: ["Auditory Signal Processing", "Neural Encoding"],
@@ -690,26 +1012,24 @@ export type SwotStrategyAnswers = {
         ],
       },
       {
-        heading: "Real-Time Performance Characteristics",
+        heading: "How Much Survives Each Reading Of The Nerve",
         content: [
           {
             type: "paragraph",
-            data: "<b>System Specifications:</b>",
+            data: "The model now scores one clip through several reconstruction paths, each keeping a different part of the ear's code. Measured on a 10 second clip:",
           },
           {
             type: "list",
             data: [
-              "<b>Temporal Resolution:</b> Sub-millisecond spike timing precision (< 1 ms)",
-              "<b>Cochlear Channels:</b> 128 independent frequency bands (50 Hz - 8 kHz)",
-              "<b>Reconstruction Quality:</b> SNR 30-40 dB for bandlimited signals",
-              "<b>Processing Latency:</b> Real-time encoding with microsecond-scale neuron dynamics",
-              "<b>Spike Rate:</b> Up to 200 spikes/sec per neuron (physiologically realistic)",
-              "<b>Audio Sampling:</b> 44.1 kHz input → neural spike trains → reconstructed waveform",
+              "<b>Band envelopes only</b> (noise carrier): cochlear-implant quality, about 0 dB waveform SNR",
+              "<b>Spike firing rates:</b> below the envelope path",
+              "<b>Exact spike times, 512 deterministic LIF neurons, no hair cells:</b> 205 dB SNR",
+              "<b>The whole ear</b> (gammatone cochlea, inner hair cells, 32,768 nerve fibres): 174 dB SNR",
             ],
           },
           {
             type: "paragraph",
-            data: "These metrics demonstrate that the digital ear achieves biologically plausible temporal coding, the same precision required for real-time audio processing in robotics applications like speech recognition, environmental sound localization, and acoustic event detection.",
+            data: "The exact paths hold only for noise-free spike times and deterministic fibres: one nanosecond of timing jitter already brings the whole-ear path down to about 73 dB, and 10 microseconds leaves nothing useful. You can hear every version and run your own sound in <a href='/projects/resound'>Resound</a>, the interactive site built on this model.",
           },
         ],
       },
@@ -737,6 +1057,7 @@ export type SwotStrategyAnswers = {
     title: "WYSIWYG: Image Reconstruction with 2D Fourier Transform",
     subtitle: "Visualizing Image Reconstruction with Fourier Transform",
     focus: "Computational Imaging",
+    categories: ["Computer Vision"],
     summary:
       "Exploring the decomposition and reconstruction of images using 2D Fourier Transform (DFT) to understand the role of frequency components in image structure.",
     tags: [
@@ -796,6 +1117,7 @@ export type SwotStrategyAnswers = {
     title: "Neural Radiance Fields: 2D & 3D Scene Reconstruction",
     subtitle: "From Image Fitting to Multi-View 3D Rendering",
     focus: "Computer Vision / 3D Reconstruction",
+    categories: ["Computer Vision"],
     summary:
       "Implemented coordinate-based neural fields for 2D image reconstruction and full NeRF pipeline for 3D scene reconstruction from multi-view images.",
     tags: [
@@ -902,6 +1224,7 @@ export type SwotStrategyAnswers = {
     title: "Causalitea: Teaching LLMs to Think Causally",
     subtitle: "Exposing AI's Causal Reasoning Gaps",
     focus: "Causal ML / AI Safety",
+    categories: ["AI / LLMs", "Web Apps"],
     summary:
       "A benchmark and training platform for evaluating and improving causal reasoning in large language models through systematic testing of counterfactual inference capabilities.",
     tags: [
@@ -1130,6 +1453,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
     title: "Temporal Encoding and Decoding in Neural Circuits",
     subtitle: "Exploring Signal Processing in Neural Models",
     focus: "Computational Neuroscience",
+    categories: ["Neuroscience"],
     summary:
       "Implementation of temporal encoding machines and time decoding machines for signal processing in neural circuits, focusing on ASDM and IAF neurons.",
     github: new URL("https://github.com/Mohak327/temporal-encoding-machines"),
@@ -1223,6 +1547,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
     title: "PhysNeRF: Physics-Informed Neural Radiance Fields",
     subtitle: "3D Scene Reconstruction with Physical Constraints",
     focus: "Computer Vision / 3D Geometry",
+    categories: ["Computer Vision"],
     summary:
       "Integrating physics-based constraints into neural radiance fields for photorealistic 3D scene reconstruction and novel view synthesis.",
     tags: [
@@ -1334,6 +1659,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
     title: "Causal & Time Series Analysis of Neural Activity",
     subtitle: "Investigating Synaptic Activity",
     focus: "Neuroscience / Causal ML",
+    categories: ["Neuroscience"],
     summary:
       "Using Hodgkin-Huxley & Rinzel models to investigate synaptic activity.",
     accentColor: Theme.colors.green[400],
@@ -1377,6 +1703,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
     title: "Computational Cardiac Modeling",
     subtitle: "Phase Response Curve Analysis",
     focus: "HealthTech / Biophysics",
+    categories: ["Neuroscience"],
     summary:
       "ECG signal modeling and Phase Response Curve (PRC) analysis using nonlinear ODE simulations.",
     github: new URL(

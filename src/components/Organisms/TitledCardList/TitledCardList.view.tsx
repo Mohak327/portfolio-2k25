@@ -16,6 +16,7 @@ const TitledCardList = <
   items,
   renderItem,
   icon,
+  filters,
   colCount = 1,
   timeline = false,
 }: TitledCardListProps<T>) => {
@@ -27,6 +28,7 @@ const TitledCardList = <
         </div>
         <h2 className="text-4xl font-black uppercase">{title}</h2>
       </div>
+      {filters}
       {timeline && items.length > 0 && (
         <div className="absolute left-[8px] top-[22px] h-[80px] w-1 bg-black" />
       )}

@@ -222,6 +222,7 @@ export const homeData = {
       id: p.id,
       link: `/projects/${p.id}`,
       focus: p.focus,
+      categories: p.categories,
       title: p.title,
       description: p.summary,
       tags: p.tags,
