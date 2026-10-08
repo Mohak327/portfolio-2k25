@@ -1,4 +1,4 @@
-import { projects } from "@/page-data/projects/projects.model";
+import { projectCards } from "@/page-data/projects/projects.model";
 import { Theme } from "../../Theme";
 import { ArrowBigRight, ExternalLink, FileText, Activity, Cpu, Network } from "lucide-react";
 import { MdEmail } from "react-icons/md";
@@ -217,18 +217,18 @@ export const homeData = {
     ],
   },
   projects: {
-    title: "Projects",
-    items: projects.map((p) => ({
-      id: p.id,
-      link: `/projects/${p.id}`,
-      focus: p.focus,
-      categories: p.categories,
-      title: p.title,
-      description: p.summary,
-      tags: p.tags,
-      accent: p.accentColor,
-      bgColor: p.accentColor,
-    })),
+    title: "Featured Projects",
+    // Shown on the home page, in this order. Everything else lives on /projects.
+    items: [
+      "spectrum-consumer-segmentation",
+      "causalitea",
+      "resound",
+      "spikesight",
+      "nerf-3d-reconstruction",
+    ].flatMap((id) => projectCards.filter((p) => p.id === id)),
+    ctaLink: "/projects",
+    ctaText: "View All Projects",
+    ctaIcon: ArrowBigRight,
   },
   education: {
     title: "Education",

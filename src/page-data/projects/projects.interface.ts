@@ -1,3 +1,5 @@
+import { FilterOption } from "@/components/Organisms/PillFilters/PillFilters.interface";
+
 export interface MediaItem {
   url: string;
   alt?: string;
@@ -42,6 +44,27 @@ export const projectCategories = [
 ] as const;
 
 export type ProjectCategory = (typeof projectCategories)[number];
+
+/** A project as shown on a listing card. */
+export interface ProjectCardItem {
+  id: string;
+  link: string;
+  focus?: string;
+  categories: ProjectCategory[];
+  title: string;
+  description: string;
+  tags: string[];
+  accent: string;
+  bgColor: string;
+}
+
+export interface ProjectsPageViewProps {
+  projectItems: ProjectCardItem[];
+  filterOptions: FilterOption[];
+  activeFilter: string;
+  allLabel: string;
+  onFilterChange: (value: string) => void;
+}
 
 export interface ProjectInterface {
   id: string;

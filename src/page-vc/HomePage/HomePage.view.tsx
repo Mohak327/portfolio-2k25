@@ -11,16 +11,10 @@ import RichTextController from "@/components/Organisms/RichText/RichText.control
 import PDFTile from "@/components/Molecules/PDFTile/PDFTile.view";
 import Accordion from "@/components/Molecules/Accordion/Accordion.view";
 import Spotlight from "@/components/Organisms/Spotlight/Spotlight.view";
-import PillFilters from "@/components/Organisms/PillFilters/PillFilters.controller";
+import ProjectCardContent from "@/components/Molecules/ProjectCardContent/ProjectCardContent.view";
+import Link from "next/link";
 
-const HomePageView = ({
-  techArsenal,
-  projectItems,
-  projectFilterOptions,
-  activeProjectFilter,
-  allProjectsLabel,
-  onProjectFilterChange,
-}: HomeViewProps) => {
+const HomePageView = ({ techArsenal }: HomeViewProps) => {
   return (
     <div
       className={`min-h-screen text-black font-mono selection:bg-black selection:text-white overflow-x-hidden`}
@@ -47,46 +41,22 @@ const HomePageView = ({
           items={homeData.researchSpotlight.items}
         />
 
-        <TitledCardList
-          title={homeData.projects.title}
-          items={projectItems}
-          icon={<Brain size={24} />}
-          filters={
-            <PillFilters
-              options={projectFilterOptions}
-              value={activeProjectFilter}
-              onChange={onProjectFilterChange}
-              includeAll
-              allLabel={allProjectsLabel}
-              size="sm"
-            />
-          }
-          colCount={2}
-          renderItem={(project) => (
-            <>
-              <div className="bg-white border-2 border-black inline-block px-3 py-1 font-bold text-xs uppercase mb-4">
-                {project.focus}
-              </div>
-              <h3 className="text-2xl font-black uppercase mb-2 leading-tight">
-                {project.title}
-              </h3>
-              {/* line-clamp-3 */}
-              <p className="text-sm font-bold mb-4 border-l-4 border-black pl-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="bg-black text-white flex-none w-auto px-2 py-1 text-xs font-bold text-center"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </>
-          )}
-        />
+        <div className="flex flex-col gap-6">
+          <TitledCardList
+            title={homeData.projects.title}
+            items={homeData.projects.items}
+            icon={<Brain size={24} />}
+            colCount={2}
+            renderItem={(project) => <ProjectCardContent project={project} />}
+          />
+          <Link
+            href={homeData.projects.ctaLink}
+            className="self-center bg-black text-white px-6 py-3 font-bold uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:text-black transition-all whitespace-nowrap text-center flex items-center gap-2"
+          >
+            {homeData.projects.ctaText}{" "}
+            <homeData.projects.ctaIcon size={20} />
+          </Link>
+        </div>
 
         {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-12"> */}
         <TitledCardList

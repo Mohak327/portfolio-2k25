@@ -1,5 +1,5 @@
 import { Theme } from "../../Theme";
-import { ProjectInterface } from "./projects.interface";
+import { ProjectCardItem, ProjectInterface } from "./projects.interface";
 
 export const projects: ProjectInterface[] = [
   {
@@ -1622,7 +1622,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
   },
   {
     id: "computational-cardiac-modeling",
-    title: "Computational Cardiac Modeling",
+    title: "Timing The Shock: Modeling The Heart's Rhythm",
     subtitle: "Phase Response Curve Analysis",
     focus: "HealthTech / Biophysics",
     categories: ["Neuroscience"],
@@ -1761,6 +1761,18 @@ def compute_prc(node, perturbation_phases=120):
     // accentColor: Theme.colors.green[400],
   },
 ];
+
+export const projectCards: ProjectCardItem[] = projects.map((p) => ({
+  id: p.id,
+  link: `/projects/${p.id}`,
+  focus: p.focus,
+  categories: p.categories,
+  title: p.title,
+  description: p.summary,
+  tags: p.tags,
+  accent: p.accentColor,
+  bgColor: p.accentColor,
+}));
 
 // export const getProjectById = (id: string): ProjectInterface | undefined => {
 //   return projects.find((p) => p.id === id);
