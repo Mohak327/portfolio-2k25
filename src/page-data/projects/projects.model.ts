@@ -761,8 +761,8 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
     ],
   },
   {
-    id: "biovision",
-    title: "biovision: What A Human, A Mouse And A Fruit Fly See",
+    id: "spikesight",
+    title: "SpikeSight: What A Human, A Mouse And A Fruit Fly See",
     subtitle: "Images Rebuilt From Each Species' Neural Code",
     focus: "Computational Neuroscience / Computer Vision",
     categories: ["Neuroscience", "Computer Vision", "Web Apps"],
@@ -781,7 +781,7 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
     ],
     role: "Researcher / Engineer",
     github: new URL("https://github.com/Mohak327/biovision"),
-    liveUrl: new URL("https://biovision-green.vercel.app"),
+    liveUrl: new URL("https://spikesight.vercel.app"),
     accentColor: Theme.colors.blue[400],
     sections: [
       {
@@ -793,7 +793,7 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
           },
           {
             type: "paragraph",
-            data: "<b>biovision</b> makes that visible. It encodes an image through a model of a species' early visual system, all the way to spike counts, then <span class='highlight'><b>rebuilds the image from that neural code alone</b></span>. The reconstruction is the picture, in the most literal sense available, of what information about the scene survived the eye.",
+            data: "<b>SpikeSight</b> makes that visible. It encodes an image through a model of a species' early visual system, all the way to spike counts, then <span class='highlight'><b>rebuilds the image from that neural code alone</b></span>. The reconstruction is the picture, in the most literal sense available, of what information about the scene survived the eye.",
           },
           {
             type: "paragraph",
