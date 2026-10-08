@@ -626,6 +626,7 @@ export type SwotStrategyAnswers = {
     tags: [
       "Auditory Neuroscience",
       "Spike Timing Codes",
+      "Neural Encoding",
       "Signal Reconstruction",
       "React",
       "three.js",
@@ -648,6 +649,19 @@ export type SwotStrategyAnswers = {
           {
             type: "paragraph",
             data: "<b>Resound</b> answers that in the browser. It takes a clip, passes it through a model of the inner ear (cochlea, inner hair cells, auditory nerve), and then <span class='highlight'><b>regenerates the audio from the spike times alone</b></span>, undoing each stage in turn. You can listen to the original and the rebuilt version side by side, and to what is left when the ear's code is read the usual, lossy ways.",
+          },
+        ],
+      },
+      {
+        heading: "Why A Digital Ear?",
+        content: [
+          {
+            type: "paragraph",
+            data: "Most audio projects treat the ear as an invisible black box: they feed in a waveform, compute some features, and train a model, without ever asking how biological hearing actually transforms that waveform. Hearing starts long before the brain recognizes a voice or a melody; it begins as air pressure ripples that the ear turns, mechanically and then electrically, into spikes along the auditory nerve.",
+          },
+          {
+            type: "paragraph",
+            data: "This project came from wanting to trace that path explicitly, from basilar membrane motion to neural firing, and to see <b>what information survives each transformation</b>. Writing every stage as code turns the ear into a sandbox for concrete questions: what does a voice look like as cochlear channel outputs, how do spikes tile time and frequency, and how much of the original sound can be recovered if all you are given is the neural activity?",
           },
         ],
       },
@@ -684,6 +698,19 @@ export type SwotStrategyAnswers = {
           {
             type: "paragraph",
             data: "For scale, 16-bit CD audio has a signal-to-noise ratio of about 96 dB. The takeaway is that <span class='highlight'><b>the information is in when the spikes happen, not how many there are</b></span>: rate and envelope readings keep the rhythm and lose the waveform, while exact spike times keep everything.",
+          },
+        ],
+      },
+      {
+        heading: "From A Vocoder To Exact Regeneration",
+        content: [
+          {
+            type: "paragraph",
+            data: "The first version of the model, built as a Python project called <i>Sing Me A Song</i>, was a conventional pipeline: a bank of bandpass filters approximating the cochlea's tonotopic layout, a nonlinear hair cell stage, and populations of leaky integrate-and-fire or Hodgkin-Huxley neurons standing in for the auditory nerve. It produced neurograms and spike rasters, and decoded sound vocoder-style from channel envelopes and firing rates.",
+          },
+          {
+            type: "paragraph",
+            data: "That decoder topped out at cochlear-implant quality, which is exactly what the loudness-only and firing-rate rows above show. The rebuilt sound kept the rhythm and lost the waveform. Getting past it meant <b>changing what is read from the nerve</b>, from how often fibres fire to exactly when, and rebuilding each stage of the ear in a form that can be inverted.",
           },
         ],
       },
@@ -758,11 +785,24 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
           },
         ],
       },
+      {
+        heading: "What Next?",
+        content: [
+          {
+            type: "paragraph",
+            data: "The model captures the main stages of the auditory periphery without yet modelling all the biophysical and adaptive complexity of a real ear. Next steps on fidelity include richer cochlear mechanics, more realistic hair cell dynamics, adaptive gain and compression, and more detailed nerve coding such as phase locking limits and multiple fibre types.",
+          },
+          {
+            type: "paragraph",
+            data: "Beyond fidelity, a digital ear is a testbed for questions about information loss, robustness and perception. How much intelligibility survives different lesions or noise levels? Where in the pipeline is resolution most precious? It could also serve as a front end for machine learning models that work on neural-like representations instead of raw waveforms.",
+          },
+        ],
+      },
     ],
   },
   {
     id: "spikesight",
-    title: "SpikeSight: What A Human, A Mouse And A Fruit Fly See",
+    title: "SpikeSight: A Digital Eye, Built Without Machine Learning",
     subtitle: "Images Rebuilt From Each Species' Neural Code",
     focus: "Computational Neuroscience / Computer Vision",
     categories: ["Neuroscience", "Computer Vision", "Web Apps"],
@@ -929,124 +969,6 @@ print(result.metrics["psnr_db"], result.reconstructed.shape)`,
               "Still images only; no motion pathways yet",
               "The hosted version limits the human eye to small picture sizes, since a serverless function has less memory than a laptop",
             ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "auditory-system-emulation",
-    title: "Sing Me A Song: Building A Digital Human Ear",
-    subtitle: "From Sound Wave To Spikes",
-    focus: "Computational Neuroscience",
-    categories: ["Neuroscience"],
-    summary:
-      'An end-to-end digital model of the human auditory pathway that takes raw sound, passes it through cochlear-like filtering, hair cell transduction, and spiking neuron populations, and then attempts to reconstruct what the ear "hears" from those neural signals.',
-    tags: ["Auditory Signal Processing", "Neural Encoding"],
-    role: "Researcher / Engineer",
-    github: new URL("https://github.com/Mohak327/sing-me-a-song"),
-    accentColor: Theme.colors.indigo[400],
-    sections: [
-      {
-        heading: "Overview",
-        content: [
-          {
-            type: "paragraph",
-            data: 'Hearing starts long before the brain ever "recognizes" a voice or a melody; it begins as raw air pressure ripples hitting the eardrum and being mechanically and electrically transformed by the ear into spikes along the auditory nerve. This project is an attempt to turn that entire chain into code: a digital ear that takes in a waveform and walks it through the same conceptual stages as the human auditory periphery.',
-          },
-          {
-            type: "paragraph",
-            data: "Instead of stopping at a spectrogram or a simple transform, the pipeline explicitly models cochlear filterbanks, inner hair cell nonlinearities, and spiking neuron populations, treating them as successive encoding layers. The goal is not just to analyze sound, but to emulate how the ear itself might encode that sound into patterns of spikes that the brain can read.",
-          },
-        ],
-      },
-      {
-        heading: "Why A Digital Ear?",
-        content: [
-          {
-            type: "paragraph",
-            data: "Most audio projects treat the ear as an invisible black box: they feed in a waveform, compute some features, and train a model, without ever asking how biological hearing actually transforms that waveform. This project came from wanting to trace that path explicitly, step by step, from basilar membrane motion to neural firing, and to see what information survives each transformation.",
-          },
-          {
-            type: "paragraph",
-            data: "By implementing a simplified version of each stage, filterbanks for the cochlea, nonlinear transduction for hair cells, and leaky integrate-and-fire or Hodgkin–Huxley neurons for the auditory nerve, the code becomes a sandbox for asking concrete questions. What does a voice look like as cochlear channel outputs, how do spikes tile time and frequency, and how much of the original sound can be recovered if all you are given is the neural activity?",
-          },
-        ],
-      },
-      {
-        heading: "Inside The Pipeline",
-        content: [
-          {
-            type: "paragraph",
-            data: "The system begins with loading and preprocessing audio, then feeds it through a bank of bandpass filters that approximate tonotopic organization along the cochlea, producing multiple frequency channels that mimic basilar membrane motion. Inner hair cell models then apply nonlinear transformations to convert these mechanical-like signals into receptor potentials.",
-          },
-          {
-            type: "paragraph",
-            data: "These processed signals drive a population of model neurons, implemented as leaky integrate-and-fire or Hodgkin–Huxley units, whose spikes stand in for auditory nerve activity. From there, the project can derive neurograms, spike rasters, and, crucially, attempt audio reconstruction via vocoder-style decoding from channel-wise envelopes and firing rates, closing the loop from sound to spikes and back.",
-          },
-          {
-            type: "code",
-            data: {
-              language: "python",
-              filename: "neuron_model.py",
-              code: `class LeakyIntegrateFireNeuron:
-    def __init__(self, threshold=1.0, leak=0.1):
-        self.threshold = threshold
-        self.leak = leak
-        self.potential = 0.0
-        self.spike_times = []
-
-    def integrate(self, input_current, dt, time):
-        # Leak and integrate
-        self.potential += input_current * dt
-        self.potential *= (1 - self.leak * dt)
-
-        # Check for spike
-        if self.potential >= self.threshold:
-            self.spike_times.append(time)
-            self.potential = 0.0  # Reset
-            return True
-        return False`,
-            },
-          },
-        ],
-      },
-      {
-        heading: "How Much Survives Each Reading Of The Nerve",
-        content: [
-          {
-            type: "paragraph",
-            data: "The model now scores one clip through several reconstruction paths, each keeping a different part of the ear's code. Measured on a 10 second clip:",
-          },
-          {
-            type: "list",
-            data: [
-              "<b>Band envelopes only</b> (noise carrier): cochlear-implant quality, about 0 dB waveform SNR",
-              "<b>Spike firing rates:</b> below the envelope path",
-              "<b>Exact spike times, 512 deterministic LIF neurons, no hair cells:</b> 205 dB SNR",
-              "<b>The whole ear</b> (gammatone cochlea, inner hair cells, 32,768 nerve fibres): 174 dB SNR",
-            ],
-          },
-          {
-            type: "paragraph",
-            data: "The exact paths hold only for noise-free spike times and deterministic fibres: one nanosecond of timing jitter already brings the whole-ear path down to about 73 dB, and 10 microseconds leaves nothing useful. You can hear every version and run your own sound in <a href='/projects/resound'>Resound</a>, the interactive site built on this model.",
-          },
-        ],
-      },
-      {
-        heading: "What Next?",
-        content: [
-          {
-            type: "paragraph",
-            data: "<b>Toward Perception-Aware Audio And Neural Experiments</b>",
-          },
-          {
-            type: "paragraph",
-            data: "Right now, the model is a deliberately simplified but end-to-end pipeline; it captures the main stages of the auditory periphery without yet modeling all the biophysical and adaptive complexity of real ears. Next steps include richer cochlear mechanics, more realistic hair cell dynamics, adaptive gain and compression, and more detailed auditory nerve coding strategies such as phase locking limits and multiple fiber types.",
-          },
-          {
-            type: "paragraph",
-            data: "Beyond biological fidelity, this digital ear can serve as a front-end for machine learning models that work on neural-like representations instead of raw waveforms, or as a testbed for questions about information loss, robustness, and perception. How much intelligibility survives different lesions or noise levels, where in the pipeline resolution is most precious, and what kinds of synthetic sounds emerge if one optimizes directly in spike space are all experiments this project is designed to eventually make possible.",
           },
         ],
       },
