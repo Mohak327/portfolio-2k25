@@ -19,7 +19,7 @@ export const projects: ProjectInterface[] = [
       "Strategic Planning",
     ],
     github: new URL("https://github.com/Mohak327/consumer-segmentation"),
-    accentColor: Theme.colors.violet[400],
+    accentColor: Theme.colors.pink[400],
     sections: [
       {
         heading: "Overview",
@@ -452,7 +452,7 @@ export type SwotStrategyAnswers = {
       "Robot Learning",
       "Physical Intelligence",
     ],
-    accentColor: Theme.colors.pink[400],
+    accentColor: Theme.colors.violet[400],
     sections: [
       {
         heading: "Research Vision",
@@ -975,6 +975,125 @@ print(result.metrics["psnr_db"], result.reconstructed.shape)`,
     ],
   },
   {
+    id: "loadmatch",
+    title: "Loadmatch: Powering a 75 MW Data Center Before the Grid Arrives",
+    subtitle: "Runner-Up, Columbia Energy Symposium GridTech Hackathon",
+    focus: "Energy Systems / Decision Tools / Interactive Web",
+    categories: ["Web Apps"],
+    summary:
+      "A decision tool that turns a data-center developer's must-haves and priorities into a power portfolio, simulates every hour of a 10-year timeline, and shows what each alternative gains and gives up, all inside a 3D campus you can play with.",
+    tags: [
+      "Capacity Expansion Planning",
+      "Power Systems Modeling",
+      "ERCOT",
+      "Data Center Power",
+      "Techno-Economic Analysis",
+      "Emissions Accounting",
+      "Scenario Analysis",
+      "Python (NumPy, pandas)",
+      "FastAPI",
+      "React",
+      "three.js",
+      "Vercel",
+    ],
+    role: "Engineer (team of four)",
+    liveUrl: new URL("https://loadmatch.vercel.app"),
+    accentColor: Theme.colors.yellow[400],
+    sections: [
+      {
+        heading: "Overview",
+        content: [
+          {
+            type: "paragraph",
+            data: "<b>75 MW of power needed in Texas. No grid power for the first 18 months. Now what?</b> That was the question 17 teams took on at the <b>Energy Symposium GridTech Hackathon</b>, organized by the Columbia Energy Association: how should a developer power a data center campus in Texas?",
+          },
+          {
+            type: "paragraph",
+            data: "With Anu Kadyan, PhD, Leah Ndumi Kioko and Kiran Lakshmisha, I built <b>Loadmatch</b> in 8 hours. You tell it what matters, and it <span class='highlight'><b>recommends a portfolio, simulates every hour of a 10-year timeline, and shows what each alternative gains and gives up</b></span>. We were named one of the <b>four runner-up teams</b>.",
+          },
+        ],
+      },
+      {
+        heading: "The Problem",
+        content: [
+          {
+            type: "paragraph",
+            data: "The grid doesn't switch on all at once. It connects in stages, so the campus has to wait while capacity ramps up, and every month of waiting needs power from somewhere else. Solar, wind, batteries, gas and nuclear each become available on their own timelines, with different costs and emissions.",
+          },
+          {
+            type: "paragraph",
+            data: "On top of that, the customer's wishes are not all equal. Some are <b>must-haves</b> (reach full demand by a given month, stay under a carbon intensity, never interrupt critical load) and some are <b>preferences</b> (speed vs. cost vs. clean energy). A good tool has to rule out builds on the first and rank them on the second.",
+          },
+        ],
+      },
+      {
+        heading: "What We Learned From Our Mentors",
+        content: [
+          {
+            type: "paragraph",
+            data: "With guidance from our mentors Annabelle Mangin, Özüm Özsaygılı, Johann Chan, Laurie Fitzmaurice and John Atkinson, three ideas shaped the product:",
+          },
+          {
+            type: "list",
+            data: [
+              "<b>Dashboards are boring. Let people poke the problem.</b> A table of numbers doesn't build intuition, so we built a 3D campus you can play with. Drag a slider and watch the power lines swell or shrink with the MW they carry. Run a grid-stress week hour by hour and see Tier 1 work move to a remote site while Tier 0 stays lit. You see why a plan works before you read the report.",
+              "<b>A single answer isn't a decision.</b> Fastest, cleanest and cheapest each give a different build, so there's no single answer. Then the grid slips by six months, and we show three paths side by side: keep the plan, delay opening, or change the build.",
+              "<b>Every number needs a source.</b> We had five minutes to show it to the judges, so the model had to explain itself. Every assumption shows its source and can be edited. Relocated load still counts toward the carbon total, so moving work elsewhere can't make a plan look greener.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "What You Can Do In It",
+        content: [
+          {
+            type: "list",
+            data: [
+              "<b>Play:</b> A 3D Hill Country diorama of the build. Each source has its own power line into the campus (solar, wind, nuclear, grid, onsite gas, battery), with dots whose size and speed follow the MW they carry. Sliders edit a draft build, and Apply simulates it and updates the scene and scores",
+              "<b>Watch a stress event:</b> A time bar plays a grid-stress event or a normal summer week hour by hour. The grid line turns red, gas runs flat out, and relocated Tier 1 work arcs to a remote site in purple",
+              "<b>Inspect anything:</b> Hover a power source, the grid connection, the data halls or the remote site to see what it is doing this hour; click for its full-period numbers and a size slider",
+              "<b>Plan:</b> Enter must-haves, priorities and valuations, then find the best builds. The recommended build comes with its \"why\" text, the alternatives with what each gains or gives up, and the trade-off frontier",
+              "<b>What if:</b> Run a scenario like a six-month grid delay and compare keeping the plan, delaying opening, or adapting the build",
+              "<b>Rules:</b> Every number the simulation uses, with its source (data packet, brief, our assumption, or a user edit), editable live",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "How It Works",
+        content: [
+          {
+            type: "paragraph",
+            data: "<b>No ML, no external APIs, by the book.</b> The brief gave every team a self-contained 2023 ERCOT data packet and said no live APIs were allowed, so the system runs offline on an hourly simulation and a transparent search. Every result can be traced and rerun.",
+          },
+          {
+            type: "ordered-list",
+            data: [
+              "<b>Hourly simulation:</b> For every hour of 120 months, demand follows the commissioning ramp and the grid import limit follows its stages. Clean contracts deliver first, the battery charges only from clean surplus and discharges in the most expensive and stressed hours, and grid purchases and onsite gas cover the rest cheapest-first. Only in stress hours is Tier 1 load relocated and then Tier 2 interrupted. Tier 0 is never moved or cut",
+              "<b>Accounting:</b> Energy cost, relocation and interruption costs are shown separately before adding up to a total decision cost. Emissions include the remote site's emissions for relocated load, and each clean contract gets its own share of served, stored and curtailed energy",
+              "<b>Search:</b> A grid of solar, wind, nuclear and battery sizes across opening months 14 to 38, with onsite gas sized to cover what the rest leaves, gives about 1,150 portfolios simulated hour by hour",
+              "<b>Ranking:</b> Builds that fail a must-have are ruled out. The rest are compared per MWh of demand, so opening later can't look cheaper or cleaner, then weighted by the customer's priorities",
+              "<b>Explanations:</b> Each recommendation says why it won and what limits it. Each alternative names what it gains, what it gives up, and the carbon price at which it would win. If nothing meets every must-have, the tool says whether that is provably impossible or only not found, and names the single relaxation that would make a build exist",
+            ],
+          },
+          {
+            type: "paragraph",
+            data: "Exports follow the organizers' submission format, and our accounting matches their checker to 1e-9 on the tested portfolios.",
+          },
+        ],
+      },
+      {
+        heading: "What Next?",
+        content: [
+          {
+            type: "paragraph",
+            data: "Running offline by the rules leaves a lot of room: live market feeds, forecasting, a smarter search between grid points, and a plain-language intake. I'm still developing Loadmatch. If you work on data center power, grid planning or energy decision tools, I'd love to swap notes.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "dft-image-reconstruction",
     title: "WYSIWYG: Image Reconstruction with 2D Fourier Transform",
     subtitle: "Visualizing Image Reconstruction with Fourier Transform",
@@ -1053,7 +1172,7 @@ print(result.metrics["psnr_db"], result.reconstructed.shape)`,
     github: new URL(
       "https://github.com/Mohak327/computer-vision-projects/tree/reconstruction-using-nerf",
     ),
-    accentColor: Theme.colors.teal[400],
+    accentColor: Theme.colors.lime[400],
     sections: [
       {
         heading: "Overview",
@@ -1462,7 +1581,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
       "ASDM",
       "IAF Neurons",
     ],
-    accentColor: Theme.colors.lime[400],
+    accentColor: Theme.colors.teal[400],
   },
   {
     id: "physnerf-3d-reconstruction",
@@ -1479,7 +1598,7 @@ export async function seal(keys: UserKeys, passphrase: string) {
       "Computer Vision",
       "Differentiable Rendering",
     ],
-    accentColor: Theme.colors.yellow[400],
+    accentColor: Theme.colors.indigo[400],
     sections: [
       {
         heading: "Overview",

@@ -70,44 +70,18 @@ export const homeData = {
     ctaText: "Full Skill Matrix",
     ctaIcon: ArrowBigRight,
     skills: [
-      // Core Competencies - High Priority
-      { name: "Neural Rendering (NeRFs)", category: "vision", priority: "high" as const, color: Theme.colors.cyan[400] },
-      { name: "Sim-to-Real Transfer", category: "robotics", priority: "high" as const, color: Theme.colors.purple[400] },
-      { name: "EEG Signal Processing", category: "bci", priority: "high" as const, color: Theme.colors.indigo[400] },
-      { name: "Reinforcement Learning (PPO/SAC)", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
-      { name: "PyTorch", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
-
-      // Specialized Skills - High Priority
-      { name: "MuJoCo/PyBullet", category: "robotics", priority: "high" as const, color: Theme.colors.purple[400] },
-      { name: "3D Reconstruction (COLMAP)", category: "vision", priority: "high" as const, color: Theme.colors.cyan[400] },
-      { name: "Motor Control Systems", category: "bci", priority: "high" as const, color: Theme.colors.indigo[400] },
-      { name: "Transformers/CNNs", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
-
-      // Supporting Technical - Medium Priority
-      { name: "Volume Rendering", category: "vision", priority: "medium" as const, color: Theme.colors.cyan[400] },
-      { name: "Domain Randomization", category: "robotics", priority: "medium" as const, color: Theme.colors.purple[400] },
-      { name: "Contrastive Learning", category: "ml", priority: "medium" as const, color: Theme.colors.pink[400] },
-      { name: "UMAP/Manifold Analysis", category: "scientific", priority: "medium" as const, color: Theme.colors.teal[400] },
-      { name: "Real-Time Control", category: "bci", priority: "medium" as const, color: Theme.colors.indigo[400] },
-
-      // Full-Stack Engineering - Medium Priority
-      { name: "TypeScript/React", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
-      { name: "Next.js", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
-      { name: "GraphQL", category: "fullstack", priority: "medium" as const, color: Theme.colors.yellow[400] },
-      { name: "AWS/FastAPI", category: "systems", priority: "medium" as const, color: Theme.colors.orange[400] },
-
-      // Product & Growth - Low Priority (but relevant)
-      { name: "A/B Testing", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
-      { name: "SEO Optimization", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
-      { name: "User Analytics", category: "product", priority: "low" as const, color: Theme.colors.lime[400] },
-
-      // Additional Technical Depth
-      { name: "OpenCV/PyTorch3D", category: "vision", priority: "medium" as const, color: Theme.colors.cyan[400] },
-      { name: "Imitation Learning", category: "robotics", priority: "medium" as const, color: Theme.colors.purple[400] },
-      { name: "POMDPs", category: "robotics", priority: "low" as const, color: Theme.colors.purple[400] },
-      { name: "Signal Processing", category: "scientific", priority: "medium" as const, color: Theme.colors.teal[400] },
-      { name: "AlphaFold2", category: "scientific", priority: "low" as const, color: Theme.colors.teal[400] },
-      { name: "MongoDB/Redis", category: "systems", priority: "low" as const, color: Theme.colors.orange[400] },
+      { name: "Full-Stack Product", category: "fullstack", priority: "high" as const, color: Theme.colors.yellow[400] },
+      { name: "Python", category: "ml", priority: "high" as const, color: Theme.colors.sky[400] },
+      { name: "Deep Learning", category: "ml", priority: "high" as const, color: Theme.colors.pink[400] },
+      { name: "Signal Processing", category: "bci", priority: "high" as const, color: Theme.colors.violet[400] },
+      { name: "Computer Vision", category: "vision", priority: "high" as const, color: Theme.colors.cyan[400] },
+      { name: "Reinforcement Learning", category: "robotics", priority: "high" as const, color: Theme.colors.purple[400] },
+      { name: "Causal Inference", category: "scientific", priority: "high" as const, color: Theme.colors.orange[400] },
+      { name: "LLM Applications", category: "ml", priority: "high" as const, color: Theme.colors.red[400] },
+      { name: "SEO & Web Performance", category: "product", priority: "high" as const, color: Theme.colors.lime[400] },
+      { name: "Analytics & A/B Testing", category: "product", priority: "high" as const, color: Theme.colors.green[400] },
+      { name: "Cloud & APIs", category: "systems", priority: "high" as const, color: Theme.colors.blue[400] },
+      { name: "Robotics Simulation", category: "robotics", priority: "high" as const, color: Theme.colors.teal[400] },
     ],
   },
   experience: {
@@ -220,11 +194,12 @@ export const homeData = {
     title: "Featured Projects",
     // Shown on the home page, in this order. Everything else lives on /projects.
     items: [
-      "spectrum-consumer-segmentation",
+      "loadmatch",
       "causalitea",
       "resound",
       "spikesight",
       "nerf-3d-reconstruction",
+      "spectrum-consumer-segmentation",
     ].flatMap((id) => projectCards.filter((p) => p.id === id)),
     ctaLink: "/projects",
     ctaText: "View All Projects",
