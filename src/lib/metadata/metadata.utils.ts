@@ -11,7 +11,9 @@ export function generateMetadata(config: PageMetadata): Metadata {
     : siteConfig.name;
 
   const metadata: Metadata = {
-    title,
+    // `absolute` stops the root layout's "%s | name" template from adding
+    // the name a second time.
+    title: { absolute: title },
     description: config.description || siteConfig.description,
     keywords: config.keywords || siteConfig.keywords,
     authors: [{ name: config.author || siteConfig.author }],

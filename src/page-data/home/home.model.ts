@@ -89,7 +89,7 @@ export const homeData = {
     jobs: [
       {
         role: "Founding Causal AI Engineer",
-        company: "SubconsciousAI, (New York, USA)",
+        company: "SubconsciousAI (New York, USA)",
         duration: "Apr 2026 - Present",
         link: undefined,
         interactive: true,
@@ -146,8 +146,8 @@ export const homeData = {
       },
       {
         role: "Fullstack Growth Engineer (Forward Deployed)",
-        company: "Outscal, (Delhi, India)",
-        duration: "2023 - 2025",
+        company: "Outscal (Delhi, India)",
+        duration: "Nov 2023 - Jul 2025",
         link: undefined,
         interactive: true,
         tasks: [
@@ -170,14 +170,14 @@ export const homeData = {
       },
       {
         role: "Frontend Web Developer",
-        company: "Travclan, (Delhi, India)",
-        duration: "2022 - 2023",
+        company: "Travclan (Delhi, India)",
+        duration: "Aug 2022 - Sep 2023",
         link: undefined,
         interactive: true,
         tasks: [
           "Partnered with cross-functional teams (product, finance, operations) to translate business needs and pain points into a React-based internal admin panel, accelerating output efficiency for 250+ teammates by 40% in under 4 months.",
-          "Ideated and developed features for Flight and Hotel portals of TravClan based on customer needs and inferences from user analytics, being operated by 5000+ travel agents to manage bookings of over 100,000 customers.",
-          "Formulated and worked on a micro-frontend architecture in a team of two, catalyzing multi-tech stack adoption, cut build sizes by ~35%, and increased deployment frequency by 40%, boosting developer productivity.",
+          "Ideated and developed features for Flight and Hotel portals of TravClan based on customer needs and user analytics, used by 5,000+ travel agents to manage bookings for over 100,000 customers.",
+          "Designed and built a micro-frontend architecture in a team of two, enabling multi-tech-stack adoption, cutting build sizes by ~35%, and increasing deployment frequency by 40%.",
         ],
         accent: Theme.colors.lime[400],
         bgColor: Theme.colors.white,
@@ -208,7 +208,7 @@ export const homeData = {
         year: "2025 - Dec 2026",
         degree: "M.S. Computer Science",
         courses:
-          "Coursework: Machine Learning, Causal Inference, Computational Neuroscience, Quantum Computing, Mechanistic Interpretibility of Neural Nets, Computer Vision, Storage Systems, Deep Learning.",
+          "Coursework: Machine Learning, Causal Inference, Computational Neuroscience, Quantum Computing, Mechanistic Interpretability of Neural Nets, Computer Vision, Storage Systems, Deep Learning.",
         link: undefined,
         accent: Theme.colors.blue[400],
         bgColor: Theme.colors.blue[100],
@@ -218,7 +218,7 @@ export const homeData = {
         year: "2019 - 2023",
         degree: "B.Tech Computer Science",
         courses:
-          "Coursework: Advanced Math, Physics, OOPS, Data Structures, Networks, OS, DBMS, Engineering Mechanics, Circuits & Systems, Computer Organisation & Architecture, Theory of Computation, Agile Methodologies, Switching Theory & Logical Design.",
+          "Coursework: Advanced Math, Physics, OOPS, Data Structures, Networks, OS, DBMS, Engineering Mechanics, Circuits & Systems, Computer Organization & Architecture, Theory of Computation, Agile Methodologies, Switching Theory & Logical Design.",
         link: undefined,
         accent: Theme.colors.orange[400],
         bgColor: Theme.colors.white,
@@ -268,8 +268,8 @@ export const homeData = {
           title: "Graduate Admissions Ambassador, Columbia University",
           duration: "Oct 2025 - Present",
           points: [
-            "Begun outreach & mentoring efforts impacting over 2,000 potential graduate candidates annually.",
-            "Serves as a primary resource during major admissions events guiding students toward informed enrollment decisions.",
+            "Lead outreach and mentoring for over 2,000 potential graduate candidates annually.",
+            "Serve as a primary resource at major admissions events, guiding students toward informed enrollment decisions.",
           ],
           accent: Theme.colors.green[400],
           bgColor: Theme.colors.white,
@@ -282,7 +282,7 @@ export const homeData = {
             "Chaired Project Aashayein; curated syllabus for 60+ children (2020–21), taught Science & Economics, trained 12 teaching volunteers.",
             "Oversaw 400% member growth, organized 300+ events, donated 100,000+ medical/sanitary kits, collected 300 kg plastic waste as ecobricks.",
             "Co-founded CodeFlux tech community scaled to 1000+ members; organized 8+ coding workshops.",
-            "Co-Founded & Events Head (Cultural Committee BPIT); led 30+ technical & cultural events engaging 20,000+ students; secured $25,000 sponsorship.",
+            "Co-founder & Events Head (Cultural Committee BPIT); led 30+ technical & cultural events engaging 20,000+ students; secured $25,000 sponsorship.",
             "Redressal Committee Student Representative, responsible for over 2000 students on campus.",
             "Led cancer awareness team for Project Power of Ponytails: 10+ mammography sessions & 30+ awareness events.",
           ],

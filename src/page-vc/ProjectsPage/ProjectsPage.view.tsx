@@ -1,9 +1,31 @@
 import React from "react";
 import PillFilters from "@/components/Organisms/PillFilters/PillFilters.controller";
-import TitledCardList from "@/components/Organisms/TitledCardList/TitledCardList.view";
-import { Brain, Star } from "lucide-react";
+import Card from "@/components/Molecules/Card/Card.view";
+import ConditionLinkView from "@/components/Molecules/ConditionLink/ConditionLink.view";
 import ProjectCardContent from "@/components/Molecules/ProjectCardContent/ProjectCardContent.view";
-import { ProjectsPageViewProps } from "../../page-data/projects/projects.interface";
+import {
+  ProjectCardItem,
+  ProjectsPageViewProps,
+} from "../../page-data/projects/projects.interface";
+
+// Same two-column card layout as the home page's project list.
+const ProjectColumns = ({ items }: { items: ProjectCardItem[] }) => (
+  <div className="[column-count:1] md:[column-count:2]">
+    {items.map((project) => (
+      <div key={project.id} className="break-inside-avoid mb-6">
+        <ConditionLinkView link={project.link}>
+          <Card
+            bgColor={project.bgColor ? project.bgColor : "white"}
+            accentColor={project.accent ? project.accent : "white"}
+            interactive
+          >
+            <ProjectCardContent project={project} />
+          </Card>
+        </ConditionLinkView>
+      </div>
+    ))}
+  </div>
+);
 
 export const ProjectsPageView: React.FC<ProjectsPageViewProps> = ({
   featuredItems,
@@ -37,26 +59,11 @@ export const ProjectsPageView: React.FC<ProjectsPageViewProps> = ({
           />
         </div>
 
-        <div className="flex flex-col gap-12">
-          {featuredItems.length > 0 && (
-            <TitledCardList
-              title="Featured"
-              items={featuredItems}
-              icon={<Star size={24} />}
-              colCount={2}
-              renderItem={(project) => <ProjectCardContent project={project} />}
-            />
-          )}
-          {otherItems.length > 0 && (
-            <TitledCardList
-              title="More Projects"
-              items={otherItems}
-              icon={<Brain size={24} />}
-              colCount={2}
-              renderItem={(project) => <ProjectCardContent project={project} />}
-            />
-          )}
-        </div>
+        {/* One continuous list. Featured projects get their own column block
+            so they fill the top of both columns instead of stacking down the
+            left one. */}
+        <ProjectColumns items={featuredItems} />
+        <ProjectColumns items={otherItems} />
       </div>
     </div>
   );

@@ -622,7 +622,7 @@ export type SwotStrategyAnswers = {
     focus: "Computational Neuroscience / Interactive Web",
     categories: ["Neuroscience", "Web Apps"],
     summary:
-      "An interactive lab that sends a song through a model of the cochlea, hair cells and 32,768 auditory nerve fibres, then rebuilds the song from the spike times alone, at 174 dB SNR, far beyond CD quality.",
+      "An interactive lab that sends a song through a model of the cochlea, hair cells and 32,768 auditory nerve fibers, then rebuilds the song from the spike times alone, at 174 dB SNR, far beyond CD quality.",
     tags: [
       "Auditory Neuroscience",
       "Spike Timing Codes",
@@ -644,7 +644,7 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "The auditory nerve is the only thing the brain ever receives from the ear. So a fair question is: <b>how much of a sound is actually in those spikes?</b> If you were handed nothing but the firing times of the nerve fibres, could you get the song back?",
+            data: "The auditory nerve is the only thing the brain ever receives from the ear. So a fair question is: <b>how much of a sound is actually in those spikes?</b> If you were handed nothing but the firing times of the nerve fibers, could you get the song back?",
           },
           {
             type: "paragraph",
@@ -673,8 +673,8 @@ export type SwotStrategyAnswers = {
             data: [
               "<b>Follow the route:</b> A 3D model of real anatomy (outer ear, canal, eardrum, ossicles, cochlea, nerve, brain) walks through each stop the sound passes on its way in",
               "<b>Listen to four versions of one clip:</b> The original, the version rebuilt from spikes, a firing-rate reading, and a loudness-only reading that is roughly what a cochlear implant passes on",
-              "<b>Run your own sound:</b> The lab regenerates a clip you provide, with the number of nerve fibres per pitch band as a control, and charts the error block by block",
-              "<b>See where it breaks:</b> The limits section shows how fast fidelity falls with timing noise and with too few fibres",
+              "<b>Run your own sound:</b> The lab regenerates a clip you provide, with the number of nerve fibers per pitch band as a control, and charts the error block by block",
+              "<b>See where it breaks:</b> The limits section shows how fast fidelity falls with timing noise and with too few fibers",
             ],
           },
         ],
@@ -684,15 +684,15 @@ export type SwotStrategyAnswers = {
         content: [
           {
             type: "paragraph",
-            data: "Measured on a 10 second clip, encoded as <b>43,207,837 spikes</b> across 32,768 fibres (about 131.5 spikes per second per fibre):",
+            data: "Measured on a 10 second clip, encoded as <b>43,207,837 spikes</b> across 32,768 fibers (about 131.5 spikes per second per fiber):",
           },
           {
             type: "list",
             data: [
               "<b>Loudness only</b> (band envelopes, fine wave thrown away): 0.01 dB SNR",
-              "<b>Firing rate</b> (how often each group of fibres fires): 0.0 dB SNR",
-              "<b>Spike timing, 512 fibres</b> (exact spike times, hair cells left out): 205 dB SNR",
-              "<b>The whole ear, 32,768 fibres</b> (cochlea, hair cells and nerve, each undone in turn): 174 dB SNR",
+              "<b>Firing rate</b> (how often each group of fibers fires): 0.0 dB SNR",
+              "<b>Spike timing, 512 fibers</b> (exact spike times, hair cells left out): 205 dB SNR",
+              "<b>The whole ear, 32,768 fibers</b> (cochlea, hair cells and nerve, each undone in turn): 174 dB SNR",
             ],
           },
           {
@@ -710,7 +710,7 @@ export type SwotStrategyAnswers = {
           },
           {
             type: "paragraph",
-            data: "That decoder topped out at cochlear-implant quality, which is exactly what the loudness-only and firing-rate rows above show. The rebuilt sound kept the rhythm and lost the waveform. Getting past it meant <b>changing what is read from the nerve</b>, from how often fibres fire to exactly when, and rebuilding each stage of the ear in a form that can be inverted.",
+            data: "That decoder topped out at cochlear-implant quality, which is exactly what the loudness-only and firing-rate rows above show. The rebuilt sound kept the rhythm and lost the waveform. Getting past it meant <b>changing what is read from the nerve</b>, from how often fibers fire to exactly when, and rebuilding each stage of the ear in a form that can be inverted.",
           },
         ],
       },
@@ -726,7 +726,7 @@ export type SwotStrategyAnswers = {
             data: [
               "<b>Cochlea:</b> A tight gammatone frame splits the sound into pitch bands. Being a tight frame, it reconstructs perfectly on its own",
               "<b>Inner hair cells:</b> Soft half-wave rectification, logarithmic compression and adaptation, each chosen in an invertible form",
-              "<b>Auditory nerve:</b> A population of deterministic leaky integrate-and-fire fibres turns each band into exact spike times",
+              "<b>Auditory nerve:</b> A population of deterministic leaky integrate-and-fire fibers turns each band into exact spike times",
               "<b>Regeneration:</b> Given only the spike times, a least-squares decoder recovers the nerve's input, then the hair cell stage and the filterbank are inverted in turn",
             ],
           },
@@ -737,7 +737,7 @@ export type SwotStrategyAnswers = {
               filename: "auditory_periphery.py",
               code: `from auditory_periphery import hear, regenerate
 
-# Sound -> spike times, through cochlea, hair cells and nerve fibres
+# Sound -> spike times, through cochlea, hair cells and nerve fibers
 spike_neuron, spike_time, ear = hear(audio, fs)
 
 # Spike times -> sound. regenerate() never sees the audio.
@@ -751,18 +751,18 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
         content: [
           {
             type: "paragraph",
-            data: "Perfect regeneration holds only for noise-free spike times and deterministic fibres, and the page says so. Measured on a short test signal:",
+            data: "Perfect regeneration holds only for noise-free spike times and deterministic fibers, and the page says so. Measured on a short test signal:",
           },
           {
             type: "list",
             data: [
               "<b>Timing noise:</b> 209 dB with none, 73 dB at 1 nanosecond of jitter, 32 dB at 100 nanoseconds, nothing useful at 10 microseconds",
-              "<b>Fibre count per band:</b> 209 dB at 1,024 fibres, 202 dB at 512, 44 dB at 256, 11 dB at 64",
+              "<b>Fiber count per band:</b> 209 dB at 1,024 fibers, 202 dB at 512, 44 dB at 256, 11 dB at 64",
             ],
           },
           {
             type: "paragraph",
-            data: "Real nerve fibres jitter by far more than a nanosecond, so this is a statement about <b>what the code could carry in principle</b>, not a claim that the brain decodes sound this way. When spike times do not fit noise-free fibres, the decoder warns and reports the misfit instead of returning a confident wrong answer.",
+            data: "Real nerve fibers jitter by far more than a nanosecond, so this is a statement about <b>what the code could carry in principle</b>, not a claim that the brain decodes sound this way. When spike times do not fit noise-free fibers, the decoder warns and reports the misfit instead of returning a confident wrong answer.",
           },
         ],
       },
@@ -774,7 +774,7 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
             data: [
               "<b>Frontend:</b> React 19, TypeScript and Vite, with react-three-fiber for the 3D anatomy and Motion for transitions. Page logic lives in tested modules; components only draw",
               "<b>A server that keeps nothing:</b> The browser decodes the audio, cuts it into one-second blocks, and posts each block to a FastAPI endpoint as raw 32-bit float samples. Each answer carries the regenerated block, the energy of its error, and the chart data. The page joins the blocks and builds the playable files itself, which is what lets the model run as a serverless function",
-              "<b>Honest limits:</b> One second of sound at 1,024 fibres per band takes about 105 seconds of compute when hosted, so the hosted lab is capped at 10 seconds of audio, one block at a time, and the limits are served by the API rather than hard-coded in the page",
+              "<b>Honest limits:</b> One second of sound at 1,024 fibers per band takes about 105 seconds of compute when hosted, so the hosted lab is capped at 10 seconds of audio, one block at a time, and the limits are served by the API rather than hard-coded in the page",
               "<b>One source of truth for the model:</b> The server runs a vendored copy of the ear model, and a test fails if that copy drifts from the research code",
               "<b>Deployment:</b> Two Vercel services in one project: the Vite front end and the Python API",
             ],
@@ -790,7 +790,7 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
         content: [
           {
             type: "paragraph",
-            data: "The model captures the main stages of the auditory periphery without yet modelling all the biophysical and adaptive complexity of a real ear. Next steps on fidelity include richer cochlear mechanics, more realistic hair cell dynamics, adaptive gain and compression, and more detailed nerve coding such as phase locking limits and multiple fibre types.",
+            data: "The model captures the main stages of the auditory periphery without yet modeling all the biophysical and adaptive complexity of a real ear. Next steps on fidelity include richer cochlear mechanics, more realistic hair cell dynamics, adaptive gain and compression, and more detailed nerve coding such as phase locking limits and multiple fiber types.",
           },
           {
             type: "paragraph",
@@ -847,8 +847,8 @@ audio_again, info = regenerate(spike_neuron, spike_time, ear)`,
           {
             type: "list",
             data: [
-              "<b>Human:</b> Keeps almost everything an ordinary image contains, in full colour. Foveated cone mosaic, cone-opponent retinal cells (brightness, red-green, blue-yellow) and V1 simple cells at several scales",
-              "<b>Mouse:</b> A blurred image, about half a cycle per degree, with no red. Modelled as the cone pathway in daylight",
+              "<b>Human:</b> Keeps almost everything an ordinary image contains, in full color. Foveated cone mosaic, cone-opponent retinal cells (brightness, red-green, blue-yellow) and V1 simple cells at several scales",
+              "<b>Mouse:</b> A blurred image, about half a cycle per degree, with no red. Modeled as the cone pathway in daylight",
               "<b>Fruit fly:</b> A coarse hexagonal mosaic of roughly five-degree patches, with ultraviolet, blue and green receptors and no red. Lateral inhibition in the lamina sharpens it",
             ],
           },
@@ -904,7 +904,7 @@ lambda  set from the Poisson variance of the measurements when neurons are noisy
           },
           {
             type: "paragraph",
-            data: "The prior says only two things about natural images: they are smooth (power falling as 1/f²) and their colour channels are correlated. Because nothing is learned, <span class='highlight'><b>anything missing from the reconstruction is missing because the eye never encoded it</b></span>, not because a network failed to hallucinate it back.",
+            data: "The prior says only two things about natural images: they are smooth (power falling as 1/f²) and their color channels are correlated. Because nothing is learned, <span class='highlight'><b>anything missing from the reconstruction is missing because the eye never encoded it</b></span>, not because a network failed to hallucinate it back.",
           },
           {
             type: "code",
@@ -937,7 +937,7 @@ print(result.metrics["psnr_db"], result.reconstructed.shape)`,
           },
           {
             type: "paragraph",
-            data: "<b>Result:</b> at 96 pixels with 100 ms of spikes, averaged over three sample images, PSNR rose from 20.4 dB to 30.7 dB and SSIM from 0.68 to 0.91, while ideal-neuron quality stayed at about 38 dB. Decoder-side tricks that scored well but treated the symptom (extra colour smoothing, variance weighting) were measured and left out.",
+            data: "<b>Result:</b> at 96 pixels with 100 ms of spikes, averaged over three sample images, PSNR rose from 20.4 dB to 30.7 dB and SSIM from 0.68 to 0.91, while ideal-neuron quality stayed at about 38 dB. Decoder-side tricks that scored well but treated the symptom (extra color smoothing, variance weighting) were measured and left out.",
           },
         ],
       },
