@@ -1,4 +1,4 @@
-import { projectCards } from "@/page-data/projects/projects.model";
+import { featuredProjectIds, projectCards } from "@/page-data/projects/projects.model";
 import { Theme } from "../../Theme";
 import { ArrowBigRight, ExternalLink, FileText, Activity, Cpu, Network } from "lucide-react";
 import { MdEmail } from "react-icons/md";
@@ -192,15 +192,10 @@ export const homeData = {
   },
   projects: {
     title: "Featured Projects",
-    // Shown on the home page, in this order. Everything else lives on /projects.
-    items: [
-      "loadmatch",
-      "causalitea",
-      "resound",
-      "spikesight",
-      "nerf-3d-reconstruction",
-      "spectrum-consumer-segmentation",
-    ].flatMap((id) => projectCards.filter((p) => p.id === id)),
+    // Order is set by featuredProjectIds in projects.model.ts.
+    items: featuredProjectIds.flatMap((id) =>
+      projectCards.filter((p) => p.id === id),
+    ),
     ctaLink: "/projects",
     ctaText: "View All Projects",
     ctaIcon: ArrowBigRight,
@@ -243,16 +238,29 @@ export const homeData = {
             "Mentored directly by PDL faculty <a href='https://www.linkedin.com/in/hfgarcia' target='_blank' rel='noopener noreferrer' class='font-bold underline decoration-2 underline-offset-2 hover:bg-black hover:text-white transition-colors'>Helio Fred Garcia</a> and <a href='https://www.linkedin.com/in/chuck-garcia-015128' target='_blank' rel='noopener noreferrer' class='font-bold underline decoration-2 underline-offset-2 hover:bg-black hover:text-white transition-colors'>Chuck Garcia</a>, with standing access to a wider network of faculty, practitioners, and industry leaders through the program.",
             "Granted an expanded set of PDL offerings and direct, hands-on access to Columbia Engineering faculty and staff beyond the standard MS curriculum.",
           ],
+          doc: {
+            type: "website",
+            url: "https://pdl.engineering.columbia.edu/professional-development/students/pdl-fellows/mohak-sharma",
+            title: "PDL Fellow Profile",
+            icon: ExternalLink,
+          },
           accent: Theme.colors.teal[400],
           bgColor: Theme.colors.white,
         },
         {
-          title: "ISSO GLASS (Global Leadership Advancing Student Success), Columbia University",
-          duration: "Jan 2026 - Present",
+          title: "Tier 3 Distinction in Global Leadership, ISSO GLASS (Global Leadership Advancing Student Success), Columbia University",
+          duration: "Jan 2026 - Sep 2026",
           points: [
-            "Earned the Tier 1 Digital Badge by completing 5+ leadership, professional development, and intercultural-communication workshops plus the Cultural Intelligence course, across all three ISSO GLASS focus areas.",
-            "Currently advancing through Tier 2 toward the Tier 3 distinction, which requires a capstone project on top of the full Tier 1-2 workshop series.",
+            "Joined after moving from Delhi with ~3 years as a software engineer, to learn how my work and communication style translate into U.S. workplaces, where norms like \"let the work speak for itself\" don't land the same way.",
+            "Worked through leadership, professional development, and intercultural-communication workshops and the Cultural Intelligence course, putting them into practice in how I pitch ideas, frame my impact, and build professional relationships.",
+            "Earned the Tier 3 Distinction in Global Leadership, the program's highest level, by completing every tier and a capstone. For the capstone, designed and facilitated the workshop \"From Local to Global: Building a Cross-Cultural Professional Identity in Tech\" for ~80 international students at the ISSO GLASS Global Leadership Conference (Sep 26, 2026).",
           ],
+          doc: {
+            type: "website",
+            url: "https://deploy-six-pi-82.vercel.app/",
+            title: "Capstone Workshop: From Local to Global",
+            icon: ExternalLink,
+          },
           accent: Theme.colors.cyan[400],
           bgColor: Theme.colors.white,
         },

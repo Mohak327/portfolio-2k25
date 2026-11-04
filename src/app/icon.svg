@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- offset "shadow" block, matching the site's neo-brutalist cards -->
+  <rect x="10" y="10" width="52" height="52" fill="#000"/>
+  <rect x="4" y="4" width="52" height="52" fill="#facc15" stroke="#000" stroke-width="4"/>
+  <text x="30" y="40" text-anchor="middle" font-family="ui-monospace, Consolas, 'Courier New', monospace" font-weight="900" font-size="26" fill="#000">MS</text>
+</svg>

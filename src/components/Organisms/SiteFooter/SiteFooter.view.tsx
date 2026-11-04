@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { SiteFooterProps } from "./SiteFooter.interface";
 import Card from "../../Molecules/Card/Card.view";
+import PDFTile from "../../Molecules/PDFTile/PDFTile.view";
 import { Award } from "lucide-react";
 
 // Bolds standalone numbers, skipping anything inside an HTML tag so that
@@ -61,6 +62,16 @@ const SiteFooter = ({ beyondTheCode, contact, copyright }: SiteFooterProps) => {
                   ></li>
                 ))}
               </ul>
+              {section.doc && (
+                <PDFTile
+                  pdfUrl={section.doc.url}
+                  title={section.doc.title}
+                  type={section.doc.type}
+                  description={`Click to view ${section.doc.type}`}
+                  className="mt-4"
+                  icon={section.doc.icon}
+                />
+              )}
             </Card>
           ))}
         </div>

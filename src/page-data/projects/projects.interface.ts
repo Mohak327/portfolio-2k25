@@ -59,7 +59,8 @@ export interface ProjectCardItem {
 }
 
 export interface ProjectsPageViewProps {
-  projectItems: ProjectCardItem[];
+  featuredItems: ProjectCardItem[];
+  otherItems: ProjectCardItem[];
   filterOptions: FilterOption[];
   activeFilter: string;
   allLabel: string;

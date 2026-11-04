@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export interface SiteFooterProps {
     beyondTheCode: {
         title: string;
@@ -8,6 +10,12 @@ export interface SiteFooterProps {
             points: string[];
             accent?: string;
             bgColor?: string;
+            doc?: {
+                type: string;
+                url: string;
+                title: string;
+                icon?: LucideIcon;
+            };
         }[];
     };
     contact: {

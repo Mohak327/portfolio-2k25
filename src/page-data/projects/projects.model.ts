@@ -1881,7 +1881,27 @@ def compute_prc(node, perturbation_phases=120):
   },
 ];
 
-export const projectCards: ProjectCardItem[] = projects.map((p) => ({
+// Featured on the home page, in this order. The /projects page lists these
+// first too, followed by everything else in the order of `projects` above.
+export const featuredProjectIds = [
+  "loadmatch",
+  "causalitea",
+  "resound",
+  "spikesight",
+  "nerf-3d-reconstruction",
+  "spectrum-consumer-segmentation",
+];
+
+const featuredRank = (id: string) => {
+  const rank = featuredProjectIds.indexOf(id);
+  return rank === -1 ? featuredProjectIds.length : rank;
+};
+
+const orderedProjects = [...projects].sort(
+  (a, b) => featuredRank(a.id) - featuredRank(b.id),
+);
+
+export const projectCards: ProjectCardItem[] = orderedProjects.map((p) => ({
   id: p.id,
   link: `/projects/${p.id}`,
   focus: p.focus,

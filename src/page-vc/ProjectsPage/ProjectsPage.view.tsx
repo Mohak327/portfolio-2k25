@@ -1,12 +1,13 @@
 import React from "react";
 import PillFilters from "@/components/Organisms/PillFilters/PillFilters.controller";
-import Card from "@/components/Molecules/Card/Card.view";
-import ConditionLinkView from "@/components/Molecules/ConditionLink/ConditionLink.view";
+import TitledCardList from "@/components/Organisms/TitledCardList/TitledCardList.view";
+import { Brain, Star } from "lucide-react";
 import ProjectCardContent from "@/components/Molecules/ProjectCardContent/ProjectCardContent.view";
 import { ProjectsPageViewProps } from "../../page-data/projects/projects.interface";
 
 export const ProjectsPageView: React.FC<ProjectsPageViewProps> = ({
-  projectItems,
+  featuredItems,
+  otherItems,
   filterOptions,
   activeFilter,
   allLabel,
@@ -36,20 +37,25 @@ export const ProjectsPageView: React.FC<ProjectsPageViewProps> = ({
           />
         </div>
 
-        <div className="[column-count:1] md:[column-count:2]">
-          {projectItems.map((project) => (
-            <div key={project.id} className="break-inside-avoid mb-6">
-              <ConditionLinkView link={project.link}>
-                <Card
-                  bgColor={project.bgColor}
-                  accentColor={project.accent}
-                  interactive
-                >
-                  <ProjectCardContent project={project} />
-                </Card>
-              </ConditionLinkView>
-            </div>
-          ))}
+        <div className="flex flex-col gap-12">
+          {featuredItems.length > 0 && (
+            <TitledCardList
+              title="Featured"
+              items={featuredItems}
+              icon={<Star size={24} />}
+              colCount={2}
+              renderItem={(project) => <ProjectCardContent project={project} />}
+            />
+          )}
+          {otherItems.length > 0 && (
+            <TitledCardList
+              title="More Projects"
+              items={otherItems}
+              icon={<Brain size={24} />}
+              colCount={2}
+              renderItem={(project) => <ProjectCardContent project={project} />}
+            />
+          )}
         </div>
       </div>
     </div>

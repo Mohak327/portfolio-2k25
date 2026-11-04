@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { projectCards } from "@/page-data/projects/projects.model";
+import { featuredProjectIds, projectCards } from "@/page-data/projects/projects.model";
 import { projectCategories } from "@/page-data/projects/projects.interface";
 import { FilterOption } from "@/components/Organisms/PillFilters/PillFilters.interface";
 import ProjectsPageView from "./ProjectsPage.view";
@@ -32,9 +32,19 @@ const ProjectsPageController = () => {
     [activeFilter, allLabel],
   );
 
+  // Featured projects get their own block so they split evenly across both
+  // columns, the same way they do on the home page.
+  const featuredItems = projectItems.filter((p) =>
+    featuredProjectIds.includes(p.id),
+  );
+  const otherItems = projectItems.filter(
+    (p) => !featuredProjectIds.includes(p.id),
+  );
+
   return (
     <ProjectsPageView
-      projectItems={projectItems}
+      featuredItems={featuredItems}
+      otherItems={otherItems}
       filterOptions={filterOptions}
       activeFilter={activeFilter}
       allLabel={allLabel}
